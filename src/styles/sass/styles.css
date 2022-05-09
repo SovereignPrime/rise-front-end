@@ -3,12 +3,6 @@ html {
   font-family: "Roboto", sans-serif;
 }
 
-.wrapper {
-  max-width: 1200px;
-  width: 90%;
-  margin: 0 auto;
-}
-
 html {
   line-height: 1.15;
   -ms-text-size-adjust: 100%;
@@ -248,16 +242,268 @@ h1, h2, h3, h4, h5, h6, p, a, ul, li {
 
 h1 {
   padding: 10px 20px;
+  font-size: 5rem;
+  font-weight: 700;
 }
 
-p {
-  padding: 4rem 2rem;
+.introParagraph {
+  padding: 2rem 2rem;
+  width: 65%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.introParagraph p {
+  letter-spacing: 1.5px;
+  text-align: center;
+  padding: 5px 20px;
 }
 
-.button {
+.ButtonBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.linkToUserInputPage, .submitButton, .LinkToDashboard {
   background-color: #17202a;
   color: #ffffff;
   margin: 20px;
   border: none;
   padding: 1em 2em;
+  text-transform: uppercase;
+}
+
+a:link {
+  text-decoration: none;
+}
+
+.userInputIntro h2 {
+  padding: 20px 0px;
+}
+
+.userInputIntro p {
+  padding: 20px 0px;
+}
+
+.submit {
+  margin: 20px 0px;
+}
+
+form {
+  display: inline-flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: right;
+  margin: 5px auto;
+  padding: 0 5px;
+}
+
+.forms {
+  display: flex;
+  flex-direction: row;
+}
+
+.logo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.formMaster {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-top: 40px;
+}
+
+.infoBox, .addBox, .nameBox, .bioBox, .occBox {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.addBox, .bioBox, .occBox {
+  max-width: 100%;
+}
+
+input, .dropDown, .message {
+  border-radius: 5px;
+  resize: none;
+  text-align: center;
+}
+
+label {
+  text-align: left;
+}
+
+.bioBox label {
+  text-align: center;
+}
+
+.mpmain {
+  text-align: left;
+  margin: 30px auto;
+}
+
+.addNew {
+  text-align: center;
+  margin: 20px auto;
+}
+
+h3 {
+  padding: 30px;
+}
+
+.MPForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: row;
+}
+
+.menu ul li {
+  list-style: none;
+  margin: 0;
+}
+
+.menu {
+  width: 200px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.menu ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 0;
+  text-align: left;
+}
+
+.menu li {
+  padding: 20px 0;
+}
+.menu li a {
+  text-decoration: none;
+  text-transform: uppercase;
+  margin: 10px 0;
+  color: #17202a;
+  padding: 0 10px;
+}
+
+.menu li:hover {
+  border: 1px solid #17202a;
+}
+
+.icon {
+  padding: 0px 10px;
+  color: #17202a;
+}
+
+.nirvanaLanding {
+  border: 1px solid red;
+  display: flex;
+  flex-direction: row;
+}
+.nirvanaLanding ul {
+  display: flex;
+  list-style: none;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/* Style the button that is used to open and close the collapsible content */
+.collapsible {
+  background-color: #ffffff;
+  color: #17202a;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 1rem;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .collapsible:hover {
+  background-color: #ffffff;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+.makePaymentButton {
+  background-color: #17202a;
+  color: #ffffff;
+  margin: 20px;
+  border: none;
+  padding: 1em 2em;
+  text-transform: uppercase;
+}
+
+.reqPaymentButton {
+  background-color: #17202a;
+  color: #ffffff;
+  margin: 20px;
+  border: none;
+  padding: 1em 2em;
+  text-transform: uppercase;
+}
+
+.listOfNotifications {
+  text-align: left;
+}
+
+.listOfNotifications {
+  text-align: left;
+}
+
+.listOfFullfilledPayments {
+  text-align: left;
+}
+
+.mainBox {
+  display: flex;
+  flex-direction: row;
+}
+
+.notification {
+  max-width: 60%;
+}
+
+.verification {
+  max-width: 40%;
+}
+
+.topBar {
+  display: flex;
+  flex-direction: row;
+}
+.topBar .iconN {
+  font-size: 30px;
+  padding: 10px;
+}
+
+.icons {
+  display: flex;
+  flex-direction: row;
 }/*# sourceMappingURL=styles.css.map */

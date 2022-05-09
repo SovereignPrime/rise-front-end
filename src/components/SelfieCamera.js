@@ -12,9 +12,25 @@ import React, { useEffect, useState, useRef, useImperativeHandle } from "react";
  *   If not, false is passed as the first argument, and the second argument is
  *   a DOMException with error name 'NotAllowedError' if the user denies permission
  *   or 'NotFoundError' if the requested media are not available.
+ * @prop {String} classNameVideo - a classname for the rendered <video/> tag
+ * @prop {String} classNameErr - a classname for the media access error message <div/>
+ * @prop {String} classNameErrMessage - a classname for the <p/> nested in the error <div/>
+ * @prop {String} classNameErrRetryButton - a classname for the <button/> nested in the error <div/>
  */
 const SelfieCamera = React.forwardRef(
-  ({ width, height, withAudio, onTryMediaAccess }, ref) => {
+  (
+    {
+      width,
+      height,
+      withAudio,
+      onTryMediaAccess,
+      classNameVideo,
+      classNameErr,
+      classNameErrMessage,
+      classNameErrRetryButton,
+    },
+    ref
+  ) => {
     const [streaming, setStreaming] = useState(false);
     const [mediaRecorder, setMediaRecorder] = useState(null);
 
@@ -104,14 +120,27 @@ const SelfieCamera = React.forwardRef(
 
     return (
       <div>
-        <video muted ref={videoRef} width={width} height={height} />
+        {/* The <video/> tag itself is always rendered, because it is
+            involved in setting up the media stream as well as streaming. */}
+        <video
+          muted
+          ref={videoRef}
+          className={classNameVideo}
+          // The width and height are conditional so that the <video/> tag
+          // does not displace the error message when not streaming.
+          width={streaming ? width : 0}
+          height={streaming ? height : 0}
+        />
+        {/* The media access error message is rendered only if not streaming */}
         {!streaming && (
-          <div width={width} height={height}>
-            <p>
+          <div width={width} height={height} className={classNameErr}>
+            <p className={classNameErrMessage}>
               Camera{withAudio && " or microphone"} unavailable. Please check
               your permission settings.
             </p>
-            <button onClick={getVideo}>Retry</button>
+            <button onClick={getVideo} className={classNameErrRetryButton}>
+              Retry
+            </button>
           </div>
         )}
       </div>
