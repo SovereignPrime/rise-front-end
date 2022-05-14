@@ -157,9 +157,9 @@ const Home = () => {
 							<tbody>
 								<tr>
 									<td style={{ textAlign: "left", paddingLeft: "35px" }}>
-										<p style={{ color: "black" }}>
+										<Link to="../Matching/" style={{ color: "black" }}>
 											<span className="dot"></span>2 Verification left
-										</p>
+										</Link>
 									</td>
 								</tr>
 							</tbody>

@@ -86,25 +86,16 @@
 	animation: animateBg 14s linear infinite;
 	background-image: linear-gradient(
 		90deg,
-		#ffbdbd,
-		#ffff85,
-		#a3ffa3,
-		#9ff9f9,
-		#b8b8ff,
-		#ffbdff,
-		#c6c6dd,
-		#ffdbe1,
-		#ee72e8,
-		#ff7366,
-		#99d79f,
-		#21b02f,
-		#9021e1,
-		#05bca7,
-		#ffbdbd,
-		#ffff85
+		GhostWhite,
+		White,
+		Gainsboro,
+		WhiteSmoke,
+		Snow,
+		White,
+		WhiteSmoke
 	);
 	background-size: 1500% 100%;
-	opacity: 20%;
+	opacity: 80%;
 }
 @keyframes animateBg {
 	0% {
