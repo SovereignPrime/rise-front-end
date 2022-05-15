@@ -13,6 +13,7 @@ function App() {
         <Routes>
           <Route
             path="/"
+            exact
             element={
               <>
                 <h1>RISE</h1>
@@ -56,8 +57,8 @@ function App() {
             }
           />
 
-          <Route path="/UserInputs" element={<UserInputs />} />
-          <Route path="/Dashboard/*" element={<Dashboard />} />
+          <Route path="/UserInputs" exact element={<UserInputs />} />
+          <Route path="/Dashboard/*" exact element={<Dashboard />} />
         </Routes>
       </div>
     </div>
