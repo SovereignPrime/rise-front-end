@@ -1,13 +1,23 @@
 // Modules
 import { useNavigate } from "react-router-dom";
-import { Routes, Route } from 'react-router-dom';
-import riseLogo from '../styles/assets/spLogo.png';
+import { Routes, Route } from "react-router-dom";
+import riseLogo from "../styles/assets/spLogo.png";
 import React, { useEffect, useState, useRef, useImperativeHandle } from "react";
-import SelfieCamera, { takeSelfie, startRecording, stopRecording } from './SelfieCamera';
+import SelfieCamera, {
+	takeSelfie,
+	startRecording,
+	stopRecording
+} from "./SelfieCamera";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faCamera} from "@fortawesome/free-solid-svg-icons";
-
-
+import { faCamera } from "@fortawesome/free-solid-svg-icons";
+import "bootstrap/dist/css/bootstrap.css";
+import { Button } from "reactstrap";
+import { Form } from "reactstrap";
+import { Row } from "reactstrap";
+import { Col } from "reactstrap";
+import { FormGroup } from "reactstrap";
+import { Label } from "reactstrap";
+import { Input } from "reactstrap";
 
 // Add Joseph's code for the image capture.
 
@@ -15,119 +25,111 @@ import {faCamera} from "@fortawesome/free-solid-svg-icons";
 // Bottom/ footer is the button to add user/ should reroute user to dashboard.
 
 const UserInputs = () => {
+	const navigate = useNavigate();
 
-     const navigate = useNavigate();
+	const cameraRef = useRef();
+	const canvasRef = useRef();
 
-     const cameraRef = useRef ();
-     const canvasRef = useRef ();
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		// this will be where the backend verifies the user's info
+		//  all the input fields should have a ternary/boolean
+		console.log(`hello`);
+		navigate("/Dashboard");
+	};
 
-     const handleSubmit = (event) => {
-     event.preventDefault();
-     // this will be where the backend verifies the user's info
-     //  all the input fields should have a ternary/boolean
-     console.log(`hello`);
-     navigate("/Dashboard");
-     };
-     
-return (
-     <div className='wrapper'>
-          <div className='userInputIntro'>
-               <h2>RISE </h2>
-               <h3>Account Setup</h3>
-               <div className="logo">
-                    <img src={riseLogo}></img>
-               </div>
-               <p>Please Enter Your Account Information</p>
-          </div>
-          <div className="bossbox">
-               <div className='forms'>
-               
-                    <form className="formMaster" onSubmit={(event) => handleSubmit(event)}>
-                         <div className="secondBox">
-                              <div className="nameBox">
-                                   <label htmlFor="first name">First Name: </label>
-                                   <input type="text" name="firstName" required/>
-                              </div>
-                              <div className="nameBox">
-                                   <label htmlFor="last name">Last Name: </label>
-                                   <input type="text" name="lastName" required/>
-                              </div>
-                         </div>
-                         <div className="secondBox">
-                              <div className="infoBox">
-                         {/* Ideally this will be calandar input for users dob. */}
-                                   <label htmlFor="age">Age: 
-                                   </label>
-                                   <input type="text" name="age" required/>
-                              </div>
-                              <div className="infoBox">
-                                   <label htmlFor="height">Height (cm): </label>
-                                   <input type="text" name="height" required/>
-                              </div>
-                         </div>
-                         <div className="secondBox">
-                              <div className="addBox">
-                                   <label htmlFor="address">Address: 
-                                   </label>
-                                   <input type="text" name="address" required/>     
-                              </div>
-                              <div className="occBox">
-                                   <label htmlFor="occupation">
-                                   Occupation: </label>
-                                   <input type="text" name="occupation" required/>
-                         
-                              </div>
-                         </div>
-                         <div className="secondBox">
-                              <div className="infoBox">
-                                   <label htmlFor="sex">Sex: 
-                                   </label>
-                                   <select className="dropDown"
-                                   id="sex"
-                                   name="sex"
-                              // onChange={(e) => setUserChoice(e.target.value)}
-                              // value={userChoice}
-                                   >
-                                   <option value="placeholder" disabled> Please select your sex</option>
-                                   <option value="male">Male</option>
-                                   <option value="female">Female</option>
-                                   <option value="other">Other</option>
-                                   </select>
-                              </div>
-                              <div className="bioBox">
-                                   <label htmlFor="bio">
-                                   Bio: </label>
-                                   <textarea id="message" className="message" placeholder="Your Message" name="message" cols="20"
-                                   rows="6" required ></textarea>
-                              </div>
-                         </div>
-                    </form>                    
-               </div>
+	return (
+		<div className="wrapper">
+			<div className="userInputIntro">
+				<h2>RISE </h2>
+				<h3>Account Setup</h3>
+				<div className="logo">
+					<img src={riseLogo}></img>
+				</div>
+				<p>Please Enter Your Account Information</p>
+			</div>
 
-               {/* BEGAN working on camera/ selfie integration. Video appears, the still is still not happening. */}
+			<Form onSubmit={(event) => handleSubmit(event)} className="registerForm">
+				<Row>
+					<Col md={6}>
+						<FormGroup>
+							<Label for="firstname">First Name:</Label>
+							<Input id="firstname" name="firstname" type="firstname" />
+						</FormGroup>
+					</Col>
+					<Col md={6}>
+						<FormGroup>
+							<Label for="lastname">Last name:</Label>
+							<Input id="lastname" name="lastname" type="lastname" />
+						</FormGroup>
+					</Col>
+				</Row>
 
+				<Row>
+					<Col md={6}>
+						<FormGroup>
+							<Label for="height">Height (cm):</Label>
+							<Input id="height" name="height" type="height" />
+						</FormGroup>
+					</Col>
+					<Col md={6}>
+						<FormGroup>
+							<Label for="age">Age:</Label>
+							<Input id="age" name="age" type="age" />
+						</FormGroup>
+					</Col>
+				</Row>
 
-               <div className="josephCamera">
-                    <SelfieCamera ref={cameraRef} />
+				<Row>
+					<Col>
+						<FormGroup>
+							<Label for="sex" md={8}>
+								Sex:
+							</Label>
+							<Col xxl={13}>
+								<Input id="exampleSelect" name="select" type="select">
+									<option>Male</option>
+									<option>Female</option>
+									<option>Other</option>
+								</Input>
+							</Col>
+						</FormGroup>
+					</Col>
+					<Col md={8}>
+						<FormGroup>
+							<Label for="bio">Bio: </Label>
+							<Input
+								id="bio"
+								name="text"
+								type="textarea"
+								placeholder="Your message"
+							/>
+						</FormGroup>
+					</Col>
+				</Row>
+			</Form>
 
-                    {/* add button with onclick takeselfie function */}
+			{/* BEGAN working on camera/ selfie integration. Video appears, the still is still not happening. */}
 
-                    <button className="selfieButton" onClick={()=>takeSelfie (cameraRef, canvasRef)}>
-                         <FontAwesomeIcon className="icon camera" icon={faCamera} />
-                         Take Selfie</button>
+			<div className="josephCamera">
+				<SelfieCamera ref={cameraRef} />
 
-                    <canvas ref={canvasRef} />
+				{/* add button with onclick takeselfie function */}
 
-               </div>
-          </div>
-          
-          <input className="submitButton" type="submit" value="SUBMIT" 
-          // onChange={(e) => setUserChoice(e.target.value)} value={userChoice} 
-          />    
-     </div>
+				<Button
+					className="bg-dark p-3 mt-4 takeSelBtn"
+					onClick={() => takeSelfie(cameraRef, canvasRef)}>
+					Take a Selfie
+					<FontAwesomeIcon className="icon camera" icon={faCamera} />
+				</Button>
 
-     
-)
+				<canvas ref={canvasRef} />
+			</div>
+
+			{/*// onChange={(e) => setUserChoice(e.target.value)} value={userChoice}*/}
+			<Button className="bg-dark p-3 mt-4">SUBMIT</Button>
+		</div>
+	);
 };
 
 export default UserInputs;
