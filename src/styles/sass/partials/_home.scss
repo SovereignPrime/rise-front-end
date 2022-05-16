@@ -1,27 +1,259 @@
 .mainBox {
-  display: flex;
-  flex-direction: row;
+	display: flex;
+	flex-direction: row;
 }
 
 .notification {
-  max-width: 60%;
+	max-width: 60%;
 }
 
 .verification {
-  max-width: 40%;
+	max-width: 40%;
 }
 
 .topBar {
-  display: flex;
-  flex-direction: row;
-    .iconN {
-      font-size: 30px;
-      padding: 10px;
-    }
+	display: flex;
+	flex-direction: row;
+}
+
+.iconN {
+	font-size: 30px;
+	padding: 10px;
 }
 
 .icons {
-  display: flex;
-  flex-direction: row;
+	display: flex;
+	flex-direction: row;
 }
 
+.overlay {
+	background-color: rgba(214, 186, 186, 0.5);
+	position: absolute;
+	top: 100px;
+	left: 15px;
+	width: 90%;
+	height: 80%;
+}
+
+.searchInput {
+	margin-left: 13%;
+}
+
+.box {
+	margin: 3%;
+	border: 1px solid LightGrey;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	height: 400px;
+	width: 400px;
+}
+
+.menuContainer {
+	list-style-type: none;
+	border: 1px solid LightGrey;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.textareaModal {
+	height: 300px;
+}
+
+.dropdownMenuCategory {
+	margin-left: 205%;
+}
+
+.dot {
+	height: 10px;
+	width: 10px;
+	background-color: red;
+	border-radius: 50%;
+	display: inline-block;
+	margin-right: 5px;
+	margin-bottom: 2px;
+}
+
+.MatchingCanvas {
+	width: 40rem;
+	height: 30rem;
+	background-color: red;
+	position: relative;
+}
+
+.MatchingCanvas {
+	animation: animateBg 14s linear infinite;
+	background-image: linear-gradient(
+		90deg,
+		#ffbdbd,
+		#ffff85,
+		#a3ffa3,
+		#9ff9f9,
+		#b8b8ff,
+		#ffbdff,
+		#c6c6dd,
+		#ffdbe1,
+		#ee72e8,
+		#ff7366,
+		#99d79f,
+		#21b02f,
+		#9021e1,
+		#05bca7,
+		#ffbdbd,
+		#ffff85
+	);
+	background-size: 1500% 100%;
+	opacity: 20%;
+}
+@keyframes animateBg {
+	0% {
+		background-position: 0% 0%;
+	}
+	100% {
+		background-position: 100% 0%;
+	}
+}
+
+.pics1 {
+	border-top-left-radius: 50% 50%;
+	border-top-right-radius: 50% 50%;
+	border-bottom-right-radius: 50% 50%;
+	border-bottom-left-radius: 50% 50%;
+	animation: changeOpacity 3s step-end infinite;
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+	object-fit: cover;
+	position: absolute;
+	top: 4rem;
+	left: 4rem;
+}
+.pics2 {
+	border-top-left-radius: 50% 50%;
+	border-top-right-radius: 50% 50%;
+	border-bottom-right-radius: 50% 50%;
+	border-bottom-left-radius: 50% 50%;
+	animation: changeOpacity 3s step-end infinite;
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+	object-fit: cover;
+	position: absolute;
+	top: 7rem;
+	left: 30rem;
+}
+
+.pics3 {
+	border-top-left-radius: 50% 50%;
+	border-top-right-radius: 50% 50%;
+	border-bottom-right-radius: 50% 50%;
+	border-bottom-left-radius: 50% 50%;
+	animation: changeOpacity 3s step-end infinite;
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+	object-fit: cover;
+	position: absolute;
+	top: 16rem;
+	left: 12rem;
+}
+
+.pics4 {
+	border-top-left-radius: 50% 50%;
+	border-top-right-radius: 50% 50%;
+	border-bottom-right-radius: 50% 50%;
+	border-bottom-left-radius: 50% 50%;
+	animation: changeOpacity 3s step-end infinite;
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+	object-fit: cover;
+	position: absolute;
+	top: 2rem;
+	left: 20rem;
+}
+
+.pics5 {
+	border-top-left-radius: 50% 50%;
+	border-top-right-radius: 50% 50%;
+	border-bottom-right-radius: 50% 50%;
+	border-bottom-left-radius: 50% 50%;
+	animation: changeOpacity 3s step-end infinite;
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+	object-fit: cover;
+	position: absolute;
+	top: 2rem;
+	left: 29rem;
+}
+
+.pics6 {
+	border-top-left-radius: 50% 50%;
+	border-top-right-radius: 50% 50%;
+	border-bottom-right-radius: 50% 50%;
+	border-bottom-left-radius: 50% 50%;
+	animation: changeOpacity 3s step-end infinite;
+	box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+	object-fit: cover;
+	position: absolute;
+	top: 17rem;
+	left: 30rem;
+}
+
+.picsBig {
+	border-top-left-radius: 50% 50%;
+	border-top-right-radius: 50% 50%;
+	border-bottom-right-radius: 50% 50%;
+	border-bottom-left-radius: 50% 50%;
+	animation: changeOpacity 3s step-end infinite;
+	position: absolute;
+	top: 23rem;
+	left: 3rem;
+}
+
+.matchingWord {
+	color: white;
+	padding: 10px;
+	font-size: 5rem;
+	z-index: 10;
+	position: absolute;
+	top: 350px;
+	left: 420px;
+	text-shadow: 10px 10px 40px black;
+}
+
+.wordM .worda .wordt .wordc {
+	animation: change 2s step-end infinite;
+}
+
+.wordh .wordi .wordn .wordg {
+	animation: change 2s step-end infinite;
+}
+
+.word1dot {
+	animation: change 1s step-end infinite;
+}
+
+.word2dot {
+	animation: change 2s step-end infinite;
+}
+
+.word3dot {
+	animation: change 3s step-end infinite;
+}
+
+@keyframes change {
+	0% {
+		color: Gainsboro;
+	}
+	25% {
+		color: Grey;
+	}
+	50% {
+		color: LightGray;
+	}
+	75% {
+		color: LightSlateGrey;
+	}
+}
+
+@keyframes changeOpacity {
+	0% {
+		opacity: 70%;
+	}
+	25% {
+		opacity: 90%;
+	}
+}

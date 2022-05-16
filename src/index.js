@@ -5,18 +5,19 @@ import reportWebVitals from "./reportWebVitals";
 import { HashRouter } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { ConnectionProvider } from "./context/ConnectionContext";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ConnectionProvider>
-      <AuthProvider>
-        <HashRouter>
-          <App />
-        </HashRouter>
-      </AuthProvider>
-    </ConnectionProvider>
-  </React.StrictMode>,
-  document.getElementById("root")
+	<React.StrictMode>
+		<ConnectionProvider>
+			<AuthProvider>
+				<HashRouter>
+					<App />
+				</HashRouter>
+			</AuthProvider>
+		</ConnectionProvider>
+	</React.StrictMode>,
+	document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function
