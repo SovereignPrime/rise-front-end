@@ -6,6 +6,8 @@ import Matching from "./Matching/Matching";
 import nirvana from "../styles/assets/nirvana.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Contact from "./contact/Contact";
+import Me from "./Me/Me.js"
+import {Container, Row, Col} from "reactstrap";
 import {
 	faHouse,
 	faCreditCard,
