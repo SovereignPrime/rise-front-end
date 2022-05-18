@@ -1,0 +1,25 @@
+.message-text{
+    background-color: #006AFF;
+    color: white;
+    border-radius: 27px;
+    text-align: left;
+    padding: 5px;
+}
+
+.contact{
+   display: flex;
+   margin-bottom: 15px;
+}
+.contact-image img{
+   width: 60px;
+   margin-right: 10px;
+}
+.message-list{
+    border: solid 1px #545455;
+    padding: 80px 60px;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #cbcbcb;
+    box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
+}

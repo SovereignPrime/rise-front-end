@@ -5,6 +5,9 @@ import Home from "./home/Home";
 import Matching from "./Matching/Matching";
 import nirvana from "../styles/assets/nirvana.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Contact from "./contact/Contact";
+import Me from "./Me/Me.js"
+import {Container, Row, Col} from "reactstrap";
 import {
 	faHouse,
 	faCreditCard,
@@ -69,7 +72,13 @@ const Dashboard = () => {
 						}
 					/>
 
-					<Route path="contact/*" element={<h1>Contact</h1>} />
+					<Route path="contact/*" element={
+						<div>
+							<h1>Contact</h1>
+							<Contact />
+						</div>
+					} />
+
 					<Route
 						path="MarketPlace/*"
 						element={
@@ -98,7 +107,7 @@ const Dashboard = () => {
 							</div>
 						}
 					/>
-					<Route path="me/*" element={<h1>Me</h1>} />
+					<Route path="me/*" element={<Me/>} />
 					<Route
 						path="Matching/*"
 						element={
