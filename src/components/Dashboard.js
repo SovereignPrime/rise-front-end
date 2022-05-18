@@ -107,7 +107,7 @@ const Dashboard = () => {
 							</div>
 						}
 					/>
-					<Route path="me/*" element={<h1>Me</h1>} />
+					<Route path="me/*" element={<Me/>} />
 					<Route
 						path="Matching/*"
 						element={
