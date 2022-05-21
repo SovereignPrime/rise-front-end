@@ -3,11 +3,12 @@ import MarketPlaceInputs from "./marketplace/MarketPlaceInputs";
 import Nirvana from "./wallet/Nirvana";
 import Home from "./home/Home";
 import Matching from "./Matching/Matching";
+import Matched from "./Matching/Matched";
 import nirvana from "../styles/assets/nirvana.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Contact from "./contact/Contact";
-import Me from "./Me/Me.js"
-import {Container, Row, Col} from "reactstrap";
+import Me from "./Me/Me.js";
+import { Container, Row, Col } from "reactstrap";
 import {
 	faHouse,
 	faCreditCard,
@@ -72,12 +73,15 @@ const Dashboard = () => {
 						}
 					/>
 
-					<Route path="contact/*" element={
-						<div>
-							<h1>Contact</h1>
-							<Contact />
-						</div>
-					} />
+					<Route
+						path="contact/*"
+						element={
+							<div>
+								<h1>Contact</h1>
+								<Contact />
+							</div>
+						}
+					/>
 
 					<Route
 						path="MarketPlace/*"
@@ -107,12 +111,20 @@ const Dashboard = () => {
 							</div>
 						}
 					/>
-					<Route path="me/*" element={<Me/>} />
+					<Route path="me/*" element={<Me />} />
 					<Route
 						path="Matching/*"
 						element={
 							<div>
 								<Matching />
+							</div>
+						}
+					/>
+					<Route
+						path="Matched/*"
+						element={
+							<div>
+								<Matched />
 							</div>
 						}
 					/>

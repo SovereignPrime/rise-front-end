@@ -4,19 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSliders, faPlus } from "@fortawesome/free-solid-svg-icons";
 import "bootstrap/dist/css/bootstrap.css";
 import { Table } from "reactstrap";
-import { Card } from "reactstrap";
-import { CardImg } from "reactstrap";
-import { CardImgOverlay } from "reactstrap";
-import { CardTitle } from "reactstrap";
-import { CardText } from "reactstrap";
 import { Input } from "reactstrap";
-import nirvana from "../../styles/assets/nirvana.png";
 import React, { useState } from "react";
 import DropdownMessage from "../DropdownMenus/DropdownMessage";
 import DropdownCategory from "../DropdownMenus/DropdownCategory";
 import PaymentModal from "../Modals/PaymentModal";
 import { Button, Modal, ModalFooter, ModalHeader, ModalBody } from "reactstrap";
-import Matching from "..//Matching/Matching";
+import CardObject from "../Card/CardObject";
 
 const Home = () => {
 	const [filterBtnClicked, setFilterBtnClicked] = useState(false);
@@ -112,30 +106,6 @@ const Home = () => {
 						</div>
 						<Table borderless className="mr-4">
 							<tbody>
-								<tr>
-									<td>
-										Here Photos & Jessica, Brooke and other 7 peple have sent
-										you messages
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Here Photos & Jessica, Brooke and other 7 peple have sent
-										you messages
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Here Photos & Jessica, Brooke and other 7 peple have sent
-										you messages
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Here Photos & Jessica, Brooke and other 7 peple have sent
-										you messages
-									</td>
-								</tr>
 								<tr>
 									<td>
 										Here Photos & Jessica, Brooke and other 7 peple have sent
@@ -258,28 +228,7 @@ const Home = () => {
 				<p className="text-secondary" style={{ textAlign: "right" }}>
 					View All MarketPlace update &gt;
 				</p>
-				<Card inverse style={{ width: "300px" }}>
-					<CardImg
-						alt="Card image cap"
-						src="https://picsum.photos/318/270"
-						width="20%"
-					/>
-					<CardImgOverlay>
-						<div className="overlay">
-							<CardTitle tag="h6">
-								<img src="#"></img> User Name
-							</CardTitle>
-							<CardText>goods name</CardText>
-							<CardText tag="h6">
-								<img src={nirvana} />
-								1,000
-								<Button outline className="text-light p-1">
-									Detail
-								</Button>
-							</CardText>
-						</div>
-					</CardImgOverlay>
-				</Card>
+				<CardObject />
 			</div>
 		</div>
 	);
