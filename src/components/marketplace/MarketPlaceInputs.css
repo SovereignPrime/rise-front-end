@@ -1,0 +1,71 @@
+.marketPlace {
+    display: flex;
+    margin-bottom: 15px;
+    position: center;
+}
+
+.addyourdeal-btn {
+    text-align: right;
+}
+
+.category-filter {
+    float: left;
+
+}
+
+.sortby-filter {
+
+    float: left;
+    margin-left: 20px;
+}
+
+.card {
+
+    display: inline;
+
+}
+
+.cardItem {
+
+    float: left;
+    margin-right: 20px;
+    width: 300px;
+    display: inline;
+}
+
+.test {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.market-person {
+
+    text-align: left;
+    font-size: 15px;
+}
+
+.market-product-name {
+
+    text-align: left;
+    font-weight: bold;
+}
+
+.market-product-price {
+
+    margin-top: 10px;
+    text-align: justify;
+    padding-top: 10px;
+    font-size: 18px;
+    color: grey;
+
+}
+
+.market-product-detail-btn {
+
+    text-align: right;
+
+    font-size: 20px;
+
+}
