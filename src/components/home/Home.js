@@ -11,6 +11,37 @@ import DropdownCategory from "../DropdownMenus/DropdownCategory";
 import PaymentModal from "../Modals/PaymentModal";
 import { Button, Modal, ModalFooter, ModalHeader, ModalBody } from "reactstrap";
 import CardObject from "../Card/CardObject";
+import person1 from "../../styles/assets/person1.jpg";
+import person2 from "../../styles/assets/person2.jpg";
+import person3 from "../../styles/assets/person3.jpg";
+import person4 from "../../styles/assets/person4.jpg";
+
+const data = [
+	{
+		userName: "user 1",
+		userImg: person1,
+		typeOfaction: "Message",
+		timeOfAction: "10h"
+	},
+	{
+		userName: "user 2",
+		userImg: person2,
+		typeOfaction: "Payment",
+		timeOfAction: "10h"
+	},
+	{
+		userName: "user 3",
+		userImg: person3,
+		typeOfaction: "MarketPlace",
+		timeOfAction: "10h"
+	},
+	{
+		userName: "user 4",
+		userImg: person4,
+		typeOfaction: "autheticate",
+		timeOfAction: "10h"
+	}
+];
 
 const Home = () => {
 	const [filterBtnClicked, setFilterBtnClicked] = useState(false);
@@ -44,7 +75,9 @@ const Home = () => {
 			</div>
 			<div className="container d-flex mt-4">
 				<div className="row">
-					<div className="col-lg p-4 overflow-scroll box mr-auto">
+					<div
+						className="col-lg p-4 overflow-scroll box mr-auto"
+						style={{ width: "800px" }}>
 						<div className="topBar">
 							<div>
 								<h3>Notification</h3>
@@ -104,20 +137,17 @@ const Home = () => {
 								</ul>
 							</div>
 						</div>
+
 						<Table borderless className="mr-4">
 							<tbody>
-								<tr>
-									<td>
-										Here Photos & Jessica, Brooke and other 7 peple have sent
-										you messages
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Here Photos & Jessica, Brooke and other 7 peple have sent
-										you messages
-									</td>
-								</tr>
+								{data.map((item) => (
+									<tr>
+										<td style={{ display: "flex" }}>
+											<img src={item.userImg} width="50px" height="50px"></img>
+											<p>{item.typeOfaction}</p>
+										</td>
+									</tr>
+								))}
 							</tbody>
 						</Table>
 					</div>
