@@ -66,7 +66,7 @@ const CardObject = () => {
 		<div
 			style={{ display: "flex", flexDirection: "column", marginRight: "20px" }}>
 			{data.map((item) => (
-				<Card inverse style={{ width: "34%" }}>
+				<Card inverse style={{ width: "34%" }} key={item.userName}>
 					<CardImg
 						alt="Card image cap"
 						src={item.itemImg}

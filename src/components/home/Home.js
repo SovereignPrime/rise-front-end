@@ -141,7 +141,7 @@ const Home = () => {
 						<Table borderless className="mr-4">
 							<tbody>
 								{data.map((item) => (
-									<tr>
+									<tr key={item.userName}>
 										<td style={{ display: "flex" }}>
 											<img src={item.userImg} width="50px" height="50px"></img>
 											<p>{item.typeOfaction}</p>
