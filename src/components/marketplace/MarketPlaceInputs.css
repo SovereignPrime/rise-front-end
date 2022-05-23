@@ -33,11 +33,8 @@
     display: inline;
 }
 
-.test {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
+.card-container {
+    min-height: 65vh !important;
 }
 
 .market-person {
