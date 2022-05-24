@@ -4,32 +4,48 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SendMessageForm from './sendMessageForm';
 import {
-    faSliders, faPlus
+    faSliders, faPlus, faPlusSquare
 } from "@fortawesome/free-solid-svg-icons";
+import StartChat from "./StartChat";
 import MessageList from "./MessageList";
 import ContactsList from "./ContactsList";
-import { Row, Col } from "reactstrap";
+import { Row, Col, Container } from "reactstrap";
 import './Contact.css';
 
 const Contact = () => {
     return (
         <div>
 
-            <div className="icons">
-                <FontAwesomeIcon className="iconN" icon={faPlus} />
-            </div>
-            <Row>
-                <Col md={6}>
-                    <h3>Contact list</h3>
-                    <ContactsList />
-                </Col>
-                <Col md={6}>
-                    <MessageList />
-                </Col>
-            </Row>
-            <Row>
-                <SendMessageForm />
-            </Row>
+            <Container>
+                <Row>
+                    <Col md={6}>
+                        <div className="icons">
+                            <FontAwesomeIcon className="iconN" icon={faPlus} />
+                            <FontAwesomeIcon className="iconN" icon={faPlusSquare} />
+                        </div>
+                        <Link className="link-dark" to="MessageList/">
+                            <ContactsList />
+                        </Link>
+                    </Col>
+                    <Col md={6}>
+                        <Routes>
+                            <Route
+                                exact
+                                path="/"
+                                element={<StartChat />}
+                            />
+                            <Route
+                                exact
+                                path="MessageList/*"
+                                element={<MessageList />}
+                            />
+                        </Routes>
+                    </Col>
+                </Row>
+                <Row>
+                    <SendMessageForm />
+                </Row>
+            </Container>
         </div>
     );
 };
