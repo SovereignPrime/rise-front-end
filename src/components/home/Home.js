@@ -4,19 +4,44 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSliders, faPlus } from "@fortawesome/free-solid-svg-icons";
 import "bootstrap/dist/css/bootstrap.css";
 import { Table } from "reactstrap";
-import { Card } from "reactstrap";
-import { CardImg } from "reactstrap";
-import { CardImgOverlay } from "reactstrap";
-import { CardTitle } from "reactstrap";
-import { CardText } from "reactstrap";
 import { Input } from "reactstrap";
-import nirvana from "../../styles/assets/nirvana.png";
 import React, { useState } from "react";
 import DropdownMessage from "../DropdownMenus/DropdownMessage";
 import DropdownCategory from "../DropdownMenus/DropdownCategory";
 import PaymentModal from "../Modals/PaymentModal";
 import { Button, Modal, ModalFooter, ModalHeader, ModalBody } from "reactstrap";
-import Matching from "..//Matching/Matching";
+import CardObject from "../Card/CardObject";
+import person1 from "../../styles/assets/person1.jpg";
+import person2 from "../../styles/assets/person2.jpg";
+import person3 from "../../styles/assets/person3.jpg";
+import person4 from "../../styles/assets/person4.jpg";
+
+const data = [
+	{
+		userName: "user 1",
+		userImg: person1,
+		typeOfaction: "Message",
+		timeOfAction: "10h"
+	},
+	{
+		userName: "user 2",
+		userImg: person2,
+		typeOfaction: "Payment",
+		timeOfAction: "10h"
+	},
+	{
+		userName: "user 3",
+		userImg: person3,
+		typeOfaction: "MarketPlace",
+		timeOfAction: "10h"
+	},
+	{
+		userName: "user 4",
+		userImg: person4,
+		typeOfaction: "autheticate",
+		timeOfAction: "10h"
+	}
+];
 
 const Home = () => {
 	const [filterBtnClicked, setFilterBtnClicked] = useState(false);
@@ -50,7 +75,9 @@ const Home = () => {
 			</div>
 			<div className="container d-flex mt-4">
 				<div className="row">
-					<div className="col-lg p-4 overflow-scroll box mr-auto">
+					<div
+						className="col-lg p-4 overflow-scroll box mr-auto"
+						style={{ width: "800px" }}>
 						<div className="topBar">
 							<div>
 								<h3>Notification</h3>
@@ -110,44 +137,17 @@ const Home = () => {
 								</ul>
 							</div>
 						</div>
+
 						<Table borderless className="mr-4">
 							<tbody>
-								<tr>
-									<td>
-										Here Photos & Jessica, Brooke and other 7 peple have sent
-										you messages
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Here Photos & Jessica, Brooke and other 7 peple have sent
-										you messages
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Here Photos & Jessica, Brooke and other 7 peple have sent
-										you messages
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Here Photos & Jessica, Brooke and other 7 peple have sent
-										you messages
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Here Photos & Jessica, Brooke and other 7 peple have sent
-										you messages
-									</td>
-								</tr>
-								<tr>
-									<td>
-										Here Photos & Jessica, Brooke and other 7 peple have sent
-										you messages
-									</td>
-								</tr>
+								{data.map((item) => (
+									<tr key={item.userName}>
+										<td style={{ display: "flex" }}>
+											<img src={item.userImg} width="50px" height="50px"></img>
+											<p>{item.typeOfaction}</p>
+										</td>
+									</tr>
+								))}
 							</tbody>
 						</Table>
 					</div>
@@ -157,9 +157,9 @@ const Home = () => {
 							<tbody>
 								<tr>
 									<td style={{ textAlign: "left", paddingLeft: "35px" }}>
-										<p style={{ color: "black" }}>
+										<Link to="../Matching/" style={{ color: "black" }}>
 											<span className="dot"></span>2 Verification left
-										</p>
+										</Link>
 									</td>
 								</tr>
 							</tbody>
@@ -258,28 +258,7 @@ const Home = () => {
 				<p className="text-secondary" style={{ textAlign: "right" }}>
 					View All MarketPlace update &gt;
 				</p>
-				<Card inverse style={{ width: "300px" }}>
-					<CardImg
-						alt="Card image cap"
-						src="https://picsum.photos/318/270"
-						width="20%"
-					/>
-					<CardImgOverlay>
-						<div className="overlay">
-							<CardTitle tag="h6">
-								<img src="#"></img> User Name
-							</CardTitle>
-							<CardText>goods name</CardText>
-							<CardText tag="h6">
-								<img src={nirvana} />
-								1,000
-								<Button outline className="text-light p-1">
-									Detail
-								</Button>
-							</CardText>
-						</div>
-					</CardImgOverlay>
-				</Card>
+				<CardObject />
 			</div>
 		</div>
 	);
