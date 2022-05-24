@@ -74,7 +74,6 @@ const Dashboard = () => {
 
 					<Route path="contact/*" element={
 						<div>
-							<h1>Contact</h1>
 							<Contact />
 						</div>
 					} />
