@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Contact from "./contact/Contact";
 import Me from "./Me/Me.js"
 import Matching from "./Matching/Matching";
-import {Container, Row, Col} from "reactstrap";
+import { Container, Row, Col } from "reactstrap";
 import {
   faHouse,
   faCreditCard,
@@ -90,14 +90,13 @@ const Dashboard = () => {
             }
           />
 
-          <Route path="contact/*" 
+          <Route path="contact/*"
             exact
             element={
-            <div>
-              <h1>Contact</h1>
-              <Contact />
-            </div>
-          } />
+              <div>
+                <Contact />
+              </div>
+            } />
           <Route
             path="MarketPlace/*"
             element={
@@ -126,15 +125,15 @@ const Dashboard = () => {
               </div>
             }
           />
-          <Route path="me/*" exact element={<div><Me/></div>} />
-		  <Route
-				path="Matching/*"
-				element={
-					<div>
-						<Matching />
-					</div>
-				}
-			/>
+          <Route path="me/*" exact element={<div><Me /></div>} />
+          <Route
+            path="Matching/*"
+            element={
+              <div>
+                <Matching />
+              </div>
+            }
+          />
         </Routes>
       </Col>
     </Row>
