@@ -105,13 +105,24 @@ const UserInputs = () => {
 					<Col md={6}>
 						<FormGroup>
 							<Label for="firstname">First Name:</Label>
-							<Input id="firstname" name="firstname" type="firstname" />
+							<Input
+								id="firstname"
+								name="firstname"
+								type="firstname"
+								ref={firstNameRef}
+							/>
 						</FormGroup>
 					</Col>
 					<Col md={6}>
 						<FormGroup>
 							<Label for="lastname">Last name:</Label>
-							<Input id="lastname" name="lastname" type="lastname" />
+							<Input
+								id="lastname"
+								name="lastname"
+								type="lastname"
+								ref={lastNameRef}
+								required
+							/>
 						</FormGroup>
 					</Col>
 				</Row>
@@ -120,13 +131,25 @@ const UserInputs = () => {
 					<Col md={6}>
 						<FormGroup>
 							<Label for="height">Height (cm):</Label>
-							<Input id="height" name="height" type="height" />
+							<Input
+								id="height"
+								name="height"
+								type="height"
+								ref={userHeightRef}
+								required
+							/>
 						</FormGroup>
 					</Col>
 					<Col md={6}>
 						<FormGroup>
 							<Label for="age">Age:</Label>
-							<Input id="age" name="age" type="age" />
+							<Input
+								id="age"
+								name="age"
+								type="age"
+								onBlur={entryBoxValidator}
+								required
+							/>
 						</FormGroup>
 					</Col>
 				</Row>
@@ -154,6 +177,9 @@ const UserInputs = () => {
 								name="text"
 								type="textarea"
 								placeholder="Your message"
+								ref={userBioRef}
+								onBlur={entryBoxValidator}
+								required
 							/>
 						</FormGroup>
 					</Col>
