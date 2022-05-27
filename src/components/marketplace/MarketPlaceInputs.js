@@ -1,48 +1,111 @@
 import { Routes, Route } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import nirvana from '../../styles/assets/nirvana.png';
-import { Button, Row, Col, Container, Card, CardImg, CardSubtitle, CardTitle, CardText, CardBody } from "reactstrap";
-
+import { useState } from 'react';
+import { Button, Row, Col, Input, Card, CardImg, CardSubtitle, CardTitle, CardText, CardBody } from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
 import img1 from '../../styles/assets/img/jessie.png';
 import prod1 from '../../styles/assets/appwatch.jpg';
+import prod2 from '../../styles/assets/minicooper.jpeg';
+import prod3 from '../../styles/assets/ps5.jpeg';
 
 import './MarketPlaceInputs.css';
-
 import "bootstrap/dist/css/bootstrap.css";
 
 const data = [
      {
-          PerName: "Eric Smith",
-          PerPic: img1,
+          Id: 1,
+          perName: "Eric Smith",
+          perPic: img1,
           prodName: "Apple Watch",
+          Category: "electronics",
           Price: "$450",
           Detail: "this is a apple watch",
           prodPic: prod1,
-          good: 14,
-          bad: 2
+          Good: 14,
+          Bad: 2,
+          Date: "2022-05-25"
+     },
+     {
+          Id: 2,
+          perName: "Eric Smith",
+          perPic: img1,
+          prodName: "MINI cooper",
+          Category: "vehicles",
+          Price: "$1000",
+          Detail: "this is a car",
+          prodPic: prod2,
+          Good: 14,
+          Bad: 2,
+          Date: "2022-05-22"
 
      },
      {
-          PerName: "Eric Smith",
-          PerPic: img1,
-          prodName: "Apple Watch",
-          Price: "$450",
-          Detail: "this is a apple watch",
-          prodPic: prod1,
-          good: 14,
-          bad: 2
+          id: 3,
+          perName: "Eric Smith",
+          perPic: img1,
+          prodName: "PS5",
+          Category: "entertainment",
+          Price: "$200",
+          Detail: "this is a PS station",
+          prodPic: prod3,
+          Good: 14,
+          Bad: 2,
+          Date: "2021-05-27"
 
      },
 
 ];
 
 const MarketPlaceInputs = () => {
+
+     const [query, setQuery] = useState("");
+     const [category, setCategory] = useState("all");
+     const [filter, setFilter] = useState(null);
+
+     const searchByName = (data) => {
+          return data.filter((item) => item.prodName.toLowerCase().includes(query))
+     }
+
+     const searchCate = (data) => {
+          return data.filter((item) => {
+               if (category === "all") {
+                    return item
+               } else {
+                    return item.Category === category
+               }
+          }
+          );
+     }
+
+     const searchSortBy = (data) => {
+          if (filter === "price low to high") {
+               data = [...data].sort((a, b) => (parseInt(a.Price.substring(1), 10) > parseInt(b.Price.substring(1), 10)) ? 1 : ((parseInt(b.Price.substring(1), 10) > parseInt(a.Price.substring(1), 10)) ? -1 : 0))
+          }
+          else if (filter === "price high to low") {
+               data = [...data].sort((a, b) => (parseInt(a.Price.substring(1), 10) > parseInt(b.Price.substring(1), 10)) ? -1 : ((parseInt(b.Price.substring(1), 10) > parseInt(a.Price.substring(1), 10)) ? 1 : 0))
+          }
+          else if (filter === "Newest") {
+               data = [...data].sort((a, b) => (a.Date > b.Date) ? -1 : ((b.Date > a.Date) ? 1 : 0))
+          }
+          return data
+     }
+
+     const finaldata = searchSortBy(searchByName(searchCate(data)));
+
      return (
           <div className='marketPlace'>
                <Col md={3}>
-                    <h3>category</h3>
-                    <select>
-                         <option>All Categories</option>
+                    <input
+                         className='searching_bar'
+                         type="text"
+                         placeholder='searching...'
+                         onChange={(e) => setQuery(e.target.value)} />
+
+                    <h5>Category</h5>
+                    <select className="filter_category" onChange={(e) => setCategory(e.target.value)}>
+                         <option value="all">All Categories</option>
                          <option value="vehicles">Vehicles</option>
                          <option value="property-rental">Property Rental</option>
                          <option value="apparel">Apparel</option>
@@ -53,41 +116,45 @@ const MarketPlaceInputs = () => {
                          <option value="free stuff">Free Stuff</option>
                          <option value="garden/outdoors">Garden & Outdoors</option>
                          <option value="other">Other</option>
-
                     </select>
 
-
-                    <select>
+                    <h5>Filter</h5>
+                    <select className='filter_sort' onChange={(e) => setFilter(e.target.value)}>
                          <option >Sort by</option>
-                         <option value="price">Price</option>
-                         <option value="Year">Year</option>
-
+                         <option value="price low to high">Price: Low to High</option>
+                         <option value="price high to low">Price: High to Low</option>
+                         <option value="Newest">Newest</option>
                     </select>
-
-
                </Col>
 
                <Col md={9}>
-                    <div class="container">
+                    <div className="prod_container">
                          <div class="row">
+
                               {
-                                   data.map((item) => (
-                                        <div class="col-3">
+                                   finaldata.map((item) => (
+                                        <div key={item.Id} class="col-4">
                                              <Card >
                                                   <CardImg
                                                        alt="Card image cap"
                                                        src={item.prodPic}
                                                        width="30%"
+                                                       height={250}
                                                        top
                                                   />
                                                   <CardBody >
                                                        <CardText >
                                                             <div className="market-person">
-                                                                 <img src={item.PerPic} width="20%"></img>
+                                                                 <img src={item.perPic} width="20%"></img>
 
                                                                  <small className="text-muted">
-                                                                      &nbsp; {item.PerName}
+                                                                      &nbsp; {item.perName}
                                                                  </small>
+
+                                                                 <FontAwesomeIcon className="iconN" icon={faThumbsUp} size="1x" transform="down-9 right-7" />
+                                                                 <span>{item.Good}</span>
+                                                                 <FontAwesomeIcon className="iconN" icon={faThumbsDown} size="1x" transform="down-10 right-7" />
+                                                                 <span>{item.Bad}</span>
                                                             </div>
                                                             <div className='market-product-name'>
                                                                  {item.prodName}
@@ -97,11 +164,13 @@ const MarketPlaceInputs = () => {
                                                                       <Col className='market-product-price'>
                                                                            {item.Price}
                                                                       </Col>
-                                                                      <Col className='market-product-detail-btn'>
-                                                                           <Button >
+                                                                      <Col >
+                                                                           <Button
+                                                                                size="sm">
                                                                                 Detail
                                                                            </Button>
-                                                                      </Col></Row>
+                                                                      </Col>
+                                                                 </Row>
                                                             </div>
                                                        </CardText >
                                                   </CardBody>
