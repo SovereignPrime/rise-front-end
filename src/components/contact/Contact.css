@@ -5,7 +5,35 @@
     text-align: left;
     padding: 5px;
 }
-
+.modal .modal-content{
+    border-radius: 0px;
+}
+.modal .modal-header, .modal .modal-footer, .modal .modal-body{
+    border: none;
+}
+.d-flex{
+    display: flex;
+}
+.btn-search{
+    background-color: none;
+    color: gray;
+    border-radius: 0px;
+    border:1px solid #ced4da;
+    border-left: none;
+    
+}
+.modal input{
+    border-radius: 0px;
+    
+}
+.searchUserInput{
+    border-right: none;
+}
+.btn-add{
+    margin: auto;
+    border-radius: 0px;
+    border:1px solid #ced4da;
+}
 .contact{
    display: flex;
    margin-bottom: 15px;
