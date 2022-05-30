@@ -80,14 +80,14 @@ const MarketPlaceInputs = () => {
      }
 
      const searchSortBy = (data) => {
-          if (filter === "price low to high") {
-               data = [...data].sort((a, b) => (parseInt(a.Price.substring(1), 10) > parseInt(b.Price.substring(1), 10)) ? 1 : ((parseInt(b.Price.substring(1), 10) > parseInt(a.Price.substring(1), 10)) ? -1 : 0))
+          if (filter === "priceLowToHigh") {
+               data = [...data].sort((a, b) => (a.Price > b.Price) ? 1 : ((a.Price < b.Price) ? -1 : 0))
           }
-          else if (filter === "price high to low") {
-               data = [...data].sort((a, b) => (parseInt(a.Price.substring(1), 10) > parseInt(b.Price.substring(1), 10)) ? -1 : ((parseInt(b.Price.substring(1), 10) > parseInt(a.Price.substring(1), 10)) ? 1 : 0))
+          else if (filter === "priceHighToLow") {
+               data = [...data].sort((a, b) => (a.Price > b.Price) ? -1 : ((a.Price < b.Price) ? 1 : 0))
           }
           else if (filter === "Newest") {
-               data = [...data].sort((a, b) => (a.Date > b.Date) ? -1 : ((b.Date > a.Date) ? 1 : 0))
+               data = [...data].sort((a, b) => (a.Date > b.Date) ? -1 : ((b.Date < a.Date) ? 1 : 0))
           }
           return data
      }
@@ -121,8 +121,8 @@ const MarketPlaceInputs = () => {
                     <h5>Filter</h5>
                     <select className='filter_sort' onChange={(e) => setFilter(e.target.value)}>
                          <option >Sort by</option>
-                         <option value="price low to high">Price: Low to High</option>
-                         <option value="price high to low">Price: High to Low</option>
+                         <option value="priceLowToHigh">Price: Low to High</option>
+                         <option value="priceHighToLow">Price: High to Low</option>
                          <option value="Newest">Newest</option>
                     </select>
                </Col>
