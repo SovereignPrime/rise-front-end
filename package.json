@@ -2,7 +2,7 @@
   "name": "rise-mp",
   "version": "0.1.0",
   "private": true,
-  "homepage": "./",
+  "homepage": "http://./",
   "main": "src/electron-starter.js",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
@@ -54,5 +54,15 @@
     "@tsconfig/create-react-app": "^1.0.2",
     "electron": "^17.1.2",
     "foreman": "^3.0.1"
+  },
+  "description": "This project uses [Create React App](https://github.com/facebook/create-react-app) (introduced below) and [Electron](https://www.electronjs.org), copying a Git branch ([here](https://github.com/csepulv/electron-with-create-react-app/tree/npm-start)) of the approach described in the article [here](https://www.freecodecamp.org/news/building-an-electron-application-with-create-react-app-97945861647c#.ze6c9qin1).",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SovereignPrime/rise-prototype.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SovereignPrime/rise-prototype/issues"
   }
 }
