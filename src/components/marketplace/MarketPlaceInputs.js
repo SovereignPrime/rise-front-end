@@ -162,7 +162,7 @@ const MarketPlaceInputs = () => {
                                                             <div >
                                                                  <Row md="2">
                                                                       <Col className='market-product-price'>
-                                                                           {item.Price}
+                                                                           ${item.Price}
                                                                       </Col>
                                                                       <Col >
                                                                            <Button
