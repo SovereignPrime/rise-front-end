@@ -15,6 +15,8 @@ import person1 from "../../styles/assets/person1.jpg";
 import person2 from "../../styles/assets/person2.jpg";
 import person3 from "../../styles/assets/person3.jpg";
 import person4 from "../../styles/assets/person4.jpg";
+import MarketPlace from "../Me/MeComponents/marketPlace";
+import Message from "../Me/MeComponents/message";
 
 const data = [
 	{
@@ -27,25 +29,44 @@ const data = [
 		userName: "user 2",
 		userImg: person2,
 		typeOfaction: "Payment",
-		timeOfAction: "10h"
+		timeOfAction: "13h"
 	},
 	{
 		userName: "user 3",
 		userImg: person3,
 		typeOfaction: "MarketPlace",
-		timeOfAction: "10h"
+		timeOfAction: "14h"
 	},
 	{
 		userName: "user 4",
 		userImg: person4,
 		typeOfaction: "autheticate",
-		timeOfAction: "10h"
+		timeOfAction: "15h"
+	},
+	{
+		userName: "user 5",
+		userImg: person2,
+		typeOfaction: "MarketPlace",
+		timeOfAction: "17h"
 	}
 ];
 
 const Home = () => {
+	const [action, setAction] = useState("");
 	const [filterBtnClicked, setFilterBtnClicked] = useState(false);
 	const [plusBtnClicked, setPlusBtnClicked] = useState(false);
+
+	const filterNotification = (data) => {
+		if (action === "MarketPlace") {
+			return data.typeOfaction === "MarketPlace";
+		} else if (action === "Payment") {
+			return data.typeOfaction === "Payment";
+		} else if (action === "Message") {
+			return data.typeOfaction === "Message";
+		} else if (action === "") {
+			return data;
+		}
+	};
 
 	// Modal1 open state
 	const [modal1, setModal1] = React.useState(false);
@@ -120,18 +141,30 @@ const Home = () => {
 										}
 									/>
 									<li
-										onClick={!filterBtnClicked && toggle1}
-										style={{ textAlign: "left" }}>
+										style={{ textAlign: "left" }}
+										value="Message"
+										onClick={
+											filterBtnClicked ? (e) => setAction("Message") : toggle1
+										}>
+										{" "}
 										Message
 									</li>
 									<li
-										onClick={!filterBtnClicked && toggle2}
-										style={{ textAlign: "left" }}>
+										style={{ textAlign: "left" }}
+										value="Payment"
+										onClick={
+											filterBtnClicked ? (e) => setAction("Payment") : toggle2
+										}>
 										Payment
 									</li>
 									<li
-										onClick={!filterBtnClicked && toggle3}
-										style={{ textAlign: "left" }}>
+										style={{ textAlign: "left" }}
+										value="MarketPlace"
+										onClick={
+											filterBtnClicked
+												? (e) => setAction("MarketPlace")
+												: toggle3
+										}>
 										MarketPlace
 									</li>
 								</ul>
@@ -140,14 +173,23 @@ const Home = () => {
 
 						<Table borderless className="mr-4">
 							<tbody>
-								{data.map((item) => (
-									<tr key={item.userName}>
-										<td style={{ display: "flex" }}>
-											<img src={item.userImg} width="50px" height="50px"></img>
-											<p>{item.typeOfaction}</p>
-										</td>
-									</tr>
-								))}
+								{data
+									.filter((person) =>
+										action === "" ? person : person.typeOfaction === action
+									)
+									.map((item) => (
+										<tr key={item.userName}>
+											<td style={{ display: "flex" }}>
+												<img
+													src={item.userImg}
+													width="50px"
+													height="50px"></img>
+												<p>{item.userName} </p>
+												<p>{item.typeOfaction}</p>
+												<p>{item.timeOfAction}</p>
+											</td>
+										</tr>
+									))}
 							</tbody>
 						</Table>
 					</div>
@@ -160,6 +202,8 @@ const Home = () => {
 										<Link to="../Matching/" style={{ color: "black" }}>
 											<span className="dot"></span>2 Verification left
 										</Link>
+										<p></p>
+										<p>Brooke request the authentication </p>
 									</td>
 								</tr>
 							</tbody>

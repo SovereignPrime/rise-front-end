@@ -90,7 +90,6 @@ const UserInputs = () => {
 	return (
 		<div className="wrapper">
 			{submitError && <UserInputsErrorModal onConfirm={handleSubmitError} />}
-
 			<div className="userInputIntro">
 				<h2>RISE </h2>
 				<h3>Account Setup</h3>
@@ -99,124 +98,104 @@ const UserInputs = () => {
 				</div>
 				<p>Please Enter Your Account Information</p>
 			</div>
+			<div>
+				<Form
+					onSubmit={(event) => handleSubmit(event)}
+					className="registerForm">
+					<Row>
+						<Col md={6}>
+							<FormGroup>
+								<Label for="firstname">First Name:</Label>
+								<Input
+									id="firstname"
+									name="firstname"
+									type="firstname"
+									ref={firstNameRef}
+									onBlur={entryBoxValidator}
+								/>
+							</FormGroup>
+						</Col>
+						<Col md={6}>
+							<FormGroup>
+								<Label for="lastname">Last name:</Label>
+								<Input
+									id="lastname"
+									name="lastname"
+									type="lastname"
+									ref={lastNameRef}
+									onBlur={entryBoxValidator}
+								/>
+							</FormGroup>
+						</Col>
+					</Row>
 
-			<Form onSubmit={(event) => handleSubmit(event)} className="registerForm">
-				<Row>
-					<Col md={6}>
-						<FormGroup>
-							<Label for="firstname">First Name:</Label>
-							<Input
-								id="firstname"
-								name="firstname"
-								type="firstname"
-								ref={firstNameRef}
-							/>
-						</FormGroup>
-					</Col>
-					<Col md={6}>
-						<FormGroup>
-							<Label for="lastname">Last name:</Label>
-							<Input
-								id="lastname"
-								name="lastname"
-								type="lastname"
-								ref={lastNameRef}
-								required
-							/>
-						</FormGroup>
-					</Col>
-				</Row>
+					<Row>
+						<Col md={6}>
+							<FormGroup>
+								<Label for="height">Height (cm):</Label>
+								<Input
+									id="height"
+									name="height"
+									type="height"
+									ref={userHeightRef}
+									onBlur={entryBoxValidator}
+								/>
+							</FormGroup>
+						</Col>
+						<Col md={6}>
+							<FormGroup>
+								<Label for="age">Age:</Label>
+								<Input
+									id="age"
+									name="age"
+									type="age"
+									ref={userAgeRef}
+									onBlur={entryBoxValidator}
+								/>
+							</FormGroup>
+						</Col>
+					</Row>
 
-				<Row>
-					<Col md={6}>
-						<FormGroup>
-							<Label for="height">Height (cm):</Label>
-							<Input
-								id="height"
-								name="height"
-								type="height"
-								ref={userHeightRef}
-								required
-							/>
-						</FormGroup>
-					</Col>
-					<Col md={6}>
-						<FormGroup>
-							<Label for="age">Age:</Label>
-							<Input
-								id="age"
-								name="age"
-								type="age"
-								onBlur={entryBoxValidator}
-								required
-							/>
-						</FormGroup>
-					</Col>
-				</Row>
+					<Row>
+						<Col>
+							<FormGroup>
+								<Label for="sex" md={8}>
+									Sex:
+								</Label>
+								<Col xxl={13}>
+									<Input
+										id="exampleSelect"
+										name="select"
+										type="select"
+										ref={userSexRef}
+										onBlur={entryBoxValidator}>
+										<option>Male</option>
+										<option>Female</option>
+										<option>Other</option>
+									</Input>
+								</Col>
+							</FormGroup>
+						</Col>
+						<Col md={8}>
+							<FormGroup>
+								<Label for="bio">Bio: </Label>
+								<Input
+									id="bio"
+									name="text"
+									type="textarea"
+									placeholder="Your message"
+									ref={userBioRef}
+									onBlur={entryBoxValidator}
+								/>
+							</FormGroup>
+						</Col>
+					</Row>
+				</Form>
 
-				<Row>
-					<Col>
-						<FormGroup>
-							<Label for="sex" md={8}>
-								Sex:
-							</Label>
-							<Col xxl={13}>
-								<Input id="exampleSelect" name="select" type="select">
-									<option>Male</option>
-									<option>Female</option>
-									<option>Other</option>
-								</Input>
-							</Col>
-						</FormGroup>
-					</Col>
-					<Col md={8}>
-						<FormGroup>
-							<Label for="bio">Bio: </Label>
-							<Input
-								id="bio"
-								name="text"
-								type="textarea"
-								placeholder="Your message"
-								ref={userBioRef}
-								onBlur={entryBoxValidator}
-								required
-							/>
-						</FormGroup>
-					</Col>
-				</Row>
-			</Form>
-
-			{/* BEGAN working on camera/ selfie integration. Video appears, the still is still not happening. */}
-
-			<div className="josephCamera">
-				<SelfieCamera ref={cameraRef} />
-
-				{/* add button with onclick takeselfie function */}
-
-				<Button
-					className="bg-dark p-3 mt-4 takeSelBtn"
-					onClick={() => {
-						handleSetImgTrue();
-						takeSelfie(cameraRef, canvasRef);
-					}}>
-					Take a Selfie
-					<FontAwesomeIcon className="icon camera" icon={faCamera} />
-				</Button>
-
-				{
-					<canvas
-						style={{ display: showImg ? "block" : "none" }}
-						ref={canvasRef}
-					/>
-				}
+				{/* BEGAN working on camera/ selfie integration. Video appears, the still is still not happening. */}
 			</div>
 
-			{/*// onChange={(e) => setUserChoice(e.target.value)} value={userChoice}*/}
-			<Button
-				className="bg-dark p-3 mt-4"
-				onSubmit={(event) => handleSubmit(event)}>
-				SUBMIT
-			</Button>
+			<Button className="bg-dark p-3 mt-4">SUBMIT</Button>
 		</div>
 	);
 };
