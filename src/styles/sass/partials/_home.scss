@@ -109,7 +109,7 @@
 .pics2 {
 	top: 2rem;
 	left: 24rem;
-	animation: matchingBig 2s 1 forwards;
+	animation: matchingBig 1s 1 forwards;
 	animation-delay: 5s;
 	animation-iteration-count: 1;
 }
@@ -145,6 +145,7 @@
 .picsSmallmatch {
 	top: 20rem;
 	left: 30rem;
+	will-change: animation;
 	animation: matchingIcon 3s 1 forwards;
 	animation-delay: 5s;
 	animation-iteration-count: 1;
@@ -161,6 +162,23 @@
 	will-change: animation;
 	text-shadow: 10px 10px 40px black;
 	animation: matchingWord 1s 1 forwards;
+	animation-delay: 5s;
+	animation-iteration-count: 1;
+	display: inline-block;
+	color: #fff;
+}
+
+.matchiedPersonName {
+	padding: 10px;
+	font-size: 3rem;
+	position: absolute;
+	opacity: 0;
+	top: 450px;
+	left: 430px;
+	z-index: -4;
+	will-change: animation;
+	text-shadow: 10px 10px 40px black;
+	animation: matchedName 1s 1 forwards;
 	animation-delay: 5s;
 	animation-iteration-count: 1;
 	display: inline-block;
@@ -239,6 +257,13 @@
 	}
 	20% {
 		color: Grey;
+	}
+}
+
+@keyframes matchedName {
+	100% {
+		opacity: 100%;
+		z-index: 33;
 	}
 }
 
