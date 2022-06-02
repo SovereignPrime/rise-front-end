@@ -191,8 +191,6 @@ const UserInputs = () => {
 						</Col>
 					</Row>
 				</Form>
-
-				{/ BEGAN working on camera/ selfie integration. Video appears, the still is still not happening. /}
 			</div>
 
 			<Button className="bg-dark p-3 mt-4">SUBMIT</Button>
