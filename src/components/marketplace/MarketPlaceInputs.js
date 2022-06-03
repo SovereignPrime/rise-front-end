@@ -1,7 +1,7 @@
 import { Link, Routes, Route, BrowserRouter } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import nirvana from "../../styles/assets/nirvana.png";
-import DetailPage from "./detailPage/DetailPage";
+import DetailPage from "./detailPage/detailPage";
 import { useState } from "react";
 import {
   Button,
@@ -190,7 +190,7 @@ const MarketPlaceInputs = () => {
                           </Col>
                           <Col>
                             <Button size="sm">
-                              <Link to="detail/*">Detail</Link>
+                              <Link to="detail/">Detail</Link>
                             </Button>
                           </Col>
                         </Row>
@@ -205,7 +205,7 @@ const MarketPlaceInputs = () => {
       </Col>
       <Routes>
         <Route
-          path="detail/*"
+          path="detail/"
           element={
             <div>
               <DetailPage />

@@ -6,7 +6,6 @@ import Home from "./home/Home";
 import Matching from "./Matching/Matching";
 import Matched from "./Matching/Matched";
 import nirvana from "../styles/assets/nirvana.png";
-import DetailPage from "../components/marketplace/detailPage/DetailPage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Contact from "./contact/Contact";
 import Me from "./Me/Me.js";
