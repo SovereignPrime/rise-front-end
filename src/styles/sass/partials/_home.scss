@@ -168,23 +168,6 @@
 	color: #fff;
 }
 
-.matchiedPersonName {
-	padding: 10px;
-	font-size: 3rem;
-	position: absolute;
-	opacity: 0;
-	top: 450px;
-	left: 430px;
-	z-index: -4;
-	will-change: animation;
-	text-shadow: 10px 10px 40px black;
-	animation: matchedName 1s 1 forwards;
-	animation-delay: 5s;
-	animation-iteration-count: 1;
-	display: inline-block;
-	color: #fff;
-}
-
 .Ma {
 	animation: change 10s infinite;
 }
@@ -318,6 +301,7 @@
 	100% {
 		pointer-events: none;
 		opacity: 0;
+		content: "新しいテキスト";
 	}
 }
 
