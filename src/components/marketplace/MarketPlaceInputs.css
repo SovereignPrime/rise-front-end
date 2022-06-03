@@ -1,0 +1,65 @@
+.marketPlace {
+    display: flex;
+    position: center;
+}
+
+.searching_bar {
+    padding: 4px 12px;
+    font-size: .9rem;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    background-color: white;
+    border-radius: 5px;
+}
+
+.filter_category {
+    padding: 5px 22px;
+    font-size: .9rem;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    background-color: white;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.filter_sort {
+    padding: 4px 29px;
+    font-size: .9rem;
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+    background-color: white;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.prod_container {
+    width: 100%;
+    padding-right: auto;
+    padding-left: auto;
+    margin-right: auto;
+    margin-left: 30px;
+}
+
+
+.market-person {
+
+    text-align: left;
+    font-size: 15px;
+}
+
+.market-product-name {
+
+    text-align: left;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.market-product-price {
+
+    margin-top: 10px;
+    text-align: justify;
+    padding-top: 10px;
+    font-size: 15px;
+    color: grey;
+
+}

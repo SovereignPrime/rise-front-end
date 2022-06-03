@@ -1,12 +1,8 @@
-import { useState } from "react";
-
-const detailPage = () => {
-  const [openDetail, setOpenDetail] = useState(false);
-
-  return openDetail ? (
+const DetailPage = () => {
+  return (
     <div className="detail-page">
       <div className="section-left">
-        <h3>{item.perName}</h3>
+        <h3></h3>
         <p>Profile</p>
         <button>Save</button>
         <p>description</p>
@@ -14,13 +10,11 @@ const detailPage = () => {
         <button>Message</button>
       </div>
       <div className="section-left">
-        <button onClick={setOpenDetail(false)}>Exit Post</button>
-        <img src={item.prodPic} />
+        <button>Exit Post</button>
+        <img />
       </div>
     </div>
-  ) : (
-    ""
   );
 };
 
-export default detailPage;
+export default DetailPage;

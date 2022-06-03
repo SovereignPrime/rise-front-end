@@ -2,12 +2,16 @@ import { Link, Routes, Route, Outlet, useParams } from "react-router-dom";
 import MarketPlaceInputs from "./marketplace/MarketPlaceInputs";
 import Nirvana from "./wallet/Nirvana";
 import Home from "./home/Home";
+
 import Matching from "./Matching/Matching";
+import Matched from "./Matching/Matched";
 import nirvana from "../styles/assets/nirvana.png";
+import DetailPage from "../components/marketplace/detailPage/DetailPage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Contact from "./contact/Contact";
-import Me from "./Me/Me.js"
-import {Container, Row, Col} from "reactstrap";
+import Me from "./Me/Me.js";
+
+import { Container, Row, Col } from "reactstrap";
 import {
 	faHouse,
 	faCreditCard,
@@ -18,10 +22,10 @@ import {
 
 const Dashboard = () => {
 	return (
-		<div className="dashboard">
-			<div>
+		<Row className="dashboard container-xl px-0 mx-0">
+			<Col className="col-2 border-end px-0">
 				<nav className="menu">
-					<ul>
+					<ul className="ms-0 ps-0">
 						<li>
 							<Link to="Home/">
 								<FontAwesomeIcon className="icon" icon={faHouse} />
@@ -29,10 +33,14 @@ const Dashboard = () => {
 							</Link>
 						</li>
 						<li>
-							<Link to="MarketPlace/">
+							<Link to="MarketPlace/*">
 								<FontAwesomeIcon className="icon" icon={faCartShopping} />
 								Free Market
 							</Link>
+							<ul>
+								<li>{/* <h3>Something</h3> */}</li>
+								<li></li>
+							</ul>
 						</li>
 						<li>
 							<Link to="contact">
@@ -57,13 +65,17 @@ const Dashboard = () => {
 								Me
 							</Link>
 						</li>
+						<li>
+							<Link to="/">Log Out</Link>
+						</li>
 					</ul>
 				</nav>
-			</div>
-			<div>
+			</Col>
+			<Col className="col-10 mx-0 px-0">
 				<Routes>
 					<Route
 						path="Home/*"
+						exact
 						element={
 							<div>
 								<h1>Home</h1>
@@ -72,13 +84,15 @@ const Dashboard = () => {
 						}
 					/>
 
-					<Route path="contact/*" element={
-						<div>
-							<h1>Contact</h1>
-							<Contact />
-						</div>
-					} />
-
+					<Route
+						path="contact/*"
+						exact
+						element={
+							<div>
+								<Contact />
+							</div>
+						}
+					/>
 					<Route
 						path="MarketPlace/*"
 						element={
@@ -107,7 +121,15 @@ const Dashboard = () => {
 							</div>
 						}
 					/>
-					<Route path="me/*" element={<Me/>} />
+					<Route
+						path="me/*"
+						exact
+						element={
+							<div>
+								<Me />
+							</div>
+						}
+					/>
 					<Route
 						path="Matching/*"
 						element={
@@ -116,9 +138,17 @@ const Dashboard = () => {
 							</div>
 						}
 					/>
+					<Route
+						path="Matched/*"
+						element={
+							<div>
+								<Matched />
+							</div>
+						}
+					/>
 				</Routes>
-			</div>
-		</div>
+			</Col>
+		</Row>
 	);
 };
 
