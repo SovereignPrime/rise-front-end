@@ -63,6 +63,7 @@ const MarketPlaceInputs = () => {
      const [query, setQuery] = useState("");
      const [category, setCategory] = useState("all");
      const [filter, setFilter] = useState(null);
+     const [thumbsup, setThumbsup] = useState();
 
      const searchByName = (data) => {
           return data.filter((item) => item.prodName.toLowerCase().includes(query))
@@ -93,6 +94,8 @@ const MarketPlaceInputs = () => {
      }
 
      const finaldata = searchSortBy(searchByName(searchCate(data)));
+
+     // const addThumbsUp
 
      return (
           <div className='marketPlace'>
@@ -133,8 +136,8 @@ const MarketPlaceInputs = () => {
 
                               {
                                    finaldata.map((item) => (
-                                        <div key={item.Id} class="col-4">
-                                             <Card >
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                             <Card key={item.Id}>
                                                   <CardImg
                                                        alt="Card image cap"
                                                        src={item.prodPic}
@@ -150,6 +153,11 @@ const MarketPlaceInputs = () => {
                                                                  <small className="text-muted">
                                                                       &nbsp; {item.perName}
                                                                  </small>
+                                                                 {/* <Button onClick={() => { }}>
+                                                                      <FontAwesomeIcon className="iconN" icon={faThumbsUp} size="1x" transform="down-9 right-7" />
+                                                                      {item.Good}
+                                                                 </Button> */}
+
 
                                                                  <FontAwesomeIcon className="iconN" icon={faThumbsUp} size="1x" transform="down-9 right-7" />
                                                                  <span>{item.Good}</span>

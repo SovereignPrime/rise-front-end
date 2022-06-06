@@ -21,7 +21,7 @@ const data = [
     },
     {
         Id: 2,
-        perName: "Eric Smith",
+        perName: "Stan Smith",
         perPic: img1,
         prodName: "MINI cooper",
         Category: "vehicles",
@@ -34,7 +34,7 @@ const data = [
     },
     {
         id: 3,
-        perName: "Eric Smith",
+        perName: "Tony Stark",
         perPic: img1,
         prodName: "PS5",
         Category: "entertainment",
@@ -46,6 +46,9 @@ const data = [
         Date: "2021-05-27"
     },
 ];
+
+//should be retrieved by log in page
+const meName = "Eric Smith";
 class MarketPlace extends Component {
     constructor(props) {
         super(props);
@@ -56,40 +59,37 @@ class MarketPlace extends Component {
     }
 
     render() {
-
         return (
             <>
-                {this.state.data.map((item) => {
-                    return (
-                        <Card className="lg mx-3 my-3">
-                            <div className="mx-3 my-3">
-                                <CardTitle className="border-bottom">
-                                    <Row>
-                                        <Col className="text-start mx-3" style={{ fontWeight: "bold", fontSize: 20 }}>{item.prodName}</Col>
-                                        <Col className="text-end mx-3" style={{ fontSize: 20 }}>${item.Price}</Col>
+                {this.state.data
+                    .filter(person => person.perName === meName)
+                    .map((item) => {
+                        return (
+                            <Card className="lg mx-3 my-3" key={item.Id}>
+                                <div className="mx-3 my-3">
+                                    <CardTitle className="border-bottom">
+                                        <Row>
+                                            <Col className="text-start mx-3" style={{ fontWeight: "bold", fontSize: 20 }}>{item.prodName}</Col>
+                                            <Col className="text-end mx-3" style={{ fontSize: 20 }}>${item.Price}</Col>
+                                        </Row>
+                                    </CardTitle>
+                                    <CardText className="text-start mx-3" style={{ fontSize: 18 }}>
+                                        {item.Detail}
+                                    </CardText>
+                                    <Row xs="2" >
+                                        <Col className="mx-1 text-start mx-3" >
+                                            <CardImg
+                                                style={{ width: "80%" }}
+                                                className="border"
+                                                src={item.prodPic}
+                                                alt="img"
+                                            />
+                                        </Col>
                                     </Row>
-                                </CardTitle>
-                                <CardText className="text-start mx-3" style={{ fontSize: 18 }}>
-                                    {item.Detail}
-                                </CardText>
-                                <Row xs="2" >
-                                    <Col className="mx-1 text-start mx-3" >
-                                        <CardImg
-                                            style={{ width: "80%" }}
-                                            className="border"
-                                            src={item.prodPic}
-                                            alt="img"
-                                        />
-
-                                    </Col>
-
-                                </Row>
-
-
-                            </div>
-                        </Card>
-                    )
-                })
+                                </div>
+                            </Card>
+                        )
+                    })
                 }
             </>
 
