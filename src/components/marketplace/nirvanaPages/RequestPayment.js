@@ -2,11 +2,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
+import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
+import person1 from "../../../styles/assets/person1.jpg";
 
 // This will be our "Make a Payment Page."
 
 const RequestPayment = () => {
   const navigate = useNavigate();
+
+  const [reqPaymentModal, setReqPaymentModal] = useState(false);
+  const toggle = () => setReqPaymentModal(!reqPaymentModal);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -14,6 +19,7 @@ const RequestPayment = () => {
     console.log(`hello`);
     navigate("/Nirvana");
   };
+
 
   return (
     <div className="wrapper">
@@ -39,7 +45,49 @@ const RequestPayment = () => {
           </div>
         </form>
         <div className="reqPaymentButton">
-          <p>Request Payment</p>
+          <Button onClick={toggle}>Request Payment</Button>
+          <Modal
+            isOpen={reqPaymentModal}
+            toggle={toggle}
+            size="xl"
+            // style={{ maxWidth: "700px", width: "100%" }}
+          >
+            <ModalHeader style={{ borderBottom: "none" }}>
+              Are you sure you want to request payment from Mia Wang with the
+              following details?
+            </ModalHeader>
+            <ModalBody>
+              <img
+                src={person1}
+                alt="profile-pic"
+                width={"100px"}
+                height={"100px"}
+                style={{ "border-radius": "50%", objectFit: "cover" }}
+              />
+              <table>
+                <tr>
+                  <td>Name: </td>
+                  <td>Mia Wang</td>
+                </tr>
+                <tr>
+                  <td>City: </td>
+                  <td>Ottawa</td>
+                </tr>
+                <tr>
+                  <td>Age: </td>
+                  <td>27</td>
+                </tr>
+                <tr>
+                  <td>Gender: </td>
+                  <td>F</td>
+                </tr>
+              </table>
+            </ModalBody>
+            <ModalFooter style={{ borderTop: "none" }}>
+              <Button>YES, REQUEST FOR PAYMENT</Button>
+              <Button onClick={toggle}>NO, GO BACK TO REQUEST SCREEN</Button>
+            </ModalFooter>
+          </Modal>
         </div>
       </div>
     </div>
