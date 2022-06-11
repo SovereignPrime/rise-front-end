@@ -75,7 +75,15 @@ const CardObject = () => {
 					<CardImgOverlay>
 						<div className="overlay">
 							<CardTitle tag="h6">
-								<img src={item.userImg} width="50px" height="50px"></img>{" "}
+								<img
+									src={item.userImg}
+									width="50px"
+									height="50px"
+									alt=""
+									style={{
+										borderRadius: "50%",
+										objectFit: "cover"
+									}}></img>{" "}
 								{item.userName}
 								<FontAwesomeIcon className="iconN" icon={faThumbsUp} />
 								<span>{item.thumbUp}</span>
@@ -84,7 +92,7 @@ const CardObject = () => {
 							</CardTitle>
 							<CardText>{item.itemName}</CardText>
 							<CardText tag="h6">
-								<img src={nirvana} />
+								<img src={nirvana} alt="" width="50px" height="50px" />
 								{item.nirvana}
 								<Button outline className="bg-white text-black ">
 									Detail
