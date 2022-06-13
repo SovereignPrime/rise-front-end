@@ -59,7 +59,7 @@ const data = [
           Date: "2022-05-22",
      },
      {
-          id: 3,
+          Id: 3,
           perName: "Eric Smith",
           perPic: img1,
           prodName: "PS5",

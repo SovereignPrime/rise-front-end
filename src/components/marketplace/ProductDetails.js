@@ -1,5 +1,4 @@
-
-import React from 'react'
+import React, { useState } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button, Row, Col, Carousel, CarouselIndicators, CarouselItem, CarouselCaption, CarouselControl, CardText, CardBody } from "reactstrap";
 import { Routes, Route, Link, Navigate } from 'react-router-dom';
@@ -21,7 +20,14 @@ const data = [
         Category: "electronics",
         Price: 450,
         Detail: "This is a brand new apple Watch. I used it onece, but then found I do not  need it. I is in very good condition",
-        prodPic: prod1,
+        prodPic: [
+            {
+                src: prod1
+            },
+            {
+                src: prod2
+            }
+        ],
         Good: 14,
         Bad: 2,
         Date: "2022-05-25"
@@ -60,18 +66,34 @@ const data = [
 const ProductDetails = () => {
 
     // State for Active index
-    const [activeIndex, setActiveIndex] = React.useState(0);
+    const [activeIndex, setActiveIndex] = useState(0);
 
     // State for Animation
-    const [animating, setAnimating] = React.useState(false);
+    const [animating, setAnimating] = useState(false);
+
+    const para = useParams();
+    const navigate = useNavigate();
+    console.log(para.Id);
+
+    const good = (data) => {
+        return data.filter((item) => {
+            return item.Id == para.Id
+        }
+        );
+    }
+
+    const finaldata = good(data);
 
     // Sample items for Carousel
-    const item1 =
-    {
-        src: prod1,
-        altText: 'Slide One'
-    };
-    const items = [item1];
+    // const items = [
+    //     {
+    //         src: prod1,
+    //         altText: 'Slide One'
+    //     }
+    // ];
+
+    //check if it is not an array, change it to array first.
+    const items = Array.isArray(finaldata[0].prodPic) === false ? [{ src: finaldata[0].prodPic }] : finaldata[0].prodPic;
 
     // Items array length
     const itemLength = items.length - 1
@@ -92,23 +114,7 @@ const ProductDetails = () => {
         setActiveIndex(nextIndex);
     }
 
-
-    const para = useParams();
-    const navigate = useNavigate();
-    console.log(para.Id);
-    // console.log(data);
-
-
-    const good = (data) => {
-        return data.filter((item) => {
-            return item.Id == para.Id
-        }
-        );
-    }
-
-    const finaldata = good(data);
-
-    //必须用map
+    //have to use map
     const carouselItemData = items.map((item) => {
         return (
             <CarouselItem
@@ -127,17 +133,13 @@ const ProductDetails = () => {
 
     return (
         <div className='d-flex'>
-
-
             {
                 finaldata.map((item) => (
                     <div className='d-flex'>
-
                         <Col md={4}>
                             <Button onClick={() => navigate(-1)}>
                                 return
                             </Button>
-
                             <Button >
                                 <FontAwesomeIcon icon={faBookmark} />
                             </Button>
@@ -161,7 +163,6 @@ const ProductDetails = () => {
                             </div>
                             <div>Detail</div>
                             <div>{item.Detail}</div>
-
 
                             <Button >
                                 Message Seller
