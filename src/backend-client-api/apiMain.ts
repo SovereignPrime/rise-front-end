@@ -7,51 +7,47 @@ var api: InstanceType<typeof ApiPromise> //Global scope.
 
 /**
  * Generate a Keypair(account) for the user and return the Public Key and mnemonic seed phrase.
+ * This method generates a kaypair using the Subkey CLI commands.
  * User needs to save this seed phrase to recover this newly generated keypair.
  **/
-export async function createKeypair(keyname: string, keyring: InstanceType<typeof Keyring>): Promise<string[]> {
+export async function createKeypairWithCli(keyname: string, keyring: InstanceType<typeof Keyring>): Promise<string[]> {
+  const execSync = require('child_process').execSync;
+  // import { execSync } from 'child_process';  // replace ^ if using ES modules
 
-  
+  const output = execSync('subkey generate', { encoding: 'utf-8' });  // the default is 'buffer'
+  const result = output.split("\n");
+  const mnemonic = result[0].split(":")[1].trim();
+  const pubKey = result[5].split(":")[1].trim();
 
+  return [mnemonic,pubKey];
+}
+
+/**
+ * Generate a Keypair(account) for the user and return the Public Key and mnemonic seed phrase.
+ * This method generates a kaypair using the Keyring class API.
+ * User needs to save this seed phrase to recover this newly generated keypair.
+ **/
+export async function createKeypair(keyname: string, keyring: InstanceType<typeof Keyring>): Promise<object[]> {
+  const { mnemonicGenerate } = require('@polkadot/util-crypto');
 
   // generate a mnemonic with default params (we can pass the number
   // of words required 12, 15, 18, 21 or 24, less than 12 words, while
   // valid, is not supported since it is more-easily crackable)
-  // const mnemonic = mnemonicGenerate(24);
+  const mnemonic = mnemonicGenerate(24);
 
-  // // create & add the pair to the keyring with the type and some additional
-  // // metadata specified
-  // const pair = keyring.addFromUri(mnemonic, { name: keyname}, 'ed25519');
+  // create & add the pair to the keyring with the type and some additional
+  // metadata specified
+  const pair = keyring.addFromUri(mnemonic, { name: keyname}, 'ed25519');
 
-  // // the pair has been added to our keyring
-  // console.log(keyring.pairs.length, 'pairs available');
+  // the pair has been added to our keyring
+  console.log(keyring.pairs.length, 'pairs available');
 
-  // // log the name & address (the latter encoded with the ss58Format)
-  // console.log(pair.meta.name, 'has address', pair.address);
-  // console.log(pair,'abc');
-  // console.log(typeof(pair),'type of pair');
-  const execSync = require('child_process').execSync;
-// import { execSync } from 'child_process';  // replace ^ if using ES modules
+  // log the name & address (the latter encoded with the ss58Format)
+  console.log(pair.meta.name, 'has address', pair.address);
 
-const output = execSync('subkey generate', { encoding: 'utf-8' });  // the default is 'buffer'
-// console.log('Output was:\n', output);
- const result = output.split("\n");
- const mnemonic = result[0].split(":")[1].trim();
-//  console.log("Seed phrase:",mnemonic);
- const pubKey = result[5].split(":")[1].trim();
-//  console.log("Public Key or Address:",pubKey);
-  return [mnemonic,pubKey]; // OR pair.publicKey
-  
+  return [mnemonic, pair];
 }
 
-// Sample output
-//  Secret phrase:       alcohol head assault position goddess awake truth liquid client pretty bacon glare
-//   Network ID:        substrate
-//   Secret seed:       0x4b6315fc3d4b43d3ba772193f2cd16fd1a71c75795fb98a277886cb68a1d6050
-//   Public key (hex):  0x9802e39f3e46a7ac725b94afd3d7e411072bd6aeacb90d489dd9e79dc9b6ef62
-//   Account ID:        0x9802e39f3e46a7ac725b94afd3d7e411072bd6aeacb90d489dd9e79dc9b6ef62
-//   Public key (SS58): 5FW1zbhtfh4jL2LnsEhn6zNBHiEyhYvqgt6boQf8EGoixjJb
-//   SS58 Address:      5FW1zbhtfh4jL2LnsEhn6zNBHiEyhYvqgt6boQf8EGoixjJb
 /**
  * Make a payment from a source keypair to a destination keypair.
  **/
@@ -82,20 +78,20 @@ async function main () {
 
   // console.log("\n Generating random seedphrase and corresponding keypair...");
 
-  const fromKey: string[] = [];
+  const fromKey: object[] = [];
   const toKey: string[] = [];
 
   await createKeypair('John', keyring).catch((error: Error) => {
         throw new Error(error.message);
     })
-    .then((outputs: string[]) => {
+    .then((outputs: object[]) => {
         fromKey.length = 0;
         return outputs.forEach((item, i) => {
           fromKey[i] = item;
         });
     });
 
-  await createKeypair('Jane', keyring).catch((error: Error) => {
+  await createKeypairWithCli('Jane', keyring).catch((error: Error) => {
         throw new Error(error.message);
     })
     .then((outputs: string[]) => {
@@ -105,15 +101,20 @@ async function main () {
         });
     });
 
-  // Add Alice to our keyring with a hard-deived path // TBD - (empty phrase, so uses dev)
-  //const alice = keyring.addFromUri('//Alice');
-    
   // John makes a payment to Jane. 
-  console.log(fromKey[1],typeof(fromKey[0]),'Fromkey','type:');
-  console.log(toKey[1],typeof(toKey[0]),'tokey','type:');
+  const fromKeyringPair: InstanceType<typeof KeyringPair> = fromKey[1];
 
+  //await makePayment(fromKey[1], toKey[1], 100); //TBD
 
-  await makePayment(fromKey[0], toKey[0], 100);
+  // First grant some DOT to John.
+  // Add Alice to our keyring with a hard-deived path (empty phrase, so uses dev)
+  const alice = keyring.addFromUri('//Alice');
+  const transfer = api.tx.balances.transfer(fromKeyringPair.address, 2000000000000);
+  // Sign and send the transaction using our account
+  const hash = await transfer.signAndSend(alice);
+
+  const transfer2 = api.tx.balances.transfer(toKey[1], 1);
+  const hash2 = await transfer2.signAndSend(fromKeyringPair);
 
 }
 
