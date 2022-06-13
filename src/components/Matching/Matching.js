@@ -30,6 +30,8 @@ const Matching = () => {
 				<span className="hi">hi</span>
 				<span className="ng">ng</span>
 			</h1>
+			<h1 className="matchiedPersonName textonAnimation">Daniel Jonson</h1>
+
 			<div className="MatchingCanvas overlayCanvas">
 				<img
 					src={person1}

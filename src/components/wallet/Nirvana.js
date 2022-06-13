@@ -7,16 +7,12 @@ import CancelledTransactions from "../marketplace/nirvanaPages/CancelledTransact
 import NirvanaNotifications from "../marketplace/nirvanaPages/NirvanaNotifications";
 import FulfilledPayments from "../marketplace/nirvanaPages/FulfilledPayments";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCreditCard
-} from "@fortawesome/free-solid-svg-icons";
-
+import { faCreditCard } from "@fortawesome/free-solid-svg-icons";
 
 // Nirvana/Payment Pages will live here.
 
-
 const Nirvana = () => {
-
-// Return & JSX - My game plan here to make any of the submenus collapsable using the CSS/SASS partial. Note from Kevin W: To anyone reading this note please ensure to have the SASS/SCSS pre-processor installed and that you have WATCH SASS active on VS code for the CSS to be rendered correctly. Please reach out to me on sykpe if you need a hand with this. 
+  // Return & JSX - My game plan here to make any of the submenus collapsable using the CSS/SASS partial. Note from Kevin W: To anyone reading this note please ensure to have the SASS/SCSS pre-processor installed and that you have WATCH SASS active on VS code for the CSS to be rendered correctly. Please reach out to me on sykpe if you need a hand with this.
   return (
     <div className="wrapper">
       <div className="nirvanaLanding">
@@ -118,9 +114,6 @@ const Nirvana = () => {
       </div>
     </div>
   );
-
-}
-
-
+};
 
 export default Nirvana;
