@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from 'react-router-dom';
-import { Button, Row, Col, Carousel, CarouselIndicators, CarouselItem, CarouselCaption, CarouselControl, CardText, CardBody } from "reactstrap";
+import { Button, Row, Col, Carousel, CarouselIndicators, CarouselItem, CarouselCaption, CarouselControl, CardText, CardBody, ButtonGroup } from "reactstrap";
 import { Routes, Route, Link, Navigate } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThumbsUp, faThumbsDown, faBookmark, faShare, faEllipsisVertical } from "@fortawesome/free-solid-svg-icons";
+import { faThumbsUp, faThumbsDown, faBookmark, faShare, faEllipsisVertical, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import './MarketPlaceInputs.css';
 import "bootstrap/dist/css/bootstrap.css";
 import img1 from '../../styles/assets/img/jessie.png';
@@ -44,7 +44,6 @@ const data = [
         Good: 14,
         Bad: 2,
         Date: "2022-05-22"
-
     },
     {
         Id: 3,
@@ -58,7 +57,6 @@ const data = [
         Good: 14,
         Bad: 2,
         Date: "2021-05-27"
-
     },
 
 ];
@@ -124,8 +122,13 @@ const ProductDetails = () => {
             >
                 <div className="background" style={{ backgroundImage: `url(${item.src})` }} >
                 </div>
-                <div className='photo'>
-                    <img src={item.src} width="135%" />
+                <div>
+                    <div className='return-button'>
+                        <FontAwesomeIcon className="return-button-close" icon={faCircleXmark} onClick={() => navigate(-1)} size="2x" />
+                    </div>
+                    <div className='photo'>
+                        <img src={item.src} width="135%" />
+                    </div>
                 </div>
             </CarouselItem>
         );
@@ -137,43 +140,57 @@ const ProductDetails = () => {
                 finaldata.map((item) => (
                     <div className='d-flex'>
                         <Col md={4}>
-                            <Button onClick={() => navigate(-1)}>
-                                return
-                            </Button>
-                            <Button >
-                                <FontAwesomeIcon icon={faBookmark} />
-                            </Button>
-                            <Button >
-                                <FontAwesomeIcon icon={faShare} />
-                            </Button>
-                            <Button >
-                                <FontAwesomeIcon icon={faEllipsisVertical} />
-                            </Button>
-                            <div>{item.prodName}</div>
-                            <div>$ {item.Price}</div>
-                            <div className="market-person">
-                                <img src={item.perPic} width="20%"></img>
-                                <small className="text-muted">
-                                    &nbsp; {item.perName}
-                                </small>
-                                <FontAwesomeIcon className="iconN" icon={faThumbsUp} size="1x" transform="down-9 right-7" />
-                                <span>{item.Good}</span>
-                                <FontAwesomeIcon className="iconN" icon={faThumbsDown} size="1x" transform="down-10 right-7" />
-                                <span>{item.Bad}</span>
+                            <div className="product-detail-container">
+                                <div className="button-group">
+                                    <ButtonGroup>
+                                        <Button size="sm">
+                                            <FontAwesomeIcon icon={faBookmark} />
+                                        </Button>
+                                        <Button size="sm">
+                                            <FontAwesomeIcon icon={faShare} />
+                                        </Button>
+                                        <Button size="sm">
+                                            <FontAwesomeIcon icon={faEllipsisVertical} />
+                                        </Button>
+                                    </ButtonGroup>
+                                </div>
+
+                                <div className="product-detail-title">{item.prodName}</div>
+                                <div className="product-detail-price">$ {item.Price}</div>
+                                <div>
+                                    <Row className="product-detail-person">
+                                        <Col md={3} className='product-detail-PerPic'>
+                                            <img src={item.perPic} width="100%"></img>
+                                        </Col>
+                                        <Col md={5} className="product-detail-PerName">
+                                            &nbsp; {item.perName}
+                                        </Col>
+                                        <Col md={1}>
+                                            <FontAwesomeIcon className="product-detail-thumb" icon={faThumbsUp} size="1x" />
+
+                                        </Col>
+                                        <Col md={1}>
+                                            <div className="thumb-count">{item.Good}</div>
+                                        </Col>
+                                        <Col md={1}>
+                                            <FontAwesomeIcon className="product-detail-thumb" icon={faThumbsDown} size="1x" />
+                                        </Col>
+                                        <Col md={1} >
+                                            <div className="thumb-count">{item.Bad}</div>
+                                        </Col>
+                                    </Row>
+                                </div>
+                                <div className="product-detail-Detail">Detail</div>
+                                <div className="product-detail-info">{item.Detail}</div>
+                                <Button className="message-seller">
+                                    Message Seller
+                                </Button>
                             </div>
-                            <div>Detail</div>
-                            <div>{item.Detail}</div>
-
-                            <Button >
-                                Message Seller
-                            </Button>
-
                         </Col>
 
                         <Col md={8} style={{ marginLeft: "40px" }} >
-
                             <div >
-                                <Carousel previous={previousButton} next={nextButton} activeIndex={activeIndex}>
+                                <Carousel className="carousel-container" previous={previousButton} next={nextButton} activeIndex={activeIndex}>
                                     <CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={(newIndex) => {
                                         if (animating) return;
                                         setActiveIndex(newIndex);
@@ -185,14 +202,10 @@ const ProductDetails = () => {
                                         direction="next" onClickHandler={nextButton} />
                                 </Carousel>
                             </div >
-
                         </Col>
                     </div >
-
                 ))
             }
-
-
         </div >
 
     )
