@@ -1,15 +1,45 @@
 .marketPlace {
-    display: flex;
     position: center;
 }
 
-.searching_bar {
+.search {
+    padding-left: 20px;
+}
+
+.search input {
     padding: 4px 12px;
     font-size: .9rem;
-    color: rgb(0, 0, 0);
-    cursor: pointer;
+    cursor: auto;
     background-color: white;
-    border-radius: 5px;
+    color: rgb(93, 93, 93);
+    text-align: left;
+    border: 2px solid rgb(147, 146, 146);
+}
+
+::placeholder {
+    color: rgb(147, 146, 146);
+}
+
+.search-icon {
+    color: rgb(147, 146, 146);
+}
+
+.add-deal-button {
+    padding: 2px 40px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.plus-icon {
+    z-index: 10;
+}
+
+.border-top {
+    width: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+
 }
 
 .filter_category {
@@ -20,6 +50,13 @@
     background-color: white;
     border-radius: 5px;
     text-align: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.filter-sort-title {
+    text-align: left;
+    padding-left: 25px;
 }
 
 .filter_sort {
@@ -30,6 +67,8 @@
     background-color: white;
     border-radius: 5px;
     text-align: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
 }
 
 .prod_container {
@@ -40,6 +79,10 @@
     margin-left: 30px;
 }
 
+.cardimg {
+    object-fit: cover;
+    width: 100%;
+}
 
 .market-person {
 
@@ -169,5 +212,6 @@
 .message-seller {
     position: center;
     margin-top: 200px;
+    width: 350px;
 
 }

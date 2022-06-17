@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Button, Row, Col, Carousel, CarouselIndicators, CarouselItem, CarouselCaption, CarouselControl, CardText, CardBody, ButtonGroup } from "reactstrap";
 import { Routes, Route, Link, Navigate } from 'react-router-dom';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThumbsUp, faThumbsDown, faBookmark, faShare, faEllipsisVertical, faCircleXmark } from "@fortawesome/free-solid-svg-icons";
+import { faThumbsUp, faThumbsDown, faBookmark, faShare, faEllipsisVertical, faCircleXmark, faCommentDots } from "@fortawesome/free-solid-svg-icons";
 import './MarketPlaceInputs.css';
 import "bootstrap/dist/css/bootstrap.css";
 import img1 from '../../styles/assets/img/jessie.png';
@@ -159,10 +159,10 @@ const ProductDetails = () => {
                                 <div className="product-detail-price">$ {item.Price}</div>
                                 <div>
                                     <Row className="product-detail-person">
-                                        <Col md={3} className='product-detail-PerPic'>
+                                        <Col md={3} sm={3} className='product-detail-PerPic'>
                                             <img src={item.perPic} width="100%"></img>
                                         </Col>
-                                        <Col md={5} className="product-detail-PerName">
+                                        <Col md={5} sm={5} className="product-detail-PerName">
                                             &nbsp; {item.perName}
                                         </Col>
                                         <Col md={1}>
@@ -183,7 +183,9 @@ const ProductDetails = () => {
                                 <div className="product-detail-Detail">Detail</div>
                                 <div className="product-detail-info">{item.Detail}</div>
                                 <Button className="message-seller">
-                                    Message Seller
+                                    <FontAwesomeIcon icon={faCommentDots} size="1x" />
+
+                                    &nbsp; Message Seller
                                 </Button>
                             </div>
                         </Col>
