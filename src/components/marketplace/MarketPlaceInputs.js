@@ -17,7 +17,7 @@ import {
      CardBody,
 } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
+import { faThumbsUp, faThumbsDown, faMagnifyingGlass, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import img1 from '../../styles/assets/img/jessie.png';
 import prod1 from '../../styles/assets/appwatch.jpg';
@@ -133,14 +133,50 @@ const MarketPlaceInputs = () => {
                     <Route path="/" element={
                          <div className="d-flex">
                               <Col md={3} className="border-end">
-                                   <input
-                                        className="searching_bar"
-                                        type="text"
-                                        placeholder="searching..."
-                                        onChange={(e) => setQuery(e.target.value)}
-                                   />
+                                   <div className='search'>
+                                        <input
+                                             type="text"
+                                             placeholder="search"
+                                             onChange={(e) => setQuery(e.target.value)}
+                                        />
+                                        <FontAwesomeIcon
+                                             className='search-icon'
+                                             icon={faMagnifyingGlass}
+                                             size="1x"
+                                             transform="left-20"
 
-                                   <h5>Category</h5>
+                                        />
+                                   </div>
+
+                                   <button className='add-deal-button'
+                                        onClick={() => {
+                                             setPostProduct(true);
+                                        }}
+                                   >
+                                        <FontAwesomeIcon
+                                             className='plus-icon'
+                                             icon={faPlus}
+                                             size="1x"
+                                             transform="left-15"
+                                        />
+                                        Add Your Deal
+                                   </button>
+
+                                   <div className='border-top'></div>
+                                   <div className='filter-sort-title'> Filter </div>
+                                   <select
+                                        className="filter_sort"
+                                        onChange={(e) => setFilter(e.target.value)}
+                                   >
+                                        <option>Sort by</option>
+                                        <option value="priceLowToHigh">Price: Low to High</option>
+                                        <option value="priceHighToLow">Price: High to Low</option>
+                                        <option value="Newest">Newest</option>
+                                   </select>
+
+                                   <div className='border-top'></div>
+                                   <div className='filter-sort-title'> Category </div>
+
                                    <select
                                         className="filter_category"
                                         onChange={(e) => setCategory(e.target.value)}
@@ -158,25 +194,8 @@ const MarketPlaceInputs = () => {
                                         <option value="other">Other</option>
                                    </select>
 
-                                   <h5>Filter</h5>
-                                   <select
-                                        className="filter_sort"
-                                        onChange={(e) => setFilter(e.target.value)}
-                                   >
-                                        <option>Sort by</option>
-                                        <option value="priceLowToHigh">Price: Low to High</option>
-                                        <option value="priceHighToLow">Price: High to Low</option>
-                                        <option value="Newest">Newest</option>
-                                   </select>
-                                   <h5>Start Selling</h5>
 
-                                   <button
-                                        onClick={() => {
-                                             setPostProduct(true);
-                                        }}
-                                   >
-                                        Post Product
-                                   </button>
+
                               </Col>
 
                               {postProduct && (
@@ -192,7 +211,7 @@ const MarketPlaceInputs = () => {
                                              {finaldata.map((item) => (
                                                   <div class="col-lg-4 col-md-6 col-sm-12">
                                                        <Card key={item.Id}>
-                                                            <CardImg
+                                                            <CardImg className='cardimg'
                                                                  alt="Card image cap"
                                                                  src={item.prodPic}
                                                                  width="30%"
