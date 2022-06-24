@@ -63,15 +63,25 @@ export async function makePayment(fromKeypair: string, toKeypair: string, numNir
 
 }
 
+export async function checkBalance(api: InstanceType<typeof ApiPromise>, pubKey: string): Promise<void>
+{
+  // Retrieve the last timestamp
+  const now = await api.query.timestamp.now();
 
+  // Retrieve the account balance & nonce via the system module
+  const { nonce, data: balance } = await api.query.system.account(pubKey);
 
+  console.log(`${now}: ${pubKey} has balance of ${balance.free} and a nonce of ${nonce}`);
+
+}
+
+export 
 /** Stub for main.
  *
  **/
 async function main () {
   // Instantiate the API
   const api = await ApiPromise.create();
-  // console.log("api",api);
 
   // Constuct the keyring after the API (crypto has an async init)
   const keyring = new Keyring({ type: 'sr25519' });
@@ -109,13 +119,16 @@ async function main () {
   // First grant some DOT to John.
   // Add Alice to our keyring with a hard-deived path (empty phrase, so uses dev)
   const alice = keyring.addFromUri('//Alice');
-  const transfer = api.tx.balances.transfer(fromKeyringPair.address, 2000000000000);
+  await checkBalance(api, alice.address)
+ 
+  const transfer = api.tx.balances.transfer(fromKeyringPair.address, 12345);
   // Sign and send the transaction using our account
   const hash = await transfer.signAndSend(alice);
 
+  await checkBalance(api, alice.address)
+
   const transfer2 = api.tx.balances.transfer(toKey[1], 1);
   const hash2 = await transfer2.signAndSend(fromKeyringPair);
-
 }
 
 main().catch(console.error).finally(() => process.exit());
