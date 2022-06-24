@@ -209,6 +209,7 @@ const MarketPlaceInputs = () => {
                           size="1x"
                           transform="down-9 right-7"
                         />
+
                         <span>{item.Good}</span>
                         <FontAwesomeIcon
                           className="iconN"
