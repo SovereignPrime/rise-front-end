@@ -55,6 +55,7 @@
   "devDependencies": {
     "@tsconfig/create-react-app": "^1.0.2",
     "electron": "^17.1.2",
-    "foreman": "^3.0.1"
+    "foreman": "^3.0.1",
+    "warnings-to-errors-webpack-plugin": "^2.3.0"
   }
 }

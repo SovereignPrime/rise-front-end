@@ -1,10 +1,3 @@
-.message-text{
-    background-color: #006AFF;
-    color: white;
-    border-radius: 27px;
-    text-align: left;
-    padding: 5px;
-}
 .modal .modal-content{
     border-radius: 0px;
 }
@@ -42,10 +35,37 @@
    width: 60px;
    margin-right: 10px;
 }
+.message{
+    max-width: 95%;
+}
 .message-list{
     border: solid 1px #c8c8c8;
     padding: 50px 60px;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.message-text{
+    background-color: #006AFF;
+    color: white;
+    border-radius: 17px;
+    text-align: left;
+    padding: 5px 10px;
+}
+.message-list .display-left{
+    display: inline-block;
+    margin-left: 0;
+    margin-right: auto;
+    text-align: left;
+}
+.display-left .message-text{
+ background-color: #a2a1a4;
+}
+.message-list .display-right{
+display: inline-block;
+text-align: right;
+  margin-left: auto;
+    margin-right: 0;
 }
 
 .accordion-button:not(.collapsed) {

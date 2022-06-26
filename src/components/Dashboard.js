@@ -50,7 +50,7 @@ const Dashboard = () => {
 
 						<li>
 							<Link to="nirvana/">
-								<img src={nirvana} />
+								<img src={nirvana} alt="" />
 								Nirvana
 							</Link>
 							<ul>

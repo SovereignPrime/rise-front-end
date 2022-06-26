@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSliders, faPlus } from "@fortawesome/free-solid-svg-icons";
 import "bootstrap/dist/css/bootstrap.css";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { Table } from "reactstrap";
 import { Input } from "reactstrap";
 import React, { useState } from "react";
@@ -88,17 +89,23 @@ const Home = () => {
 
 	return (
 		<div style={{ marginLeft: " 2%" }}>
-			<div>
+			<div style={{ display: "flex" }}>
 				<Input
 					placeholder="Say something..."
 					className="searchInput"
 					style={{ width: "70%" }}></Input>
+				<Button
+					className="btn-search"
+					color="transparent"
+					style={{ borderRadius: "10%" }}>
+					<FontAwesomeIcon icon={faMagnifyingGlass} />
+				</Button>
 			</div>
 			<div className="container d-flex mt-4">
 				<div className="row">
 					<div
 						className="col-lg p-4 overflow-scroll box mr-auto"
-						style={{ width: "800px" }}>
+						style={{ width: "800px", marginBottom: "0" }}>
 						<div className="topBar">
 							<div>
 								<h3>Notification</h3>
@@ -114,7 +121,10 @@ const Home = () => {
 									style={{
 										visibility:
 											plusBtnClicked || filterBtnClicked ? "visible" : "hidden",
-										padding: "10px"
+										height:
+											plusBtnClicked || filterBtnClicked ? "200px" : "100px",
+										padding: "10px",
+										marginBottom: "0"
 									}}>
 									<FontAwesomeIcon
 										style={{
@@ -183,10 +193,24 @@ const Home = () => {
 												<img
 													src={item.userImg}
 													width="50px"
-													height="50px"></img>
-												<p>{item.userName} </p>
+													height="50px"
+													alt=""
+													style={{
+														borderRadius: "50%",
+														objectFit: "cover",
+														marginRight: "10px"
+													}}></img>
+												<p style={{ marginRight: "10px" }}>{item.userName} </p>
+												<p style={{ marginRight: "10px" }}>send you a </p>
 												<p>{item.typeOfaction}</p>
-												<p>{item.timeOfAction}</p>
+												<p
+													style={{
+														marginRight: "10px",
+														color: "gray",
+														textAlign: "center"
+													}}>
+													{item.timeOfAction}
+												</p>
 											</td>
 										</tr>
 									))}

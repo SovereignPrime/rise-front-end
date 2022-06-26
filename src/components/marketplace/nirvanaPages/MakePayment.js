@@ -2,13 +2,18 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
-import nirvana  from "../../../styles/assets/nirvana.png";
+import { Button, Modal, ModalHeader, ModalFooter, ModalBody } from "reactstrap";
+import person2 from "../../../styles/assets/person2.jpg";
+//import nirvana  from "../../../styles/assets/nirvana.png";
 
 // This will be our "Make a Payment Page."
 
 const MakePayment = () => {
 
     const navigate = useNavigate();
+
+    const [makePaymentModal, setMakePaymentModal] = useState(false);
+    const toggle = () => setMakePaymentModal(!makePaymentModal);
 
     const handleSubmit = (event) => {
           event.preventDefault();
@@ -41,7 +46,49 @@ const MakePayment = () => {
           </div>
         </form>
         <div className="makePaymentButton">
-          <p>Make Payment</p>
+          <Button onClick={toggle}>Make Payment</Button>
+          <Modal
+            isOpen={makePaymentModal}
+            toggle={toggle}
+            size="xl"
+          >
+            <ModalHeader style={{ borderBottom: "none" }}>
+              Are you sure you want to make payment
+            </ModalHeader>
+            <ModalBody>
+              <img
+                src={person2}
+                alt="profile-pic"
+                width={"100px"}
+                height={"100px"}
+                style={{ "border-radius": "50%", objectFit: "cover" }}
+              />
+              <table>
+                <tr>
+                  <td>Name: </td>
+                  <td>Noah Brown</td>
+                </tr>
+                <tr>
+                  <td>City: </td>
+                  <td>Toronto</td>
+                </tr>
+                <tr>
+                  <td>Age: </td>
+                  <td>32</td>
+                </tr>
+                <tr>
+                  <td>Gender: </td>
+                  <td>M</td>
+                </tr>
+              </table>
+            </ModalBody>
+            <ModalFooter style={{ borderTop: "none" }}>
+              <Button>YES, MAKE PAYMENT</Button>
+              <Button onClick={toggle}>NO, GO BACK TO MAKE SCREEN</Button>
+            </ModalFooter>
+
+          </Modal>
+       
         </div>
       </div>
     </div>
