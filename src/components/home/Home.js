@@ -120,15 +120,10 @@ const Home = () => {
 									style={{
 										visibility:
 											plusBtnClicked || filterBtnClicked ? "visible" : "hidden",
-<<<<<<< HEAD
 										height:
 											plusBtnClicked || filterBtnClicked ? "200px" : "100px",
 										padding: "10px",
 										marginBottom: "0"
-=======
-										height: plusBtnClicked || filterBtnClicked ? "100%" : "0px",
-										padding: "10px"
->>>>>>> devBranch
 									}}>
 									<FontAwesomeIcon
 										style={{
@@ -198,7 +193,6 @@ const Home = () => {
 													src={item.userImg}
 													width="50px"
 													height="50px"
-<<<<<<< HEAD
 													alt=""
 													style={{
 														borderRadius: "50%",
@@ -207,13 +201,6 @@ const Home = () => {
 													}}></img>
 												<p style={{ marginRight: "10px" }}>{item.userName} </p>
 												<p style={{ marginRight: "10px" }}>send you a </p>
-=======
-													style={{
-														borderRadius: "50%",
-														objectFit: "cover"
-													}}></img>
-												<p>{item.userName} </p>
->>>>>>> devBranch
 												<p>{item.typeOfaction}</p>
 												<p
 													style={{
