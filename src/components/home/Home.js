@@ -113,6 +113,7 @@ const Home = () => {
 									style={{
 										visibility:
 											plusBtnClicked || filterBtnClicked ? "visible" : "hidden",
+										height: plusBtnClicked || filterBtnClicked ? "100%" : "0px",
 										padding: "10px"
 									}}>
 									<FontAwesomeIcon
