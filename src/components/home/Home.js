@@ -108,23 +108,27 @@ const Home = () => {
 						style={{ width: "800px", marginBottom: "0" }}>
 						<div className="topBar">
 							<div>
-								<h3>Notification</h3>
+								<h3 style={{ marginTop: "-15px" }}>Notification</h3>
 							</div>
 							<div
 								className="icons"
 								style={{
-									marginLeft: "5%",
-									marginTop: "25px"
+									marginLeft: "5%"
 								}}>
 								<ul
 									className="menuContainer"
 									style={{
 										visibility:
 											plusBtnClicked || filterBtnClicked ? "visible" : "hidden",
+<<<<<<< HEAD
 										height:
 											plusBtnClicked || filterBtnClicked ? "200px" : "100px",
 										padding: "10px",
 										marginBottom: "0"
+=======
+										height: plusBtnClicked || filterBtnClicked ? "100%" : "0px",
+										padding: "10px"
+>>>>>>> devBranch
 									}}>
 									<FontAwesomeIcon
 										style={{
@@ -194,6 +198,7 @@ const Home = () => {
 													src={item.userImg}
 													width="50px"
 													height="50px"
+<<<<<<< HEAD
 													alt=""
 													style={{
 														borderRadius: "50%",
@@ -202,6 +207,13 @@ const Home = () => {
 													}}></img>
 												<p style={{ marginRight: "10px" }}>{item.userName} </p>
 												<p style={{ marginRight: "10px" }}>send you a </p>
+=======
+													style={{
+														borderRadius: "50%",
+														objectFit: "cover"
+													}}></img>
+												<p>{item.userName} </p>
+>>>>>>> devBranch
 												<p>{item.typeOfaction}</p>
 												<p
 													style={{
@@ -218,7 +230,9 @@ const Home = () => {
 						</Table>
 					</div>
 					<div className="col-lg p-2 box">
-						<h3 style={{ textAlign: "left" }}>Verification</h3>
+						<h3 style={{ textAlign: "left", marginTop: "5px" }}>
+							Verification
+						</h3>
 						<Table borderless>
 							<tbody>
 								<tr>
