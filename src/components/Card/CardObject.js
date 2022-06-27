@@ -92,10 +92,7 @@ const CardObject = () => {
 									src={item.userImg}
 									width="50px"
 									height="50px"
-<<<<<<< HEAD
 									alt=""
-=======
->>>>>>> devBranch
 									style={{
 										borderRadius: "50%",
 										objectFit: "cover"
