@@ -75,7 +75,14 @@ const CardObject = () => {
 					<CardImgOverlay>
 						<div className="overlay">
 							<CardTitle tag="h6">
-								<img src={item.userImg} width="50px" height="50px"></img>{" "}
+								<img
+									src={item.userImg}
+									width="50px"
+									height="50px"
+									style={{
+										borderRadius: "50%",
+										objectFit: "cover"
+									}}></img>{" "}
 								{item.userName}
 								<FontAwesomeIcon className="iconN" icon={faThumbsUp} />
 								<span>{item.thumbUp}</span>

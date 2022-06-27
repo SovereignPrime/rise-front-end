@@ -101,13 +101,12 @@ const Home = () => {
 						style={{ width: "800px" }}>
 						<div className="topBar">
 							<div>
-								<h3>Notification</h3>
+								<h3 style={{ marginTop: "-15px" }}>Notification</h3>
 							</div>
 							<div
 								className="icons"
 								style={{
-									marginLeft: "5%",
-									marginTop: "25px"
+									marginLeft: "5%"
 								}}>
 								<ul
 									className="menuContainer"
@@ -183,7 +182,11 @@ const Home = () => {
 												<img
 													src={item.userImg}
 													width="50px"
-													height="50px"></img>
+													height="50px"
+													style={{
+														borderRadius: "50%",
+														objectFit: "cover"
+													}}></img>
 												<p>{item.userName} </p>
 												<p>{item.typeOfaction}</p>
 												<p>{item.timeOfAction}</p>
@@ -194,7 +197,9 @@ const Home = () => {
 						</Table>
 					</div>
 					<div className="col-lg p-2 box">
-						<h3 style={{ textAlign: "left" }}>Verification</h3>
+						<h3 style={{ textAlign: "left", marginTop: "5px" }}>
+							Verification
+						</h3>
 						<Table borderless>
 							<tbody>
 								<tr>
