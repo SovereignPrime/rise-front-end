@@ -47,9 +47,10 @@ form {
 .formMaster {
 	display: flex;
 	flex-direction: column;
-	text-align: right;
-	justify-content: flex-end;
-	align-items: flex-end;
+	box-sizing: border-box;
+	text-align: left;
+	justify-content: flex-start;
+	align-items: flex-start;
 	margin-top: 40px;
 }
 
@@ -139,4 +140,15 @@ canvas {
 		width: 60%;
 		margin-right: 20%;
 	}
+}
+
+//06-29-2022//
+
+input, select {
+	width: 872.6px;
+	height: 60px
+}
+
+.Note {
+	height: 100px;
 }
