@@ -49,6 +49,7 @@ const MarketPlacePostProduct = (props) => {
       Bad: 0,
       Date: date,
     });
+    console.log(typeof thumbnail);
   };
 
   return (

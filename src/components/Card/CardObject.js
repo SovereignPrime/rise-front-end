@@ -36,7 +36,7 @@ const data = [
 		nirvana: "1100",
 		explanation: "Delicious Steak",
 		itemImg: steak,
-		thumbUp: 100,
+		thumbUp: 10,
 		thumbDown: 0
 	},
 	{
@@ -58,14 +58,27 @@ const data = [
 		itemImg: milk,
 		thumbUp: 4,
 		thumbDown: 1
+	},
+	{
+		userName: "user 1",
+		userImg: person1,
+		itemName: "milk2",
+		nirvana: "10",
+		explanation: "Good for thirsty too",
+		itemImg: milk,
+		thumbUp: 2,
+		thumbDown: 2
 	}
 ];
 
 const CardObject = () => {
 	return (
-		<div className="cardOb">
+		<div className="cardOb" style={{ marginLeft: "20px" }}>
 			{data.map((item) => (
-				<Card inverse style={{ width: "34%" }} key={item.userName}>
+				<Card
+					inverse
+					style={{ width: "300px", margin: "10px" }}
+					key={item.userName}>
 					<CardImg
 						alt="Card image cap"
 						src={item.itemImg}
@@ -75,7 +88,15 @@ const CardObject = () => {
 					<CardImgOverlay>
 						<div className="overlay">
 							<CardTitle tag="h6">
-								<img src={item.userImg} width="50px" height="50px"></img>{" "}
+								<img
+									src={item.userImg}
+									width="50px"
+									height="50px"
+									alt=""
+									style={{
+										borderRadius: "50%",
+										objectFit: "cover"
+									}}></img>{" "}
 								{item.userName}
 								<FontAwesomeIcon className="iconN" icon={faThumbsUp} />
 								<span>{item.thumbUp}</span>
@@ -84,7 +105,7 @@ const CardObject = () => {
 							</CardTitle>
 							<CardText>{item.itemName}</CardText>
 							<CardText tag="h6">
-								<img src={nirvana} />
+								<img src={nirvana} alt="" width="50px" height="50px" />
 								{item.nirvana}
 								<Button outline className="bg-white text-black ">
 									Detail
