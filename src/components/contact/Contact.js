@@ -25,7 +25,7 @@ import {
   Input,
 } from "reactstrap";
 import "./Contact.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 //to be replaced by the actual friend data
 const DUMMY_FRIEND_DATA = [
@@ -136,6 +136,42 @@ const Contact = () => {
     toggleModalAddGroup();
   };
 
+  //Add Contact code
+  const searchedUserRef = useRef();
+  const [addContactSubmitMessage, setAddContactSubmitMessage] = useState("");
+
+  const searchUserHandler = () => {
+    const searchedUser = searchedUserRef.current.value;
+    console.log(searchedUserRef.current.value);
+
+    if (searchedUser.trim().length === 0) {
+      console.log("Please Enter A Name");
+      //alert("Please enter a name");
+      setAddContactSubmitMessage(
+        <p style={{ color: "red" }}>Please enter a name</p>
+      );
+    }
+    if (
+      friendArray.findIndex((friend) => friend.userName == searchedUser) !== -1
+    ) {
+      setAddContactSubmitMessage(
+        <p style={{ color: "green" }}>This user is already your friend</p>
+      );
+    } else {
+      /*else if (!(searchedUser in sovPrimeUserData)) {
+      setAddContactSubmitMessage(
+        <p style={{ color: "red" }}>Sorry we couldn't find that user</p>
+      );
+    }
+    To be added when a user database has been set up
+    */
+      setAddContactSubmitMessage(
+        <p style={{ color: "green" }}>Successfully sent friend request</p>
+      );
+    }
+    searchedUserRef.current.value = "";
+  };
+
   return (
     <div>
       <Modal
@@ -148,17 +184,22 @@ const Contact = () => {
         </ModalHeader>
         <ModalBody>
           <div className="d-flex">
-            <Input
+            <input
               id="searchUserInput"
               name="searchUserInput"
-              onChange={function noRefCheck() {}}
+              ref={searchedUserRef}
               type="text"
               placeholder="Search user"
               className="searchUserInput"
-            ></Input>
-            <Button className="btn-search" color="transparent">
+            ></input>
+            <Button
+              className="btn-search"
+              color="transparent"
+              onClick={searchUserHandler}
+            >
               <FontAwesomeIcon className="iconN" icon={faMagnifyingGlass} />
             </Button>
+            {addContactSubmitMessage}
           </div>
         </ModalBody>
         <ModalFooter></ModalFooter>
