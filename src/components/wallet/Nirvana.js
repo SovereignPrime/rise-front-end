@@ -18,6 +18,10 @@ const Nirvana = () => {
       <div className="nirvanaLanding">
         {/* This is where the nav links for Nirvana info, wallet and transactions will live */}
         <nav className="nirvanaNav">
+        <div className="walletBalance">
+          <h2>Wallet Balance: $500.50</h2>
+          <h5>100,000 Karma </h5>
+        </div>
           <ul>
             <li>Payments</li>
             <ul className="paymentNav">
@@ -57,10 +61,6 @@ const Nirvana = () => {
             </li>
           </ul>
         </nav>
-        <div className="walletBalance">
-          <h2>Wallet</h2>
-          <h3>Your Nirvana Balance is: 500</h3>
-        </div>
         <Routes>
           <Route
             path="MakePayment/*"

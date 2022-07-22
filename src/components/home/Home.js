@@ -10,7 +10,15 @@ import React, { useState } from "react";
 import DropdownMessage from "../DropdownMenus/DropdownMessage";
 import DropdownCategory from "../DropdownMenus/DropdownCategory";
 import PaymentModal from "../Modals/PaymentModal";
-import { Button, Modal, ModalFooter, ModalHeader, ModalBody } from "reactstrap";
+import {
+	Button,
+	Modal,
+	ModalFooter,
+	ModalHeader,
+	ModalBody,
+	FormGroup,
+	Label
+} from "reactstrap";
 import CardObject from "../Card/CardObject";
 import person1 from "../../styles/assets/person1.jpg";
 import person2 from "../../styles/assets/person2.jpg";
@@ -53,9 +61,12 @@ const data = [
 ];
 
 const Home = () => {
+	let searchedArray = [];
 	const [action, setAction] = useState("");
 	const [filterBtnClicked, setFilterBtnClicked] = useState(false);
 	const [plusBtnClicked, setPlusBtnClicked] = useState(false);
+	const [searchEl, setSearchEl] = useState("");
+	const [radioEL, setRadioEl] = useState("");
 
 	const filterNotification = (data) => {
 		if (action === "MarketPlace") {
@@ -67,6 +78,12 @@ const Home = () => {
 		} else if (action === "") {
 			return data;
 		}
+	};
+
+	const handleChange = (e) => {
+		setRadioEl(e.target.value);
+		console.log(radioEL);
+		console.log(searchEl);
 	};
 
 	// Modal1 open state
@@ -93,13 +110,48 @@ const Home = () => {
 				<Input
 					placeholder="Say something..."
 					className="searchInput"
-					style={{ width: "70%" }}></Input>
+					style={{ width: "70%" }}
+					onChange={(e) => setSearchEl(e.target.value)}></Input>
 				<Button
 					className="btn-search"
 					color="transparent"
-					style={{ borderRadius: "10%" }}>
+					style={{ borderRadius: "10%" }}
+					onClick={handleChange}>
 					<FontAwesomeIcon icon={faMagnifyingGlass} />
 				</Button>
+			</div>
+
+			<div style={{ display: "flex" }} className="radios">
+				<FormGroup className="radioEl">
+					<Input
+						name="radioEl"
+						type="radio"
+						id="notification"
+						onClick={(e) => setRadioEl("notification")}
+						onChange={handleChange}
+					/>{" "}
+					<Label check>Notification </Label>
+				</FormGroup>
+				<FormGroup className="radioEl">
+					<Input
+						name="radioEl"
+						type="radio"
+						id="verification"
+						onClick={(e) => setRadioEl("verification")}
+						onChange={handleChange}
+					/>{" "}
+					<Label check>Valification</Label>
+				</FormGroup>
+				<FormGroup className="radioEl">
+					<Input
+						name="radioEl"
+						type="radio"
+						id="marketPlace"
+						onClick={(e) => setRadioEl("marketPlae")}
+						onChange={handleChange}
+					/>{" "}
+					<Label check>Marketplace</Label>
+				</FormGroup>
 			</div>
 			<div className="container d-flex mt-4">
 				<div className="row">
