@@ -1,4 +1,5 @@
 .marketPlace {
+
     position: center;
 }
 
@@ -14,6 +15,8 @@
     color: rgb(93, 93, 93);
     text-align: left;
     border: 2px solid rgb(147, 146, 146);
+    width: 90%;
+    height: 40px;
 }
 
 ::placeholder {
@@ -52,6 +55,8 @@
     text-align: center;
     margin-top: 10px;
     margin-bottom: 30px;
+    width: 90%;
+    height: 40px;
 }
 
 .filter-sort-title {
@@ -69,6 +74,8 @@
     text-align: center;
     margin-top: 10px;
     margin-bottom: 30px;
+    width: 90%;
+    height: 40px;
 }
 
 .prod_container {
