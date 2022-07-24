@@ -1,6 +1,6 @@
 import "./styles/sass/styles.scss";
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, Routes, Route, Outlet, useParams } from "react-router-dom";
 import UserInputs from "./components/UserInputs.js";
 import Dashboard from "./components/Dashboard.js";
