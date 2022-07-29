@@ -28,20 +28,31 @@ const RequestPayment = () => {
         <p>Please Complete the fields below.</p>
         <form className="formMaster" onSubmit={(event) => handleSubmit(event)}>
           <div className="fromBox">
-            <label htmlFor="From">From: </label>
-            <input type="text" name="From" required />
+            <label htmlFor="From">From </label>
+            <br></br>
+            <select type="text" name="From" required>
+            <option> Enter Recipient Name </option> 
+            <option> Brooke Weaver </option> 
+            <option> Han Noguchi </option>
+            <option> Jessie Lake </option>
+            </select>
           </div>
           <div className="toBox">
             <label htmlFor="To">To:</label>
-            <input type="text" name="To" required />
+            <br></br>
+            <select type="text" name="To" required>
+            <option> Account Name </option> 
+            </select>
           </div>
           <div className="amountBox">
             <label htmlFor="Amount">Amount:</label>
-            <input type="text" name="Amount" required />
+            <br></br>
+            <input type="text" name="Amount" defaultValue="$0.00" required />
           </div>
           <div className="paymentNoteBox">
             <label htmlFor="Note">Note:</label>
-            <input type="text" name="Note" required />
+            <br></br>
+            <input type="text" name="Note" defaultValue="Enter Note" required />
           </div>
         </form>
         <div className="reqPaymentButton">

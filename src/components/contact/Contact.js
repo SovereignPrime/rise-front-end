@@ -25,9 +25,9 @@ import {
   Input,
 } from "reactstrap";
 import "./Contact.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
-//to be replaced by the actual friend data
+//to be replaced by the actual friend data using database
 const DUMMY_FRIEND_DATA = [
   {
     userName: "Brooke Weaver",
@@ -64,6 +64,7 @@ const Contact = () => {
   const [addUsersToGroup, setAddUsersToGroup] = useState(false);
 
   const [, updateState] = useState();
+  //causes re-render
 
   const [query, setQuery] = useState("");
 
@@ -83,6 +84,7 @@ const Contact = () => {
       return { ...friend, isChosen: false };
     })
   );
+  //adds isChosen attribute, and sets as false on default
 
   const friendSearch = (event) => {
     setQuery(event.target.value);
@@ -95,6 +97,7 @@ const Contact = () => {
         tempArray[c].isChosen = !tempArray[c].isChosen;
       }
     }
+    //clicked JSX item's id must be the corresponding userId in the array
     setFriendArray(tempArray);
   };
 
@@ -107,18 +110,21 @@ const Contact = () => {
     setQuery("");
     setAddUsersToGroup(false);
   }, [modalAddGroup]);
+  //resets whenever the modal is opened or closed
 
   const options = friendArray.map((user) => (
     <ul>
       <li
         onClick={(e) => {
           updateState({});
+          //causes re-render
 
           clickHandler(e);
         }}
         id={user.userId}
         style={{
           backgroundColor: user.isChosen ? "red" : "green",
+          //is meant to visually show user that a selection has occured
           visibility: user.userName.toUpperCase().includes(query.toUpperCase())
             ? ""
             : "hidden",
@@ -130,14 +136,72 @@ const Contact = () => {
   ));
 
   const submitHandler = () => {
-    console.log(friendArray, "to be added");
+    var toBeAddedFriends = [];
+
+    for (let i in friendArray) {
+      if (friendArray[i].isChosen) {
+        delete friendArray[i].isChosen;
+        //no need to store the isChosen attribute anymore
+        toBeAddedFriends.push(friendArray[i]);
+      }
+    }
+    console.log(toBeAddedFriends, "to be added");
 
     console.log(groupName, "is the group name");
     toggleModalAddGroup();
   };
 
+  //Add Contact code begins here
+  const searchedUserRef = useRef();
+  const [addContactSubmitMessage, setAddContactSubmitMessage] = useState("");
+
+  const searchUserHandler = () => {
+    const searchedUser = searchedUserRef.current.value;
+    console.log(searchedUserRef.current.value);
+
+    if (searchedUser.trim().length === 0) {
+      //alert("Please enter a name");
+      setAddContactSubmitMessage(
+        <p style={{ color: "red" }}>Please enter a name</p>
+      );
+    }
+    if (
+      friendArray.findIndex((friend) => friend.userName == searchedUser) !== -1
+      //if it is -1, then it means not found
+      //looks through friendArray for friend with username that is the same as searchedUser
+    ) {
+      setAddContactSubmitMessage(
+        <p style={{ color: "green" }}>This user is already your friend</p>
+      );
+    } else {
+      /*else if (!(searchedUser in sovPrimeUserData)) {
+      setAddContactSubmitMessage(
+        <p style={{ color: "red" }}>Sorry we couldn't find that user</p>
+      );
+    }
+    To be added when a user database has been set up
+    */
+      setAddContactSubmitMessage(
+        <p style={{ color: "green" }}>Successfully sent friend request</p>
+      );
+    }
+    searchedUserRef.current.value = "";
+  };
+
   return (
     <div>
+      <Button
+        color="transparent"
+        onClick={() => setModalAddContact(!modalAddContact)}
+      >
+        <FontAwesomeIcon className="iconN" icon={faPlus} />
+      </Button>
+      <Button
+        color="transparent"
+        onClick={() => setModalAddGroup(!modalAddGroup)}
+      >
+        <FontAwesomeIcon className="iconN" icon={faPlusSquare} />
+      </Button>
       <Modal
         className="Modal"
         isOpen={modalAddContact}
@@ -148,17 +212,22 @@ const Contact = () => {
         </ModalHeader>
         <ModalBody>
           <div className="d-flex">
-            <Input
+            <input
               id="searchUserInput"
               name="searchUserInput"
-              onChange={function noRefCheck() {}}
+              ref={searchedUserRef}
               type="text"
               placeholder="Search user"
               className="searchUserInput"
-            ></Input>
-            <Button className="btn-search" color="transparent">
+            ></input>
+            <Button
+              className="btn-search"
+              color="transparent"
+              onClick={searchUserHandler}
+            >
               <FontAwesomeIcon className="iconN" icon={faMagnifyingGlass} />
             </Button>
+            {addContactSubmitMessage}
           </div>
         </ModalBody>
         <ModalFooter></ModalFooter>

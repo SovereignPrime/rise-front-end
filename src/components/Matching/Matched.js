@@ -1,12 +1,28 @@
 import "bootstrap/dist/css/bootstrap.css";
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "reactstrap";
 import personMe from "../../styles/assets/personMe.jpg";
 import person2 from "../../styles/assets/person2.jpg";
-import { Link, Routes, Route, Outlet, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Input, Form } from "reactstrap";
 
 const Matched = () => {
+	const [counter, setCounter] = React.useState(3600);
+	const navigate = useNavigate();
+
+	React.useEffect(() => {
+		const timer =
+			counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
+		return () => clearInterval(timer);
+	}, [counter]);
+
+	useEffect(() => {
+		setTimeout(() => {
+			navigate("../Home");
+		}, 3600000);
+	}, []);
+
 	return (
 		<div className="matchedContainer">
 			<div className="leftWrapper">
@@ -14,7 +30,7 @@ const Matched = () => {
 				<div className="head">
 					<hr className="solid" style={{ width: "700px" }}></hr>
 					<p className="text-secondary" style={{ textAlign: "right" }}>
-						Remaining Time: 10 Min
+						Remaining Time: {Math.floor(counter / 360)} Min
 					</p>
 				</div>
 				<div className="matchedCanvas">

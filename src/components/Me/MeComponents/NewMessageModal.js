@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
-const myMessage = [];
+var myMessage = [];
 
 const NewMessageModal = (props) => {
   var images;
@@ -30,7 +30,8 @@ const NewMessageModal = (props) => {
   };
 
   const hideFunction = (e) => {
-    e.target.style.display = "none";
+    e.target.closest("div").style.display = "none";
+    //will hide the innermost div, so that the <p> tag does not show
   };
 
   const { getRootProps, getInputProps } = useDropzone({
@@ -42,7 +43,6 @@ const NewMessageModal = (props) => {
             Object.assign(acceptedFiles[i], {
               preview: URL.createObjectURL(acceptedFiles[i]),
             });
-
             setUploadedFiles((prevUploadedFiles) => {
               return [[acceptedFiles[i]], ...prevUploadedFiles];
             });
@@ -62,27 +62,64 @@ const NewMessageModal = (props) => {
     },
   });
 
-  images = uploadedFiles.map((file) => (
+  //dropzone code above
+  //doesn't let the user upload duplicate files + lets users drag and drop files
+
+  images = uploadedFiles.map((file) => {
     //file.name and file.preview works for the multi upload
     //use catch try to preset key and src
 
-    <div key={file[0].name}>
-      <div>
-        <img
-          src={file[0].preview}
-          style={{ width: "200px" }}
-          alt="File Uploaded"
-          onClick={(e) => {
-            //console.log(uploadedFiles.indexOf(file));
-            const start = uploadedFiles.indexOf(file);
-            const deleteCount = 1;
-            uploadedFiles.splice(start, deleteCount);
-            hideFunction(e);
-          }}
-        />
-      </div>
-    </div>
-  ));
+    if (file[0].type.includes("video")) {
+      return (
+        <div key={file[0].name}>
+          <div>
+            <p>{file[0].name}</p>
+            <video width="320" height="240" controls>
+              <source src={file[0].preview} type={file[0].type} />
+            </video>
+            <button
+              onClick={(e) => {
+                const start = uploadedFiles.indexOf(file);
+                const deleteCount = 1;
+                uploadedFiles.splice(start, deleteCount);
+
+                hideFunction(e);
+                //hides it from view
+                //could also just call another render of this file to get the same effect
+                //This is so that the user does not accidently remove the video when clicking it to watch it
+                //This should be redesigned into a X button on a top corner of the video.
+              }}
+            >
+              Remove Video
+            </button>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div key={file[0].name}>
+          <div>
+            <p>{file[0].name}</p>
+            <img
+              src={file[0].preview}
+              style={{ width: "200px" }}
+              alt="File Uploaded"
+              onClick={(e) => {
+                //console.log(uploadedFiles.indexOf(file));
+                const start = uploadedFiles.indexOf(file);
+                const deleteCount = 1;
+                uploadedFiles.splice(start, deleteCount);
+                //clicking the image removes it from the array
+                hideFunction(e);
+                //hides it from view
+                //could also just call another render of this file to get the same effect
+              }}
+            />
+          </div>
+        </div>
+      );
+    }
+  });
 
   const receiverIDRef = useRef();
   const messageRef = useRef();
@@ -113,6 +150,8 @@ const NewMessageModal = (props) => {
     receiverIDRef.current.value = "";
     messageRef.current.value = "";
     setUploadedFiles([]);
+    myMessage = [];
+    //resets myMessage and uploadedFiles so that messages and images are not stacked in an array
   };
 
   return (
@@ -168,7 +207,7 @@ const NewMessageModal = (props) => {
           <br />
           {images}
 
-          <button>Post Product</button>
+          <button>Send Message</button>
         </form>
       </div>
     </div>
