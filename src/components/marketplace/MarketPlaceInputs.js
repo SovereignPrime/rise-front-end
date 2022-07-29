@@ -76,6 +76,7 @@ const data = [
 ];
 
 const MarketPlaceInputs = () => {
+  const [idNumber, setIDNumber] = useState(1);
   const [postProduct, setPostProduct] = useState(false);
 
   const addProductHandler = (newItem) => {
@@ -261,7 +262,18 @@ const MarketPlaceInputs = () => {
                                       key={item.Id}
                                       to={`detail/${item.Id}`}
                                     >
-                                      <Button size="sm">Detail</Button>
+                                      <Button
+                                        size="sm"
+                                        onClick={() => {
+                                          setIDNumber(item.Id);
+                                          console.log(
+                                            idNumber,
+                                            " THE ID (SUBTRACT 1 FOR ARRAYS)"
+                                          );
+                                        }}
+                                      >
+                                        Detail
+                                      </Button>
                                     </Link>
                                   </Col>
                                 </Row>
@@ -277,7 +289,12 @@ const MarketPlaceInputs = () => {
             </div>
           }
         />
-        <Route path="detail/:Id" element={<ProductDetails />} />
+        <Route
+          path="detail/:Id"
+          element={<ProductDetails data={data[idNumber - 1]} />}
+          //depends on idNumber being correlated to its position in the array (idNumber = position in the array + 1)
+          //Index object is passed, and transformed into an array of its own inside ProductDetails.js to be used with the file's code
+        />
       </Routes>
     </div>
   );

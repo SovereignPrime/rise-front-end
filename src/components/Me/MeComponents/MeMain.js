@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import EditProfile from "./EditProfile";
 
 const MeMain = () => {
+  //user data should be a user's personal information and the user's marketplace posts
   const [DUMMY_USER_DATA, setDUMMY_USER_DATA] = useState({
     firstName: "Jane",
     lastName: "Doe",
@@ -52,7 +53,7 @@ const MeMain = () => {
 
   const handleModalToggle = () => {
     setShowEditProfile(!showEditProfile);
-    //call this in EditProfile without parameters to close parameter
+    //call this in EditProfile without parameters to close modal
   };
 
   const editProfile = (newAddress, newOccupation, newBio, newSelfie) => {
@@ -63,13 +64,15 @@ const MeMain = () => {
     tempProfile.address = newAddress;
     tempProfile.occupation = newOccupation;
     tempProfile.bio = newBio;
-    tempProfile.selfie = (
-      <img
-        src={newSelfie}
-        //style={{ borderRadius: "50%", clipPath: "circle()" }}
-        //makes the new selfie shown as a circle, like a modern social media's thumbnail for a profile picture
-      />
-    );
+    if (newSelfie !== null) {
+      tempProfile.selfie = (
+        <img
+          src={newSelfie}
+          //style={{ borderRadius: "50%", clipPath: "circle()" }}
+          //makes the new selfie shown as a circle, like many social medias' thumbnails for profile pictures
+        />
+      );
+    }
     setDUMMY_USER_DATA(tempProfile);
   };
 
@@ -79,6 +82,7 @@ const MeMain = () => {
       <span>
         {DUMMY_USER_DATA.firstName} {DUMMY_USER_DATA.lastName}{" "}
         <button onClick={handleModalToggle}>Edit Profile</button>
+        {/*Above onClick makes the EditProfile.js program visible */}
         <br></br>
         <b>{DUMMY_USER_DATA.nirvanaAmount}</b> nirvana
       </span>
@@ -86,6 +90,7 @@ const MeMain = () => {
       <h4>Your Market Place Items</h4>
       {marketPlacePostsDisplay}
       <button>Manage Market Place Items</button>
+      {/* not yet implemented */}
       {showEditProfile && (
         <EditProfile
           handleModalToggle={handleModalToggle}

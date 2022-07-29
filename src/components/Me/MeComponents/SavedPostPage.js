@@ -35,11 +35,12 @@ const SavedPostPage = () => {
     setAlbums((prevAlbums) => {
       return [...prevAlbums, newAlbum];
     });
+    //adds newAlbum to array of albums (albums constant)
   };
 
   const albumDisplay = (album) => {
     for (let i in album) {
-      //prints each property in album
+      //console logs each property in album
       console.log(album[i]);
     }
   };
@@ -85,14 +86,16 @@ const SavedPostPage = () => {
               <Col className="text-end mx-0">date</Col>
               <button
                 onClick={() => {
-                  setShowCreateAlbumModal(true);
+                  setShowCreateAlbumModal(!showCreateAlbumModal);
                 }}
               >
                 Create Album
               </button>
+              {/*When above button is clicked, this modal is shown */}
               {showCreateAlbumModal && (
                 <CreateAlbumModal
                   miscPosts={savedPostArray}
+                  //All saved posts are sent over
                   setShowCreateAlbumModal={setShowCreateAlbumModal}
                   newAlbumHandler={newAlbumHandler}
                 />
@@ -102,7 +105,8 @@ const SavedPostPage = () => {
           <CardText className="text-start mx-0">Click to add to album</CardText>
           {albumsToDisplay}
           {marketPlacePostsDisplay}
-          <CardImg className="mx-3 my-3" src="#" alt="img" width="30%" bottom />
+          {/* <CardImg className="mx-3 my-3" src="#" alt="img" width="30%" bottom /> 
+          Just here for testing CardImg*/}
         </div>
       </Card>
     </div>
