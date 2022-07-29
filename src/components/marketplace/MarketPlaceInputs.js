@@ -7,11 +7,8 @@ import {
   Button,
   Row,
   Col,
-  Input,
   Card,
   CardImg,
-  CardSubtitle,
-  CardTitle,
   CardText,
   CardBody,
 } from "reactstrap";
@@ -32,6 +29,7 @@ import ProductDetails from "./ProductDetails";
 import "./MarketPlaceInputs.css";
 import "bootstrap/dist/css/bootstrap.css";
 import MarketPlacePostProduct from "./MarketPlacePostProduct";
+import CheckSellerInfo from "./CheckSellerInfo";
 
 const data = [
   {
@@ -76,8 +74,10 @@ const data = [
 ];
 
 const MarketPlaceInputs = () => {
-  const [idNumber, setIDNumber] = useState(1);
   const [postProduct, setPostProduct] = useState(false);
+  const [checkSellerInfo, setCheckSellerInfo] = useState(false);
+  const [sellerName, setSellerName] = useState("");
+  const [sellerPic, setSellerPic] = useState("");
 
   const addProductHandler = (newItem) => {
     data.push(newItem);
@@ -88,6 +88,10 @@ const MarketPlaceInputs = () => {
 
   const closeAddProduct = () => {
     setPostProduct(false);
+  };
+
+  const closeCheckSellerHandler = () => {
+    setCheckSellerInfo(false);
   };
 
   const [query, setQuery] = useState("");
@@ -207,6 +211,14 @@ const MarketPlaceInputs = () => {
                 />
               )}
 
+              {checkSellerInfo && (
+                <CheckSellerInfo
+                  closeCheckSellerHandler={closeCheckSellerHandler}
+                  checkSellerName={sellerName}
+                  checkSellerPic={sellerPic}
+                />
+              )}
+
               <Col md={9}>
                 <div className="prod_container">
                   <div class="row">
@@ -226,13 +238,16 @@ const MarketPlaceInputs = () => {
                               <div className="market-person">
                                 <img src={item.perPic} width="20%"></img>
 
-                                <small className="text-muted">
+                                <small
+                                  className="text-muted"
+                                  onClick={() => {
+                                    setCheckSellerInfo(true);
+                                    setSellerName(item.perName);
+                                    setSellerPic(item.perPic);
+                                  }}
+                                >
                                   &nbsp; {item.perName}
                                 </small>
-                                {/* <Button onClick={() => { }}>
-                                                                      <FontAwesomeIcon className="iconN" icon={faThumbsUp} size="1x" transform="down-9 right-7" />
-                                                                      {item.Good}
-                                                                 </Button> */}
 
                                 <FontAwesomeIcon
                                   className="iconN"
@@ -262,18 +277,7 @@ const MarketPlaceInputs = () => {
                                       key={item.Id}
                                       to={`detail/${item.Id}`}
                                     >
-                                      <Button
-                                        size="sm"
-                                        onClick={() => {
-                                          setIDNumber(item.Id);
-                                          console.log(
-                                            idNumber,
-                                            " THE ID (SUBTRACT 1 FOR ARRAYS)"
-                                          );
-                                        }}
-                                      >
-                                        Detail
-                                      </Button>
+                                      <Button size="sm">Detail</Button>
                                     </Link>
                                   </Col>
                                 </Row>
@@ -289,12 +293,7 @@ const MarketPlaceInputs = () => {
             </div>
           }
         />
-        <Route
-          path="detail/:Id"
-          element={<ProductDetails data={data[idNumber - 1]} />}
-          //depends on idNumber being correlated to its position in the array (idNumber = position in the array + 1)
-          //Index object is passed, and transformed into an array of its own inside ProductDetails.js to be used with the file's code
-        />
+        <Route path="detail/:Id" element={<ProductDetails />} />
       </Routes>
     </div>
   );
