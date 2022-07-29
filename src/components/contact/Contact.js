@@ -27,7 +27,7 @@ import {
 import "./Contact.css";
 import { useState, useEffect, useRef } from "react";
 
-//to be replaced by the actual friend data
+//to be replaced by the actual friend data using database
 const DUMMY_FRIEND_DATA = [
   {
     userName: "Brooke Weaver",
@@ -64,6 +64,7 @@ const Contact = () => {
   const [addUsersToGroup, setAddUsersToGroup] = useState(false);
 
   const [, updateState] = useState();
+  //causes re-render
 
   const [query, setQuery] = useState("");
 
@@ -83,6 +84,7 @@ const Contact = () => {
       return { ...friend, isChosen: false };
     })
   );
+  //adds isChosen attribute, and sets as false on default
 
   const friendSearch = (event) => {
     setQuery(event.target.value);
@@ -95,6 +97,7 @@ const Contact = () => {
         tempArray[c].isChosen = !tempArray[c].isChosen;
       }
     }
+    //clicked JSX item's id must be the corresponding userId in the array
     setFriendArray(tempArray);
   };
 
@@ -107,18 +110,21 @@ const Contact = () => {
     setQuery("");
     setAddUsersToGroup(false);
   }, [modalAddGroup]);
+  //resets whenever the modal is opened or closed
 
   const options = friendArray.map((user) => (
     <ul>
       <li
         onClick={(e) => {
           updateState({});
+          //causes re-render
 
           clickHandler(e);
         }}
         id={user.userId}
         style={{
           backgroundColor: user.isChosen ? "red" : "green",
+          //is meant to visually show user that a selection has occured
           visibility: user.userName.toUpperCase().includes(query.toUpperCase())
             ? ""
             : "hidden",
@@ -130,13 +136,22 @@ const Contact = () => {
   ));
 
   const submitHandler = () => {
-    console.log(friendArray, "to be added");
+    var toBeAddedFriends = [];
+
+    for (let i in friendArray) {
+      if (friendArray[i].isChosen) {
+        delete friendArray[i].isChosen;
+        //no need to store the isChosen attribute anymore
+        toBeAddedFriends.push(friendArray[i]);
+      }
+    }
+    console.log(toBeAddedFriends, "to be added");
 
     console.log(groupName, "is the group name");
     toggleModalAddGroup();
   };
 
-  //Add Contact code
+  //Add Contact code begins here
   const searchedUserRef = useRef();
   const [addContactSubmitMessage, setAddContactSubmitMessage] = useState("");
 
@@ -145,7 +160,6 @@ const Contact = () => {
     console.log(searchedUserRef.current.value);
 
     if (searchedUser.trim().length === 0) {
-      console.log("Please Enter A Name");
       //alert("Please enter a name");
       setAddContactSubmitMessage(
         <p style={{ color: "red" }}>Please enter a name</p>
@@ -153,6 +167,8 @@ const Contact = () => {
     }
     if (
       friendArray.findIndex((friend) => friend.userName == searchedUser) !== -1
+      //if it is -1, then it means not found
+      //looks through friendArray for friend with username that is the same as searchedUser
     ) {
       setAddContactSubmitMessage(
         <p style={{ color: "green" }}>This user is already your friend</p>
@@ -174,6 +190,18 @@ const Contact = () => {
 
   return (
     <div>
+      <Button
+        color="transparent"
+        onClick={() => setModalAddContact(!modalAddContact)}
+      >
+        <FontAwesomeIcon className="iconN" icon={faPlus} />
+      </Button>
+      <Button
+        color="transparent"
+        onClick={() => setModalAddGroup(!modalAddGroup)}
+      >
+        <FontAwesomeIcon className="iconN" icon={faPlusSquare} />
+      </Button>
       <Modal
         className="Modal"
         isOpen={modalAddContact}

@@ -31,74 +31,73 @@ import prod1 from "../../styles/assets/appwatch.jpg";
 import prod2 from "../../styles/assets/minicooper.jpeg";
 import prod3 from "../../styles/assets/ps5.jpeg";
 
-const data = [
-  {
-    Id: 1,
-    perName: "Eric Smith",
-    perPic: img1,
-    prodName: "Apple Watch",
-    Category: "electronics",
-    Price: 450,
-    Detail:
-      "This is a brand new apple Watch. I used it onece, but then found I do not  need it. I is in very good condition",
-    prodPic: [
-      {
-        src: prod1,
-      },
-      {
-        src: prod2,
-      },
-    ],
-    Good: 14,
-    Bad: 2,
-    Date: "2022-05-25",
-  },
-  {
-    Id: 2,
-    perName: "Eric Smith",
-    perPic: img1,
-    prodName: "MINI cooper",
-    Category: "vehicles",
-    Price: 1000,
-    Detail: "this is a car",
-    prodPic: prod2,
-    Good: 14,
-    Bad: 2,
-    Date: "2022-05-22",
-  },
-  {
-    Id: 3,
-    perName: "Eric Smith",
-    perPic: img1,
-    prodName: "PS5",
-    Category: "entertainment",
-    Price: 200,
-    Detail: "this is a PS station",
-    prodPic: prod3,
-    Good: 14,
-    Bad: 2,
-    Date: "2021-05-27",
-  },
-];
+//Not needed since MarketPlaceInputs.js passes data
 
-const ProductDetails = () => {
+// const data = [
+//   {
+//     Id: 1,
+//     perName: "Eric Smith",
+//     perPic: img1,
+//     prodName: "Apple Watch",
+//     Category: "electronics",
+//     Price: 450,
+//     Detail:
+//       "This is a brand new apple Watch. I used it once, but then found I do not  need it. It is in very good condition",
+//     prodPic: [
+//       {
+//         src: prod1,
+//       },
+//       {
+//         src: prod2,
+//       },
+//       {
+//         src: prod3,
+//       },
+//     ],
+//     Good: 14,
+//     Bad: 2,
+//     Date: "2022-05-25",
+//   },
+//   {
+//     Id: 2,
+//     perName: "Eric Smith",
+//     perPic: img1,
+//     prodName: "MINI cooper",
+//     Category: "vehicles",
+//     Price: 1000,
+//     Detail: "this is a car",
+//     prodPic: prod2,
+//     Good: 14,
+//     Bad: 2,
+//     Date: "2022-05-22",
+//   },
+//   {
+//     Id: 3,
+//     perName: "Eric Smith",
+//     perPic: img1,
+//     prodName: "PS5",
+//     Category: "entertainment",
+//     Price: 200,
+//     Detail: "this is a PS station",
+//     prodPic: prod3,
+//     Good: 14,
+//     Bad: 2,
+//     Date: "2021-05-27",
+//   },
+// ];
+
+const ProductDetails = (props) => {
+  //const data = props.data;
+
   // State for Active index
   const [activeIndex, setActiveIndex] = useState(0);
 
   // State for Animation
   const [animating, setAnimating] = useState(false);
 
-  const para = useParams();
   const navigate = useNavigate();
-  console.log(para.Id);
 
-  const good = (data) => {
-    return data.filter((item) => {
-      return item.Id == para.Id;
-    });
-  };
-
-  const finaldata = good(data);
+  const finaldata = [props.data];
 
   // Sample items for Carousel
   // const items = [
@@ -109,6 +108,7 @@ const ProductDetails = () => {
   // ];
 
   //check if it is not an array, change it to array first.
+  console.log(finaldata);
   const items =
     Array.isArray(finaldata[0].prodPic) === false
       ? [{ src: finaldata[0].prodPic }]
@@ -228,6 +228,8 @@ const ProductDetails = () => {
                 previous={previousButton}
                 next={nextButton}
                 activeIndex={activeIndex}
+                slide={false}
+                //fade={true}
               >
                 <CarouselIndicators
                   items={items}

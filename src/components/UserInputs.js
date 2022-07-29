@@ -67,6 +67,18 @@ const UserInputs = () => {
 
     var selfieURL = document.getElementById("userSelfieImage").toDataURL();
 
+    var userTestingArray = [];
+    userTestingArray.push(firstName);
+    userTestingArray.push(lastName);
+    userTestingArray.push(userAge);
+    userTestingArray.push(userHeight);
+    userTestingArray.push(userAddress);
+    userTestingArray.push(userOccupation);
+    userTestingArray.push(userSex);
+    userTestingArray.push(userBio);
+    userTestingArray.push(selfieURL);
+    //just meant for the programmer to see that the refs are carrying the proper values
+
     setUserData({
       firstName,
       lastName,
@@ -78,6 +90,7 @@ const UserInputs = () => {
       userBio,
       selfie: selfieURL,
     });
+    console.log(userTestingArray);
 
     navigate("/Dashboard");
   };
@@ -131,7 +144,7 @@ const UserInputs = () => {
                   id="firstname"
                   name="firstname"
                   type="firstname"
-                  ref={firstNameRef}
+                  innerRef={firstNameRef}
                   onBlur={entryBoxValidator}
                   required
                 />
@@ -144,7 +157,7 @@ const UserInputs = () => {
                   id="lastname"
                   name="lastname"
                   type="lastname"
-                  ref={lastNameRef}
+                  innerRef={lastNameRef}
                   onBlur={entryBoxValidator}
                 />
               </FormGroup>
@@ -159,7 +172,7 @@ const UserInputs = () => {
                   id="age"
                   name="age"
                   type="age"
-                  ref={userAgeRef}
+                  innerRef={userAgeRef}
                   onBlur={entryBoxValidator}
                 />
               </FormGroup>
@@ -172,7 +185,7 @@ const UserInputs = () => {
                   id="height"
                   name="height"
                   type="height"
-                  ref={userHeightRef}
+                  innerRef={userHeightRef}
                   onBlur={entryBoxValidator}
                 />
               </FormGroup>
@@ -187,7 +200,7 @@ const UserInputs = () => {
                   id="address"
                   name="address"
                   type="address"
-                  ref={userAddressRef}
+                  innerRef={userAddressRef}
                   onBlur={entryBoxValidator}
                 />
               </FormGroup>
@@ -200,7 +213,7 @@ const UserInputs = () => {
                   id="occupation"
                   name="occupation"
                   type="occupation"
-                  ref={userOccupationRef}
+                  innerRef={userOccupationRef}
                   onBlur={entryBoxValidator}
                 />
               </FormGroup>
@@ -218,7 +231,7 @@ const UserInputs = () => {
                     id="exampleSelect"
                     name="select"
                     type="select"
-                    ref={userSexRef}
+                    innerRef={userSexRef}
                     onBlur={entryBoxValidator}
                   >
                     <option>Male</option>
@@ -236,7 +249,7 @@ const UserInputs = () => {
                   name="text"
                   type="textarea"
                   placeholder="Your message"
-                  ref={userBioRef}
+                  innerRef={userBioRef}
                   onBlur={entryBoxValidator}
                 />
               </FormGroup>
@@ -261,7 +274,7 @@ const UserInputs = () => {
           {
             <canvas
               style={{ display: showImg ? "block" : "none" }}
-              ref={canvasRef}
+              innerRef={canvasRef}
               id="userSelfieImage"
             />
           }

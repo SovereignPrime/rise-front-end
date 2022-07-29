@@ -74,10 +74,12 @@ const data = [
 ];
 
 const MarketPlaceInputs = () => {
+
      const [postProduct, setPostProduct] = useState(false);
      const [checkSellerInfo, setCheckSellerInfo] = useState(false);
      const [sellerName, setSellerName] = useState("");
      const [sellerPic, setSellerPic] = useState("");
+
 
      const addProductHandler = (newItem) => {
           data.push(newItem);
@@ -219,6 +221,7 @@ const MarketPlaceInputs = () => {
                                         />
                                    )}
 
+
                                    <Col md={9}>
                                         <div className="prod_container">
                                              <div class="row">
@@ -296,6 +299,7 @@ const MarketPlaceInputs = () => {
                </Routes>
           </div>
      );
+
 };
 
 export default MarketPlaceInputs;
