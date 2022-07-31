@@ -1,8 +1,12 @@
 import React, { useState, useRef } from "react";
+import { useDispatch } from "react-redux";
 import classes from "./MarketPlacePostProduct.module.css";
 import UploadAndDisplayImage from "./UploadAndDisplayImage";
+import { addItem } from "../../store/features/marketItem/marketItemSlice";
 
 const MarketPlacePostProduct = (props) => {
+	const dispatch = useDispatch();
+
 	const [thumbnail, setThumbnail] = useState(null);
 	const [isFree, setIsFree] = useState(false);
 	const [fileUploadInfo, setFileUploadInfo] = useState(false);
@@ -35,20 +39,22 @@ const MarketPlacePostProduct = (props) => {
 		const category = categoryRef.current.value;
 		const detail = detailRef.current.value;
 		const date = new Date();
-		props.addItem({
-			Id: 2,
-			//perPic and perName should be linked with backend to autofill
-			perPic: "TBA",
-			perName: "TBA",
-			prodName: prodName,
-			Category: category,
-			Price: price,
-			Detail: detail,
-			prodPic: thumbnail,
-			Good: 0,
-			Bad: 0,
-			Date: date
-		});
+		dispatch(
+			addItem({
+				Id: 2,
+				//perPic and perName should be linked with backend to autofill
+				perPic: "TBA",
+				perName: "TBA",
+				prodName: prodName,
+				Category: category,
+				Price: price,
+				Detail: detail,
+				prodPic: thumbnail,
+				Good: 0,
+				Bad: 0,
+				Date: date
+			})
+		);
 		console.log(typeof thumbnail);
 	};
 
