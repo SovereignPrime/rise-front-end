@@ -10,148 +10,71 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faThumbsUp,
     faThumbsDown,
+    faCircleXmark
 } from "@fortawesome/free-solid-svg-icons";
-import { Routes, Route, Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import CardObject from "../Card/CardObject";
 
 
-const data = [
+const Sellerdata = [
     {
         Id: 1,
         perName: "Eric Smith",
         perPic: img1,
-        prodName: "Apple Watch",
-        Category: "electronics",
-        Price: 450,
-        Detail: "this is a apple watch",
-        prodPic: prod1,
-        Good: 14,
-        Bad: 2,
-        Date: "2022-05-25",
+        Intro: "I like everything about vehicle"
     },
     {
         Id: 2,
-        perName: "Eric Smith",
+        perName: "Sam Smith",
         perPic: img1,
-        prodName: "MINI cooper",
-        Category: "vehicles",
-        Price: 1000,
-        Detail: "this is a car",
-        prodPic: prod2,
-        Good: 14,
-        Bad: 2,
-        Date: "2022-05-22",
-    },
-    {
-        Id: 3,
-        perName: "Eric Smith",
-        perPic: img1,
-        prodName: "PS5",
-        Category: "entertainment",
-        Price: 200,
-        Detail: "this is a PS station",
-        prodPic: prod3,
-        Good: 14,
-        Bad: 2,
-        Date: "2021-05-27",
+        Intro: "I like everything about vehicle"
     },
 ];
 
-
 const CheckSellerInfo = props => {
-
+    const data = useSelector((state) => state.marketItem.marketItems);
     console.log(data.filter(person => person.perName == props.checkSellerName)[1].perPic);
-
     return (
         <div className={classes.backdrop} onClick={props.closeCheckSellerHandler}>
             <div className={classes.modal} onClick={(e) => e.stopPropagation()}>
-
-                <img src={props.checkSellerPic} width="10%"></img>
-                {props.checkSellerName}
-                <div>
+                <div className="return-button">
+                    <FontAwesomeIcon
+                        className="return-button-close"
+                        icon={faCircleXmark}
+                        onClick={props.closeCheckSellerHandler}
+                        size="2x"
+                    />
+                </div>
+                <img className={classes.seller} src={props.checkSellerPic} width="14%"></img>
+                {/* {props.checkSellerName} */}
+                <div className={classes.buttonGroup}>
                     <Button>Follow</Button>
+                    {' '}
                     <Button>View Profile</Button>
+                    {' '}
                     <Button>Report</Button>
                 </div>
-
-                <div>
+                <div className="border-top"></div>
+                <div className={classes.sellerTitle}>
                     About
                 </div>
-
-                <div>
+                {Sellerdata.filter(person => person.perName == props.checkSellerName).map((item) => (
+                    <div className={classes.sellerAbout}>
+                        {item.Intro}
+                    </div>
+                ))}
+                <div className="border-top" style={{ marginLeft: "5px" }}></div>
+                <div className={classes.sellerTitle}>
                     Listing
                 </div>
 
                 <div className={classes.prod_container}>
-                    <div class="row">
-                        {data.filter(person => person.perName == props.checkSellerName).map((item) => (
-                            <div class="col-lg-4 col-md-6 col-sm-12">
-                                <Card key={item.Id}>
-                                    <CardImg
-                                        className="cardimg"
-                                        alt="Card image cap"
-                                        src={item.prodPic}
-                                        width="30%"
-                                        height={250}
-                                        top
-                                    />
-                                    <CardBody>
-                                        <CardText>
+                    <div class="container-fluid">
 
-                                            <div className="market-person">
-
-                                                <img src={item.perPic} width="20%"></img>
-
-                                                <small className="text-muted">
-                                                    &nbsp; {item.perName}
-                                                </small>
-
-                                                <FontAwesomeIcon
-                                                    className="iconN"
-                                                    icon={faThumbsUp}
-                                                    size="1x"
-                                                    transform="down-9 right-7"
-                                                />
-                                                <span>{item.Good}</span>
-                                                <FontAwesomeIcon
-                                                    className="iconN"
-                                                    icon={faThumbsDown}
-                                                    size="1x"
-                                                    transform="down-10 right-7"
-                                                />
-                                                <span>{item.Bad}</span>
-                                            </div>
-                                            <div className="market-product-name">
-                                                {item.prodName}
-                                            </div>
-                                            <div>
-                                                <Row md="2">
-                                                    <Col className="market-product-price">
-                                                        ${item.Price}
-                                                    </Col>
-                                                    <Col>
-                                                        <Link
-                                                            key={item.Id}
-                                                            to={`detail/${item.Id}`}
-                                                        >
-                                                            <Button size="sm">Detail</Button>
-                                                        </Link>
-                                                    </Col>
-                                                </Row>
-                                            </div>
-                                        </CardText>
-                                    </CardBody>
-                                </Card>
-                            </div>
-                        ))}
-
+                        <CardObject />
                     </div>
                 </div>
-
-
-
                 <div>
-
-
                 </div>
             </div>
         </div >

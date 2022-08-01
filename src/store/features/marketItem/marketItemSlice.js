@@ -45,7 +45,7 @@ const marketItemSlice = createSlice({
 				Good: 14,
 				Bad: 2,
 				Date: "2021-05-27"
-			}
+			},
 		]
 	},
 	reducers: {
