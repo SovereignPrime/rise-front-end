@@ -26,7 +26,7 @@ import ProductDetails from "../marketplace/ProductDetails";
 import { variance } from "d3";
 
 const CardObject = (props) => {
-	const marketItems = useSelector((state) => state.marketItem.marketItems);
+	const data = props.param;
 
 	const dispatch = useDispatch();
 	function handleGood(id) {
@@ -61,7 +61,7 @@ const CardObject = (props) => {
 										checkSellerPic={sellerPic}
 									/>
 								)}
-								{marketItems.map((item) => (
+								{data?.map((item) => (
 									<div key={item.Id} className="col-lg-4 col-md-6 col-sm-12">
 										<Card key={item.Id}>
 											<CardImg
@@ -104,14 +104,16 @@ const CardObject = (props) => {
 														/>
 														<span>{item.Bad}</span>
 													</div>
-													<div className="market-product-name">{item.prodName}</div>
+													<div className="market-product-name">
+														{item.prodName}
+													</div>
 													<div>
 														<Row md="2">
-															<Col className="market-product-price">${item.Price}</Col>
+															<Col className="market-product-price">
+																${item.Price}
+															</Col>
 															<Col>
-																<Link
-																	key={item.Id}
-																	to={`detail/${item.Id}`}>
+																<Link key={item.Id} to={`detail/${item.Id}`}>
 																	<Button size="sm">Detail</Button>
 																</Link>
 															</Col>
