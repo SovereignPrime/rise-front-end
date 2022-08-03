@@ -16,6 +16,7 @@ import { useSelector, useDispatch } from "react-redux";
 import CardObject from "../Card/CardObject";
 
 
+
 const Sellerdata = [
     {
         Id: 1,
@@ -33,6 +34,8 @@ const Sellerdata = [
 
 const CheckSellerInfo = props => {
     const data = useSelector((state) => state.marketItem.marketItems);
+    const perData = data.filter(person => person.perName == props.checkSellerName);
+    console.log(perData);
     console.log(data.filter(person => person.perName == props.checkSellerName)[1].perPic);
     return (
         <div className={classes.backdrop} onClick={props.closeCheckSellerHandler}>
@@ -71,7 +74,7 @@ const CheckSellerInfo = props => {
                 <div className={classes.prod_container}>
                     <div class="container-fluid">
 
-                        <CardObject />
+                        <CardObject param={perData} />
                     </div>
                 </div>
                 <div>

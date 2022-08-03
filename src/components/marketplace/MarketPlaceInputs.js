@@ -1,6 +1,5 @@
 import { Routes, Route, Link } from "react-router-dom";
 import CardObject from "../Card/CardObject";
-import CardObjectv1 from "../Card/CardObjectv1";
 import { useNavigate } from "react-router-dom";
 import nirvana from "../../styles/assets/nirvana.png";
 import { useState } from "react";
@@ -214,7 +213,7 @@ const MarketPlaceInputs = () => {
 							)}
 							<Col md={9}>
 
-								<CardObjectv1
+								<CardObject
 									param={finaldata}
 								/>
 							</Col>
