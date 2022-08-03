@@ -1,7 +1,6 @@
 import { render } from "@testing-library/react";
 import React from "react";
-import ContentMe from "./ContentMe";
-import ContentOpp from "./ContentOpponent";
+import MessageContent from "./MessageContent";
 
 const DUMMY_DATA = [
   {
@@ -18,15 +17,6 @@ const DUMMY_DATA = [
   },
 ];
 
-function Message(props) {
-  if (props.senderId == "Me") {
-    return <ContentMe text={props.text} senderId={props.senderId} />
-  }
-  else {
-    return <ContentOpp text={props.text} senderId={props.senderId} />
-  }
-}
-
 class MessageList extends React.Component {
   render() {
     //console.log(DUMMY_DATA);
@@ -36,7 +26,7 @@ class MessageList extends React.Component {
           return (
             <div key={index} className="message">
               {/* <div className="message-username">{message.senderId}</div> */}
-              <Message text={message.text} senderId={message.senderId} />
+              <MessageContent text={message.text} senderId={message.senderId} />
             </div>
           );
         })}
