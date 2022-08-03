@@ -61,7 +61,7 @@ const CardObject = (props) => {
 										checkSellerPic={sellerPic}
 									/>
 								)}
-								{data.map((item) => (
+								{data?.map((item) => (
 									<div key={item.Id} className="col-lg-4 col-md-6 col-sm-12">
 										<Card key={item.Id}>
 											<CardImg
