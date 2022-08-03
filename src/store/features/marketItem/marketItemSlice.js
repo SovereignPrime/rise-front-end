@@ -35,7 +35,7 @@ const marketItemSlice = createSlice({
 			},
 			{
 				Id: 3,
-				perName: "Eric Smith",
+				perName: "Sam Smith",
 				perPic: img1,
 				prodName: "PS5",
 				Category: "entertainment",
