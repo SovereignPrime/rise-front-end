@@ -77,154 +77,232 @@ import CheckSellerInfo from "./CheckSellerInfo";
 // ];
 
 const MarketPlaceInputs = () => {
-	const data = useSelector((state) => state.marketItem.marketItems);
-	const [postProduct, setPostProduct] = useState(false);
-	const [checkSellerInfo, setCheckSellerInfo] = useState(false);
-	const [sellerName, setSellerName] = useState("");
-	const [sellerPic, setSellerPic] = useState("");
 
-	const addProductHandler = (newItem) => {
-		data.push(newItem);
-		console.log(data[1].prodPic);
-		setPostProduct(false);
-		console.log(data);
-	};
+     const [postProduct, setPostProduct] = useState(false);
+     const [checkSellerInfo, setCheckSellerInfo] = useState(false);
+     const [sellerName, setSellerName] = useState("");
+     const [sellerPic, setSellerPic] = useState("");
 
-	const closeAddProduct = () => {
-		setPostProduct(false);
-	};
 
-	const closeCheckSellerHandler = () => {
-		setCheckSellerInfo(false);
-	};
+     const addProductHandler = (newItem) => {
+          data.push(newItem);
+          console.log(data[1].prodPic);
+          setPostProduct(false);
+          console.log(data);
+     };
 
-	const [query, setQuery] = useState("");
-	const [category, setCategory] = useState("all");
-	const [filter, setFilter] = useState(null);
-	const [thumbsup, setThumbsup] = useState();
+     const closeAddProduct = () => {
+          setPostProduct(false);
+     };
 
-	const searchByName = (data) => {
-		return data.filter((item) => item.prodName.toLowerCase().includes(query));
-	};
+     const closeCheckSellerHandler = () => {
+          setCheckSellerInfo(false);
+     };
 
-	const searchCate = (data) => {
-		return data.filter((item) => {
-			if (category === "all") {
-				return item;
-			} else {
-				return item.Category === category;
-			}
-		});
-	};
+     const [query, setQuery] = useState("");
+     const [category, setCategory] = useState("all");
+     const [filter, setFilter] = useState(null);
+     const [thumbsup, setThumbsup] = useState();
 
-	const searchSortBy = (data) => {
-		if (filter === "priceLowToHigh") {
-			data = [...data].sort((a, b) =>
-				a.Price > b.Price ? 1 : a.Price < b.Price ? -1 : 0
-			);
-		} else if (filter === "priceHighToLow") {
-			data = [...data].sort((a, b) =>
-				a.Price > b.Price ? -1 : a.Price < b.Price ? 1 : 0
-			);
-		} else if (filter === "Newest") {
-			data = [...data].sort((a, b) =>
-				a.Date > b.Date ? -1 : b.Date < a.Date ? 1 : 0
-			);
-		}
-		return data;
-	};
+     const searchByName = (data) => {
+          return data.filter((item) => item.prodName.toLowerCase().includes(query));
+     };
 
-	const finaldata = searchSortBy(searchByName(searchCate(data)));
-	// console.log(finaldata);
+     const searchCate = (data) => {
+          return data.filter((item) => {
+               if (category === "all") {
+                    return item;
+               } else {
+                    return item.Category === category;
+               }
+          });
+     };
 
-	// const addThumbsUp
+     const searchSortBy = (data) => {
+          if (filter === "priceLowToHigh") {
+               data = [...data].sort((a, b) =>
+                    a.Price > b.Price ? 1 : a.Price < b.Price ? -1 : 0
+               );
+          } else if (filter === "priceHighToLow") {
+               data = [...data].sort((a, b) =>
+                    a.Price > b.Price ? -1 : a.Price < b.Price ? 1 : 0
+               );
+          } else if (filter === "Newest") {
+               data = [...data].sort((a, b) =>
+                    a.Date > b.Date ? -1 : b.Date < a.Date ? 1 : 0
+               );
+          }
+          return data;
+     };
 
-	return (
-		<div className="marketPlace">
-			<Routes>
-				<Route
-					path="/"
-					element={
-						<div className="d-flex">
-							<Col md={3} className="border-end">
-								<div className="search">
-									<input
-										type="text"
-										placeholder="search"
-										onChange={(e) => setQuery(e.target.value)}
-									/>
-									<FontAwesomeIcon
-										className="search-icon"
-										icon={faMagnifyingGlass}
-										size="1x"
-										transform="left-20"
-									/>
-								</div>
+     const finaldata = searchSortBy(searchByName(searchCate(data)));
 
-								<button
-									className="add-deal-button"
-									onClick={() => {
-										setPostProduct(true);
-									}}>
-									<FontAwesomeIcon
-										className="plus-icon"
-										icon={faPlus}
-										size="1x"
-										transform="left-15"
-									/>
-									Add Your Deal
-								</button>
+     // const addThumbsUp
 
-								<div className="border-top"></div>
-								<div className="filter-sort-title"> Filter </div>
-								<select
-									className="filter_sort"
-									onChange={(e) => setFilter(e.target.value)}>
-									<option>Sort by</option>
-									<option value="priceLowToHigh">Price: Low to High</option>
-									<option value="priceHighToLow">Price: High to Low</option>
-									<option value="Newest">Newest</option>
-								</select>
+     return (
+          <div className="marketPlace">
+               <Routes>
+                    <Route
+                         path="/"
+                         element={
+                              <div className="d-flex">
+                                   <Col md={3} className="border-end">
+                                        <div className="search">
+                                             <input
+                                                  type="text"
+                                                  placeholder="search"
+                                                  onChange={(e) => setQuery(e.target.value)}
+                                             />
+                                             <FontAwesomeIcon
+                                                  className="search-icon"
+                                                  icon={faMagnifyingGlass}
+                                                  size="1x"
+                                                  transform="left-20"
+                                             />
+                                        </div>
 
-								<div className="border-top"></div>
-								<div className="filter-sort-title"> Category </div>
+                                        <button
+                                             className="add-deal-button"
+                                             onClick={() => {
+                                                  setPostProduct(true);
+                                             }}
+                                        >
+                                             <FontAwesomeIcon
+                                                  className="plus-icon"
+                                                  icon={faPlus}
+                                                  size="1x"
+                                                  transform="left-15"
+                                             />
+                                             Add Your Deal
+                                        </button>
 
-								<select
-									className="filter_category"
-									onChange={(e) => setCategory(e.target.value)}>
-									<option value="all">All Categories</option>
-									<option value="vehicles">Vehicles</option>
-									<option value="property-rental">Property Rental</option>
-									<option value="apparel">Apparel</option>
-									<option value="classifieds">Classifieds</option>
-									<option value="electronics">Electronics</option>
-									<option value="entertainment">Entertainment</option>
-									<option value="family">Family</option>
-									<option value="free stuff">Free Stuff</option>
-									<option value="garden/outdoors">Garden & Outdoors</option>
-									<option value="other">Other</option>
-								</select>
-							</Col>
+                                        <div className="border-top"></div>
+                                        <div className="filter-sort-title"> Filter </div>
+                                        <select
+                                             className="filter_sort"
+                                             onChange={(e) => setFilter(e.target.value)}
+                                        >
+                                             <option>Sort by</option>
+                                             <option value="priceLowToHigh">Price: Low to High</option>
+                                             <option value="priceHighToLow">Price: High to Low</option>
+                                             <option value="Newest">Newest</option>
+                                        </select>
 
-							{postProduct && (
-								<MarketPlacePostProduct
-									addItem={addProductHandler}
-									closeAddProduct={closeAddProduct}
-								/>
-							)}
-							<Col md={9}>
+                                        <div className="border-top"></div>
+                                        <div className="filter-sort-title"> Category </div>
 
-								<CardObjectv1
-									param={finaldata}
-								/>
-							</Col>
-						</div>
-					}
-				/>
-				<Route path="detail/:Id" element={<ProductDetails />} />
-			</Routes>
-		</div>
-	);
+                                        <select
+                                             className="filter_category"
+                                             onChange={(e) => setCategory(e.target.value)}
+                                        >
+                                             <option value="all">All Categories</option>
+                                             <option value="vehicles">Vehicles</option>
+                                             <option value="property-rental">Property Rental</option>
+                                             <option value="apparel">Apparel</option>
+                                             <option value="classifieds">Classifieds</option>
+                                             <option value="electronics">Electronics</option>
+                                             <option value="entertainment">Entertainment</option>
+                                             <option value="family">Family</option>
+                                             <option value="free stuff">Free Stuff</option>
+                                             <option value="garden/outdoors">Garden & Outdoors</option>
+                                             <option value="other">Other</option>
+                                        </select>
+                                   </Col>
+
+                                   {postProduct && (
+                                        <MarketPlacePostProduct
+                                             addItem={addProductHandler}
+                                             closeAddProduct={closeAddProduct}
+                                        />
+                                   )}
+
+                                   {checkSellerInfo && (
+                                        <CheckSellerInfo
+                                             closeCheckSellerHandler={closeCheckSellerHandler}
+                                             checkSellerName={sellerName}
+                                             checkSellerPic={sellerPic}
+                                        />
+                                   )}
+
+
+                                   <Col md={9}>
+                                        <div className="prod_container">
+                                             <div class="row">
+                                                  {finaldata.map((item) => (
+                                                       <div class="col-lg-4 col-md-6 col-sm-12">
+                                                            <Card key={item.Id}>
+                                                                 <CardImg
+                                                                      className="cardimg"
+                                                                      alt="Card image cap"
+                                                                      src={item.prodPic}
+                                                                      width="30%"
+                                                                      height={250}
+                                                                      top
+                                                                 />
+                                                                 <CardBody>
+                                                                      <CardText>
+
+                                                                           <div className="market-person">
+
+                                                                                <img src={item.perPic} width="20%"></img>
+
+                                                                                <small className="text-muted" onClick={() => {
+                                                                                     setCheckSellerInfo(true);
+                                                                                     setSellerName(item.perName);
+                                                                                     setSellerPic(item.perPic);
+                                                                                }}>
+                                                                                     &nbsp; {item.perName}
+                                                                                </small>
+
+                                                                                <FontAwesomeIcon
+                                                                                     className="iconN"
+                                                                                     icon={faThumbsUp}
+                                                                                     size="1x"
+                                                                                     transform="down-9 right-7"
+                                                                                />
+                                                                                <span>{item.Good}</span>
+                                                                                <FontAwesomeIcon
+                                                                                     className="iconN"
+                                                                                     icon={faThumbsDown}
+                                                                                     size="1x"
+                                                                                     transform="down-10 right-7"
+                                                                                />
+                                                                                <span>{item.Bad}</span>
+                                                                           </div>
+                                                                           <div className="market-product-name">
+                                                                                {item.prodName}
+                                                                           </div>
+                                                                           <div>
+                                                                                <Row md="2">
+                                                                                     <Col className="market-product-price">
+                                                                                          ${item.Price}
+                                                                                     </Col>
+                                                                                     <Col>
+                                                                                          <Link
+                                                                                               key={item.Id}
+                                                                                               to={`detail/${item.Id}`}
+                                                                                          >
+                                                                                               <Button size="sm">Detail</Button>
+                                                                                          </Link>
+                                                                                     </Col>
+                                                                                </Row>
+                                                                           </div>
+                                                                      </CardText>
+                                                                 </CardBody>
+                                                            </Card>
+                                                       </div>
+                                                  ))}
+                                             </div>
+                                        </div>
+                                   </Col>
+                              </div>
+                         }
+                    />
+                    <Route path="detail/:Id" element={<ProductDetails />} />
+               </Routes>
+          </div>
+     );
+
 };
 
 export default MarketPlaceInputs;

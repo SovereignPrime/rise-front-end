@@ -28,13 +28,24 @@ const MarketPlacePostProduct = (props) => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 
-		const prodName = prodNameRef.current.value;
-		var price;
-		if (!isFree) {
-			price = parseFloat(priceRef.current.value);
-		} else {
-			price = 0;
-		}
+    const category = categoryRef.current.value;
+    const detail = detailRef.current.value;
+    const date = new Date();
+    props.addItem({
+      Id: 2,
+      //perPic and perName should be linked with backend to autofill
+      perPic: "TBA",
+      perName: "TBA",
+      prodName: prodName,
+      Category: category,
+      Price: price,
+      Detail: detail,
+      prodPic: thumbnail,
+      Good: 0,
+      Bad: 0,
+      Date: date,
+    });
+  };
 
 		const category = categoryRef.current.value;
 		const detail = detailRef.current.value;
