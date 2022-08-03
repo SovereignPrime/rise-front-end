@@ -50,6 +50,7 @@
     background-color: #006AFF;
     color: white;
     max-width: 80%;
+    border-radius: 17px 17px 0 17px;
     text-align: left;
     padding: 5px 10px;
     margin-left: auto;
@@ -59,7 +60,7 @@
     background-color: #ddd;
     color: black;
     max-width: 80%;
-    border-radius: 17px;
+    border-radius: 17px 17px 17px 0;
     text-align: left;
     padding: 5px 10px;
 }
