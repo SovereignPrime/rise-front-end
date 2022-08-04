@@ -86,7 +86,6 @@ const MarketPlaceInputs = () => {
 		data.push(newItem);
 		console.log(data[1].prodPic);
 		setPostProduct(false);
-		console.log(data);
 	};
 
 	const closeAddProduct = () => {
