@@ -84,7 +84,6 @@ const MarketPlaceInputs = () => {
 
 	const addProductHandler = (newItem) => {
 		data.push(newItem);
-		console.log(data[1].prodPic);
 		setPostProduct(false);
 	};
 
