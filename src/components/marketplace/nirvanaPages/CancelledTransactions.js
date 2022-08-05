@@ -30,19 +30,22 @@ const CancelledTransactions = () => {
         <h2>Cancelled Transactions</h2>
         <p>Search</p>
         <form className="formMaster" onSubmit={(event) => handleSubmit(event)}>
-          <div className="searchBar">
-            <label htmlFor="searchBar">Search Transactions: </label>
-            <input type="text" name="searchBar" required />
+        <div className="searchBar">
+            <label htmlFor="searchBar"> </label>
+            <input type="text" name="searchBar" required defaultValue={"Search Transactions"}/>
           </div>
         </form>
         <div className="cancTransactionInfo">
           <p>April 7 2022</p>
 
           <ul>
-            <li>SENT - Olumide Oykale - 7:30pm $10.00 Request</li>
-            <li>RECIEVED - Jody Cromle - 8:30pm $100.00 Payment</li>
-            <li>SENT - Olumide Oykale - 9:00pm $10.00 Request</li>
-            <li>RECIEVED - Jody Cromle - 10:30pm $100.00 Payment</li>
+            <tr><img src ="https://cdn.iconscout.com/icon/free/png-256/close-1912235-1617704.png"/> Olumide Oykale - 7:30pm <td>$10.00: Request</td></tr>
+            <hr></hr>
+            <tr><img src ="https://cdn.iconscout.com/icon/free/png-256/close-1912235-1617704.png"/> Jody Cromle - 8:30pm <td>$100.00: Payment</td></tr>
+            <hr></hr>
+            <tr><img src ="https://cdn.iconscout.com/icon/free/png-256/close-1912235-1617704.png"/> Olumide Oykale - 9:00pm <td>$10.00: Request</td></tr>
+            <hr></hr>
+            <tr><img src ="https://cdn.iconscout.com/icon/free/png-256/close-1912235-1617704.png"/> Jody Cromle - 10:30pm <td>$100.00: Payment</td></tr>
           </ul>
         </div>
       </div>
