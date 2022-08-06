@@ -7,14 +7,14 @@ import CancelledTransactions from "./CancelledTransactions";
 // This will be our "Make a Payment Page."
 
 const CompletedTransactions = () => {
-  const navigate = useNavigate();
+	const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Event Handler for input fields
-    console.log(`hello`);
-    navigate("/Nirvana");
-  };
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		// Event Handler for input fields
+		console.log(`hello`);
+		navigate("/Nirvana");
+	};
 
   return (
     <div className="wrapper">
@@ -62,6 +62,7 @@ const CompletedTransactions = () => {
       </Routes>
     </div>
   );
+
 };
 
 export default CompletedTransactions;
