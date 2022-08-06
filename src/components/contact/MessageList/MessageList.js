@@ -1,5 +1,6 @@
 import { render } from "@testing-library/react";
 import React from "react";
+import MessageContent from "./MessageContent";
 
 const DUMMY_DATA = [
   {
@@ -24,8 +25,8 @@ class MessageList extends React.Component {
         {DUMMY_DATA.map((message, index) => {
           return (
             <div key={index} className="message">
-              <div className="message-username">{message.senderId}</div>
-              <div className="message-text">{message.text}</div>
+              {/* <div className="message-username">{message.senderId}</div> */}
+              <MessageContent text={message.text} senderId={message.senderId} />
             </div>
           );
         })}

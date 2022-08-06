@@ -43,32 +43,42 @@ const EditProfile = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const userAddress = userAddressRef.current.value;
-    const userOccupation = userOccupationRef.current.value;
-    const userBio = userBioRef.current.value;
+    const userAddress = userAddressRef.current.value.trim();
+    const userOccupation = userOccupationRef.current.value.trim();
+    const userBio = userBioRef.current.value.trim();
 
-    var selfieURL = document.getElementById("userSelfieImage").toDataURL();
-    if (
-      userAddress.trim().length == 0 &&
-      userOccupation.trim().length == 0 &&
-      userBio.trim().length == 0 &&
-      !showImg
-    ) {
-      console.log("out");
-      return;
+    var selfieURL = null;
+
+    //if a picture was taken then run if statement
+    if (showImg) {
+      selfieURL = document.getElementById("userSelfieImage").toDataURL();
     }
+    // if (
+    //   userAddress.trim().length == 0 &&
+    //   userOccupation.trim().length == 0 &&
+    //   userBio.trim().length == 0 &&
+    //   !showImg
+    // ) {
+    //   console.log("out");
+    //   return;
+    // }
+    console.log(showImg);
 
     if (
       userAddress !== props.currentAddress ||
       userOccupation !== props.currentOccupation ||
-      userBio !== props.currentBio
+      userBio !== props.currentBio ||
+      showImg
+      //if property is not the same as it was before edits
     ) {
       props.handleModalToggle();
+      //Stop showing this program
       props.editProfile(
         userAddress !== "" ? userAddress : props.currentAddress,
         userOccupation !== "" ? userOccupation : props.currentOccupation,
         userBio !== "" ? userBio : props.currentBio,
         selfieURL
+        //if property is not an empty string, then return the user input, else (if it is empty string) then return the old property (so no change occurs)
       );
 
       //return;
@@ -81,9 +91,8 @@ const EditProfile = (props) => {
 
   return (
     <div className="wrapper">
-      {/*submitError && <UserInputsErrorModal onConfirm={handleSubmitError} />*/}
       <div className="userInputIntro">
-        <h3>Edit Profile</h3>
+        <h2>Edit Profile</h2>
         <div className="logo"></div>
         <p>Please Enter Your Account Information</p>
       </div>
@@ -158,11 +167,13 @@ const EditProfile = (props) => {
               id="userSelfieImage"
             />
           }
+          {/*showImg ? is needed for display because the way SelfieCamera works is that it needs to run to create an initial render, and then have a picture taken on top of that.
+          This lets the constant be made on first render, and when the selfie is taken turn visible */}
         </div>
       </div>
 
       <Button form="registrationForm" className="bg-dark p-3 mt-4">
-        SUBMIT
+        Submit
       </Button>
     </div>
   );
