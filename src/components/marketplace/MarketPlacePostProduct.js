@@ -98,6 +98,7 @@ const MarketPlacePostProduct = (props) => {
               step=".01"
               name="price"
               ref={priceRef}
+              min="0"
               required
             />
           )}
