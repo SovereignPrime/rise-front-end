@@ -3,6 +3,7 @@ import CardObject from "../Card/CardObject";
 import { useNavigate } from "react-router-dom";
 import nirvana from "../../styles/assets/nirvana.png";
 import { useState } from "react";
+import { LightButton } from "../Buttons";
 import { useSelector, useDispatch } from "react-redux";
 
 import {
@@ -158,7 +159,7 @@ const MarketPlaceInputs = () => {
 									/>
 								</div>
 
-								<button
+								<LightButton
 									className="add-deal-button"
 									onClick={() => {
 										setPostProduct(true);
@@ -167,10 +168,10 @@ const MarketPlaceInputs = () => {
 										className="plus-icon"
 										icon={faPlus}
 										size="1x"
-										transform="left-15"
+										transform="left-5"
 									/>
 									Add Your Deal
-								</button>
+								</LightButton>
 
 								<div className="border-top"></div>
 								<div className="filter-sort-title"> Filter </div>
