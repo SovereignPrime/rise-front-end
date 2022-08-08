@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, useImperativeHandle } from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import { Button } from "reactstrap";
+import { DarkButton } from "./Buttons";
 /**
  * A <video/> element live streaming from the user's camera. The SelfieCamera's ref
  * is customized with a 'video' property referencing the <video/> element,
@@ -139,13 +139,13 @@ const SelfieCamera = React.forwardRef(
               Camera{withAudio && " or microphone"} unavailable. Please check
               your permission settings.
             </p>
-            <Button
+            <DarkButton
               outline
               onClick={getVideo}
-              className="bg-dark p-3 mt-4 classNameErrRetryButton text-white"
+              className="classNameErrRetryButton"
             >
               Retry
-            </Button>
+            </DarkButton>
           </div>
         )}
       </div>

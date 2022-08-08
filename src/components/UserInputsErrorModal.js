@@ -1,5 +1,5 @@
 import React from "react";
-
+import { DarkButton } from "./Buttons";
 import classes from "./UserInputsErrorModal.module.css";
 import alert from "./stockalert.png";
 
@@ -12,7 +12,7 @@ const UserInputsErrorModal = (props) => {
         <h4>An Error Has Occured!</h4>
         <p>Please take a selfie before submission.</p>
         <span>
-          <button className={classes.button}>DISMISS</button>
+          <DarkButton className={classes.button}>DISMISS</DarkButton>
         </span>
       </div>
     </div>
