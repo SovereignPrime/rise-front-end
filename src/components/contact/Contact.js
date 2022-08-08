@@ -11,7 +11,7 @@ import {
   faMagnifyingGlass,
 } from "@fortawesome/free-solid-svg-icons";
 import StartChat from "./StartChat";
-import MessageList from "./MessageList";
+import MessageList from "./MessageList/MessageList";
 import ContactsList from "./ContactsList";
 import {
   Row,

@@ -6,16 +6,20 @@ import { HashRouter } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { ConnectionProvider } from "./context/ConnectionContext";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { store } from "./store/store";
+import { Provider } from "react-redux";
 
 ReactDOM.render(
 	<React.StrictMode>
-		<ConnectionProvider>
-			<AuthProvider>
-				<HashRouter>
-					<App />
-				</HashRouter>
-			</AuthProvider>
-		</ConnectionProvider>
+		<Provider store={store}>
+			<ConnectionProvider>
+				<AuthProvider>
+					<HashRouter>
+						<App />
+					</HashRouter>
+				</AuthProvider>
+			</ConnectionProvider>
+		</Provider>
 	</React.StrictMode>,
 	document.getElementById("root")
 );
