@@ -2,6 +2,7 @@ import React, { Component, useState } from "react";
 import { Card, CardImg, CardText, CardTitle, Row, Col } from "reactstrap";
 import testImg from "../../../styles/assets/img/brooke.png";
 import CreateAlbumModal from "./CreateAlbumModal";
+import { LightButton } from "../../Buttons";
 
 const SavedPostPage = () => {
   const savedPostArray = [
@@ -84,13 +85,13 @@ const SavedPostPage = () => {
               <Col className="col-10 text-start ps-0 ms-0">Brooke</Col>
               <Col className="text-start mx-0">To xxx</Col>
               <Col className="text-end mx-0">date</Col>
-              <button
+              <LightButton
                 onClick={() => {
                   setShowCreateAlbumModal(!showCreateAlbumModal);
                 }}
               >
                 Create Album
-              </button>
+              </LightButton>
               {/*When above button is clicked, this modal is shown */}
               {showCreateAlbumModal && (
                 <CreateAlbumModal
