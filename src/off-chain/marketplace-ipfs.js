@@ -1,5 +1,7 @@
 const fs = require('fs');
 
+const { createItemFileFromUserInput } = require("./marketplaceinputstore");
+
 const IPFS_SERVER_URL = 'https://ipfs.infura.io';
 const IPFS_SERVER_PORT = '5001';
    
@@ -90,6 +92,7 @@ function writeItemStringToItemsFile(itemStr, itemFile) {
  *
  **/
 async function main () {
+  /*
   const sampleItem = {
         "ID": "123",
         "itemName": "iPhone",
@@ -100,12 +103,14 @@ async function main () {
         "itemPrice": 100,
         "itemCondition": "New"
    };
-
   const sampleItemStr = JSON.stringify(sampleItem);
   const itemBuffer = Buffer.from(sampleItemStr)
+  */
+
+  const itemBuffer = createItemFileFromUserInput() 
 
   const ipfsClientInst = await loadIpfsHttpClient();
-  
+ 
   const itemCid = await loadItemToIpfs(ipfsClientInst, itemBuffer);
   await getItemFromIpfs(ipfsClientInst, itemCid);
 }

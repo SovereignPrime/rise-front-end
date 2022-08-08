@@ -1,6 +1,7 @@
 const fs = require('fs');
-    
-const useri = {
+
+function createItemFileFromUserInput() {
+  const useri = {
         "ID":ID.value,
         "itemName":itemName.value,
         "sellerName":sellerName.value,
@@ -11,11 +12,15 @@ const useri = {
         "itemCondition":itemCondition.value
     };
 
-const marketplacei = JSON.stringify(useri);
+  const marketplacei = JSON.stringify(useri);
+  const itemBuffer = Buffer.from(marketplacei)
 
-var blob = new Blob([marketplacei], {type: "json"});
-saveAs(blob, "marketplaceNewItem.json");
+  //var blob = new Blob([marketplacei], {type: "json"});
+  //saveAs(blob, filePathname);
+  return itemBuffer
+}
 
+module.exports = { createItemFileFromUserInput };
 
 
 
