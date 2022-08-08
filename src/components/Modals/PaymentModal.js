@@ -5,6 +5,7 @@ import { Input } from "reactstrap";
 import React, { useState } from "react";
 import DropdownMessage from "../DropdownMenus/DropdownMessage";
 import { Button, Modal, ModalFooter, ModalHeader, ModalBody } from "reactstrap";
+import { PaymentButton } from "../Buttons";
 const PaymentModal = () => {
 	const [modal2, setModal2] = React.useState(false);
 
@@ -42,9 +43,9 @@ const PaymentModal = () => {
 				<ModalFooter>
 					<DropdownMessage />
 
-					<Button className="bg-dark" onClick={toggle2}>
+					<PaymentButton onClick={toggle2}>
 						Send
-					</Button>
+					</PaymentButton>
 				</ModalFooter>
 			</Modal>
 		</div>
