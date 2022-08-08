@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useDispatch } from "react-redux";
 import classes from "./MarketPlacePostProduct.module.css";
+import { DarkButton } from "../Buttons";
 import UploadAndDisplayImage from "./UploadAndDisplayImage";
 import { addItem } from "../../store/features/marketItem/marketItemSlice";
 
@@ -118,7 +119,7 @@ const MarketPlacePostProduct = (props) => {
 						ref={detailRef}
 						required></textarea>
 					<br />
-					<button className={classes.button}>Post Product</button>
+					<DarkButton className={classes.button}>Post Product</DarkButton>
 
 					<input
 						type="file"

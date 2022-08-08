@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { LightButton } from "../Buttons";
 import {
 	Button,
 	Row,
@@ -166,15 +167,15 @@ const ProductDetails = () => {
 						<div className="product-detail-container">
 							<div className="button-group">
 								<ButtonGroup>
-									<Button size="sm">
+									<LightButton size="sm">
 										<FontAwesomeIcon icon={faBookmark} />
-									</Button>
-									<Button size="sm">
+									</LightButton>
+									<LightButton size="sm">
 										<FontAwesomeIcon icon={faShare} />
-									</Button>
-									<Button size="sm">
+									</LightButton>
+									<LightButton size="sm">
 										<FontAwesomeIcon icon={faEllipsisVertical} />
-									</Button>
+									</LightButton>
 								</ButtonGroup>
 							</div>
 
@@ -212,10 +213,10 @@ const ProductDetails = () => {
 							</div>
 							<div className="product-detail-Detail">Detail</div>
 							<div className="product-detail-info">{item.Detail}</div>
-							<Button className="message-seller">
+							<LightButton className="message-seller">
 								<FontAwesomeIcon icon={faCommentDots} size="1x" />
 								&nbsp; Message Seller
-							</Button>
+							</LightButton>
 						</div>
 					</Col>
 

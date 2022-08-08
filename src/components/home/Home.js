@@ -11,6 +11,7 @@ import React, { useState } from "react";
 import DropdownMessage from "../DropdownMenus/DropdownMessage";
 import DropdownCategory from "../DropdownMenus/DropdownCategory";
 import PaymentModal from "../Modals/PaymentModal";
+import { DarkButton } from "../Buttons";
 import {
 	Button,
 	Modal,
@@ -306,9 +307,9 @@ const Home = () => {
 				<ModalFooter>
 					<DropdownMessage />
 
-					<Button className="bg-dark" onClick={toggle1}>
+					<DarkButton onClick={toggle1}>
 						Send
-					</Button>
+					</DarkButton>
 				</ModalFooter>
 			</Modal>
 			<Modal isOpen={modal2} toggle={toggle2}>
@@ -337,9 +338,9 @@ const Home = () => {
 				<ModalFooter>
 					<DropdownMessage />
 
-					<Button className="bg-dark" onClick={toggle1}>
+					<DarkButton onClick={toggle1}>
 						Send
-					</Button>
+					</DarkButton>
 				</ModalFooter>
 			</Modal>
 			<Modal isOpen={modal3} toggle={toggle3}>
@@ -372,9 +373,9 @@ const Home = () => {
 				<ModalFooter>
 					<DropdownMessage />
 
-					<Button className="bg-dark" onClick={toggle1}>
+					<DarkButton onClick={toggle1}>
 						Send
-					</Button>
+					</DarkButton>
 				</ModalFooter>
 			</Modal>
 			<div className="marketItem mt-4">

@@ -5,7 +5,7 @@ import { Link, Routes, Route, Outlet, useParams } from "react-router-dom";
 import UserInputs from "./components/UserInputs.js";
 import Dashboard from "./components/Dashboard.js";
 import "bootstrap/dist/css/bootstrap.css";
-import { Button } from "reactstrap";
+import { DarkButton } from "./components/Buttons";
 
 function App() {
 	return (
@@ -55,18 +55,18 @@ function App() {
                 - The buttons shouldn't span the entire viwport width.
                 */}
 								<div className="mb-3 mt-4">
-									<Button className="bg-dark p-3">
+									<DarkButton>
 										<Link to="/UserInputs" className="text-white">
 											REGISTER YOUR ACCOUNT
 										</Link>
-									</Button>
+									</DarkButton>
 								</div>
 
-								<Button className="bg-dark p-3 mt-4">
+								<DarkButton>
 									<Link to="/Dashboard" className="text-white">
 										Dashboard
 									</Link>
-								</Button>
+								</DarkButton>
 							</>
 						}
 					/>

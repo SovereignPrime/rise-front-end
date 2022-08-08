@@ -13,7 +13,7 @@ import { faCamera, faNotesMedical } from "@fortawesome/free-solid-svg-icons";
 import UserInputsErrorModal from "./UserInputsErrorModal";
 import { classicNameResolver } from "typescript";
 import "bootstrap/dist/css/bootstrap.css";
-import { Button } from "reactstrap";
+import { DarkButton } from "./Buttons";
 import { Form } from "reactstrap";
 import { Row } from "reactstrap";
 import { Col } from "reactstrap";
@@ -259,9 +259,8 @@ const UserInputs = () => {
         <div className="josephCamera">
           <SelfieCamera ref={cameraRef} />
 
-          <button
-            type="button"
-            className="selfieButton"
+          <div className="mb-3 mt-4">
+          <DarkButton
             onClick={() => {
               handleSetImgTrue();
               takeSelfie(cameraRef, canvasRef);
@@ -269,7 +268,8 @@ const UserInputs = () => {
           >
             <FontAwesomeIcon className="icon camera" icon={faCamera} />
             Take Selfie
-          </button>
+          </DarkButton>
+          </div>
 
           {
             <canvas
@@ -281,9 +281,9 @@ const UserInputs = () => {
         </div>
       </div>
 
-      <Button form="registrationForm" className="bg-dark p-3 mt-4">
+      <DarkButton form="registrationForm">
         SUBMIT
-      </Button>
+      </DarkButton>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
+import { PaymentButton } from "../../Buttons";
 import person1 from "../../../styles/assets/person1.jpg";
 
 // This will be our "Make a Payment Page."
@@ -56,7 +57,7 @@ const RequestPayment = () => {
           </div>
         </form>
         <div className="reqPaymentButton">
-          <Button onClick={toggle}>Request Payment</Button>
+          <PaymentButton onClick={toggle}>Request Payment</PaymentButton>
           <Modal
             isOpen={reqPaymentModal}
             toggle={toggle}
@@ -95,8 +96,8 @@ const RequestPayment = () => {
               </table>
             </ModalBody>
             <ModalFooter style={{ borderTop: "none" }}>
-              <Button>YES, REQUEST FOR PAYMENT</Button>
-              <Button onClick={toggle}>NO, GO BACK TO REQUEST SCREEN</Button>
+              <PaymentButton>YES, REQUEST FOR PAYMENT</PaymentButton>
+              <PaymentButton onClick={toggle}>NO, GO BACK TO REQUEST SCREEN</PaymentButton>
             </ModalFooter>
           </Modal>
         </div>
