@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import EditProfile from "./EditProfile";
+import EditMarketPlaceItems from "./EditMarketPlaceItems";
+
 import { LightButton } from "../../Buttons";
 
 const MeMain = () => {
