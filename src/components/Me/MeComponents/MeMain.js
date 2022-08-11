@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import EditProfile from "./EditProfile";
-import EditMarketPlaceItems from "./EditMarketPlaceItems";
+import { LightButton } from "../../Buttons";
 
 const MeMain = () => {
   //user data should be a user's personal information and the user's marketplace posts
@@ -123,7 +123,7 @@ const MeMain = () => {
       {DUMMY_USER_DATA.selfie}
       <span>
         {DUMMY_USER_DATA.firstName} {DUMMY_USER_DATA.lastName}{" "}
-        <button onClick={handleModalToggle}>Edit Profile</button>
+        <LightButton onClick={handleModalToggle}>Edit Profile</LightButton>
         {/*Above onClick makes the EditProfile.js program visible */}
         <br></br>
         <b>{DUMMY_USER_DATA.nirvanaAmount}</b> nirvana
@@ -131,7 +131,7 @@ const MeMain = () => {
 
       <h4>Your Market Place Items</h4>
       {marketPlacePostsDisplay}
-      <button>Manage Market Place Items</button>
+      <LightButton>Manage Market Place Items</LightButton>
       {/* not yet implemented */}
       {showEditProfile && (
         <EditProfile

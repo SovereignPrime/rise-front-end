@@ -1,4 +1,5 @@
 import { click } from "@testing-library/user-event/dist/click";
+import { LightButton } from "../../Buttons";
 import React, { useState, useRef } from "react";
 
 const CreateAlbumModal = (props) => {
@@ -84,7 +85,7 @@ const CreateAlbumModal = (props) => {
         <form onSubmit={submitHandler}>
           <label>Album Name:</label>
           <input type="text" ref={albumNameInputRef} />
-          <button>Next</button>
+          <LightButton>Next</LightButton>
         </form>
       )}
       {showMiscPosts && (
@@ -92,7 +93,7 @@ const CreateAlbumModal = (props) => {
           <h2>{albumName}</h2>
           <p>Choose posts to add</p>
           {miscPostsDisplay}
-          <button onClick={albumSubmissionHandler}>Done</button>
+          <LightButton onClick={albumSubmissionHandler}>Done</LightButton>
         </div>
       )}
     </div>

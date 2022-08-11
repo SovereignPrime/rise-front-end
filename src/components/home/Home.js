@@ -1,4 +1,4 @@
-import { Link, Routes, Route } from "react-router-dom";
+import { Link, Routes, Route, useEffect } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSliders, faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -6,10 +6,12 @@ import "bootstrap/dist/css/bootstrap.css";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { Table } from "reactstrap";
 import { Input } from "reactstrap";
+import { useSelector, useDispatch } from "react-redux";
 import React, { useState } from "react";
 import DropdownMessage from "../DropdownMenus/DropdownMessage";
 import DropdownCategory from "../DropdownMenus/DropdownCategory";
 import PaymentModal from "../Modals/PaymentModal";
+import { DarkButton } from "../Buttons";
 import {
 	Button,
 	Modal,
@@ -62,6 +64,7 @@ const data = [
 
 const Home = () => {
 	let searchedArray = [];
+	const data = useSelector((state) => state.marketItem.marketItems);
 	const [action, setAction] = useState("");
 	const [filterBtnClicked, setFilterBtnClicked] = useState(false);
 	const [plusBtnClicked, setPlusBtnClicked] = useState(false);
@@ -304,9 +307,9 @@ const Home = () => {
 				<ModalFooter>
 					<DropdownMessage />
 
-					<Button className="bg-dark" onClick={toggle1}>
+					<DarkButton onClick={toggle1}>
 						Send
-					</Button>
+					</DarkButton>
 				</ModalFooter>
 			</Modal>
 			<Modal isOpen={modal2} toggle={toggle2}>
@@ -335,9 +338,9 @@ const Home = () => {
 				<ModalFooter>
 					<DropdownMessage />
 
-					<Button className="bg-dark" onClick={toggle1}>
+					<DarkButton onClick={toggle1}>
 						Send
-					</Button>
+					</DarkButton>
 				</ModalFooter>
 			</Modal>
 			<Modal isOpen={modal3} toggle={toggle3}>
@@ -370,16 +373,16 @@ const Home = () => {
 				<ModalFooter>
 					<DropdownMessage />
 
-					<Button className="bg-dark" onClick={toggle1}>
+					<DarkButton onClick={toggle1}>
 						Send
-					</Button>
+					</DarkButton>
 				</ModalFooter>
 			</Modal>
 			<div className="marketItem mt-4">
 				<p className="text-secondary" style={{ textAlign: "right" }}>
 					View All MarketPlace update &gt;
 				</p>
-				<CardObject />
+				<CardObject param={data} />
 			</div>
 		</div>
 	);
