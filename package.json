@@ -30,8 +30,7 @@
     "sass": "^1.49.9",
     "typescript": "^4.6.3",
     "web-vitals": "^2.1.4",
-    "yarn": "^1.22.19",
-    "ipfs-http-client": "^57.0.3"
+    "yarn": "^1.22.19"
   },
   "scripts": {
     "start": "nf start -p 3000",
