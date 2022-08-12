@@ -84,7 +84,6 @@ const Home = () => {
 	};
 
 	const handleChange = (e) => {
-		setRadioEl(e.target.value);
 		console.log(radioEL);
 		console.log(searchEl);
 	};
@@ -114,7 +113,8 @@ const Home = () => {
 					placeholder="Say something..."
 					className="searchInput"
 					style={{ width: "70%" }}
-					onChange={(e) => setSearchEl(e.target.value)}></Input>
+					onChange={(e) => setSearchEl(e.target.value)}>
+				</Input>
 				<Button
 					className="btn-search"
 					color="transparent"
@@ -131,9 +131,8 @@ const Home = () => {
 						type="radio"
 						id="notification"
 						onClick={(e) => setRadioEl("notification")}
-						onChange={handleChange}
 					/>{" "}
-					<Label check>Notification </Label>
+					<Label check>Notification</Label>
 				</FormGroup>
 				<FormGroup className="radioEl">
 					<Input
@@ -141,7 +140,6 @@ const Home = () => {
 						type="radio"
 						id="verification"
 						onClick={(e) => setRadioEl("verification")}
-						onChange={handleChange}
 					/>{" "}
 					<Label check>Valification</Label>
 				</FormGroup>
@@ -150,8 +148,7 @@ const Home = () => {
 						name="radioEl"
 						type="radio"
 						id="marketPlace"
-						onClick={(e) => setRadioEl("marketPlae")}
-						onChange={handleChange}
+						onClick={(e) => setRadioEl("Marketplace")}
 					/>{" "}
 					<Label check>Marketplace</Label>
 				</FormGroup>
