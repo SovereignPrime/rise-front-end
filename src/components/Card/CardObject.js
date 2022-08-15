@@ -9,7 +9,7 @@ import {
 } from "../../store/features/marketItem/marketItemSlice";
 import "./Card.css";
 import "bootstrap/dist/css/bootstrap.css";
-import {LightButton} from "../Buttons";
+import { LightButton } from "../Buttons";
 import {
 	Card,
 	CardBody,
@@ -69,14 +69,14 @@ const CardObject = (props) => {
 												className="cardimg"
 												alt="Card image cap"
 												src={item.prodPic}
-												width="30%"
-												height={250}
+												width="20%"
+												height={200}
 												top
 											/>
 											<CardBody>
 												<CardText>
 													<div className="market-person">
-														<img src={item.perPic} width="20%"></img>
+														<img className="market-person-photo" src={item.perPic} width="15%"></img>
 														{/* <small className="text-muted">&nbsp; {item.perName}</small> */}
 														<small
 															className="text-muted"

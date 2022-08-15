@@ -152,7 +152,7 @@ const ProductDetails = () => {
 						/>
 					</div>
 					<div className="photo">
-						<img src={item.src} width="135%" />
+						<img className="detail-img" src={item.src} />
 					</div>
 				</div>
 			</CarouselItem>
