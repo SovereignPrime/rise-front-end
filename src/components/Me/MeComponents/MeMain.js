@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import EditProfile from "./EditProfile";
+import EditMarketPlaceItems from "./EditMarketPlaceItems";
+
 import { LightButton } from "../../Buttons";
 
 const MeMain = () => {
@@ -25,6 +27,7 @@ const MeMain = () => {
         thumbnail:
           "http://localhost:3000/static/media/appwatch.30e581aa214e694b9a84.jpg",
         files: [],
+        productId: "x001", //some form of unique identifier is recommended
       },
       {
         productName: "MINI Cooper",
@@ -32,18 +35,57 @@ const MeMain = () => {
         price: 1000,
         details: "100 miles on it. Needs an oil change",
         thumbnail:
-          "http://localhost:3000/static/media/minicooper.a71528b9f42d65af1958.jpeg",
+          "http://localhost:3000/static/media/minicooper.a71528b9f42d65af1958.jpeg", //this should just be first image found in files
 
-        files: [],
+        files: [
+          "https://imageio.forbes.com/specials-images/imageserve/5d35eacaf1176b0008974b54/0x0.jpg?format=jpg&crop=4560,2565,x790,y784,safe&width=1200",
+          "https://images.unsplash.com/photo-1525609004556-c46c7d6cf023?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NHx8Y2Fyc3xlbnwwfHwwfHw%3D&w=1000&q=80",
+          "https://media.wired.com/photos/5d09594a62bcb0c9752779d9/1:1/w_1500,h_1500,c_limit/Transpo_G70_TA-518126.jpg",
+        ], //only supports image files at the moment
+        productId: "x002",
       },
     ],
     nirvanaAmount: 500,
   });
+
+  const [itemToEdit, setItemToEdit] = useState(); //should be the object itself, not an index or equivalent pointer
+
+  const editItem = (id, obj) => {
+    console.log(obj);
+    let tempData = DUMMY_USER_DATA;
+    for (let i in DUMMY_USER_DATA.marketPlacePosts) {
+      if (tempData.marketPlacePosts[i].productId == id) {
+        tempData.marketPlacePosts[i] = obj;
+        setItemToEdit(tempData.marketPlacePosts[i]); //causes a re-render
+      }
+    }
+    setDUMMY_USER_DATA(tempData);
+    //some function should run to tell the rest of the site that you have changed your item
+
+    //id should be used to locate objectToChange in array, and then replace that objectToChange with obj
+  };
+
   const marketPlacePostsDisplay = DUMMY_USER_DATA.marketPlacePosts.map(
     (post) => (
-      <div key={post.details}>
+      <div key={post.productId}>
         <p style={{ float: "left" }}>{post.productName}</p>
-        <img src={post.thumbnail} style={{ width: "20%", float: "left" }} />
+        <img
+          src={post.thumbnail}
+          style={{ width: "20%", float: "left" }}
+          onClick={() => {
+            setItemToEdit(
+              DUMMY_USER_DATA.marketPlacePosts
+                .filter((item) => {
+                  return item.productId === post.productId;
+                })
+                .pop()
+              //without .pop() it returns [{...}]
+            );
+
+            //setShowEditItem(!showEditItem); //should only toggle if it is the same product, and should just setItemToEdit new object if it's a different product
+            setShowEditItem(true);
+          }}
+        />
         {/*
         Each image should onClick lead to their page or to a page to edit it on
         */}
@@ -51,6 +93,7 @@ const MeMain = () => {
     )
   );
   const [showEditProfile, setShowEditProfile] = useState(false);
+  const [showEditItem, setShowEditItem] = useState(false);
 
   const handleModalToggle = () => {
     setShowEditProfile(!showEditProfile);
@@ -100,6 +143,9 @@ const MeMain = () => {
           currentBio={DUMMY_USER_DATA.bio}
           editProfile={editProfile}
         />
+      )}
+      {showEditItem && (
+        <EditMarketPlaceItems item={itemToEdit} editItem={editItem} />
       )}
     </div>
   );
