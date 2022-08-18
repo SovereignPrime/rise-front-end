@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { LightButton } from "../Buttons";
+import { useSelector, useDispatch } from "react-redux";
 import {
 	Button,
 	Row,
@@ -27,60 +28,64 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import "./MarketPlaceInputs.css";
 import "bootstrap/dist/css/bootstrap.css";
+import {
+	incrementGood,
+	incrementBad
+} from "../../store/features/marketItem/marketItemSlice";
 import img1 from "../../styles/assets/img/jessie.png";
 import prod1 from "../../styles/assets/appwatch.jpg";
 import prod2 from "../../styles/assets/minicooper.jpeg";
 import prod3 from "../../styles/assets/ps5.jpeg";
 
-const data = [
-	{
-		Id: 1,
-		perName: "Eric Smith",
-		perPic: img1,
-		prodName: "Apple Watch",
-		Category: "electronics",
-		Price: 450,
-		Detail:
-			"This is a brand new apple Watch. I used it onece, but then found I do not  need it. I is in very good condition",
-		prodPic: [
-			{
-				src: prod1
-			},
-			{
-				src: prod2
-			}
-		],
-		Good: 14,
-		Bad: 2,
-		Date: "2022-05-25"
-	},
-	{
-		Id: 2,
-		perName: "Eric Smith",
-		perPic: img1,
-		prodName: "MINI cooper",
-		Category: "vehicles",
-		Price: 1000,
-		Detail: "this is a car",
-		prodPic: prod2,
-		Good: 14,
-		Bad: 2,
-		Date: "2022-05-22"
-	},
-	{
-		Id: 3,
-		perName: "Eric Smith",
-		perPic: img1,
-		prodName: "PS5",
-		Category: "entertainment",
-		Price: 200,
-		Detail: "this is a PS station",
-		prodPic: prod3,
-		Good: 14,
-		Bad: 2,
-		Date: "2021-05-27"
-	}
-];
+// const data = [
+// 	{
+// 		Id: 1,
+// 		perName: "Eric Smith",
+// 		perPic: img1,
+// 		prodName: "Apple Watch",
+// 		Category: "electronics",
+// 		Price: 450,
+// 		Detail:
+// 			"This is a brand new apple Watch. I used it onece, but then found I do not  need it. I is in very good condition",
+// 		prodPic: [
+// 			{
+// 				src: prod1
+// 			},
+// 			{
+// 				src: prod2
+// 			}
+// 		],
+// 		Good: 14,
+// 		Bad: 2,
+// 		Date: "2022-05-25"
+// 	},
+// 	{
+// 		Id: 2,
+// 		perName: "Eric Smith",
+// 		perPic: img1,
+// 		prodName: "MINI cooper",
+// 		Category: "vehicles",
+// 		Price: 1000,
+// 		Detail: "this is a car",
+// 		prodPic: prod2,
+// 		Good: 14,
+// 		Bad: 2,
+// 		Date: "2022-05-22"
+// 	},
+// 	{
+// 		Id: 3,
+// 		perName: "Eric Smith",
+// 		perPic: img1,
+// 		prodName: "PS5",
+// 		Category: "entertainment",
+// 		Price: 200,
+// 		Detail: "this is a PS station",
+// 		prodPic: prod3,
+// 		Good: 14,
+// 		Bad: 2,
+// 		Date: "2021-05-27"
+// 	}
+// ];
 
 const ProductDetails = () => {
 	// State for Active index
@@ -99,7 +104,21 @@ const ProductDetails = () => {
 		});
 	};
 
+
+	const data = useSelector((state) => state.marketItem.marketItems);
 	const finaldata = good(data);
+
+	const dispatch = useDispatch();
+
+	function handleGood(id) {
+		console.log("check handle good");
+		dispatch(incrementGood({ Id: id }));
+	}
+
+	function handleBad(id) {
+		//console.log(event);
+		dispatch(incrementBad({ Id: id }));
+	}
 
 	// Sample items for Carousel
 	// const items = [
@@ -183,31 +202,31 @@ const ProductDetails = () => {
 							<div className="product-detail-price">$ {item.Price}</div>
 							<div>
 								<Row className="product-detail-person">
-									<Col md={3} sm={3} className="product-detail-PerPic">
+									<Col md={2} sm={3} className="product-detail-PerPic">
 										<img src={item.perPic} width="100%"></img>
 									</Col>
-									<Col md={5} sm={5} className="product-detail-PerName">
+									<Col md={4} sm={5} className="product-detail-PerName">
 										&nbsp; {item.perName}
 									</Col>
-									<Col md={1}>
+									<Col md={3}>
 										<FontAwesomeIcon
-											className="product-detail-thumb"
+											className="iconN"
 											icon={faThumbsUp}
+											onClick={() => handleGood(item.Id)}
 											size="1x"
+											transform="down-9 right-5"
 										/>
+										<span>{item.Good}</span>
 									</Col>
-									<Col md={1}>
-										<div className="thumb-count">{item.Good}</div>
-									</Col>
-									<Col md={1}>
+									<Col md={3}>
 										<FontAwesomeIcon
-											className="product-detail-thumb"
+											className="iconN"
 											icon={faThumbsDown}
+											onClick={() => handleBad(item.Id)}
 											size="1x"
+											transform="down-10 right-5"
 										/>
-									</Col>
-									<Col md={1}>
-										<div className="thumb-count">{item.Bad}</div>
+										<span>{item.Bad}</span>
 									</Col>
 								</Row>
 							</div>
