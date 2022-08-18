@@ -70,6 +70,7 @@ const MarketPlacePostProduct = (props) => {
 					<input
 						type="text"
 						name="productName"
+						className={classes.input}
 						ref={prodNameRef}
 						//onBlur={entryBoxValidator}
 						required
@@ -77,8 +78,9 @@ const MarketPlacePostProduct = (props) => {
 
 					<label>Category:</label>
 					<select
-						className="dropDown"
+						// className="dropDown"
 						name="category"
+						className={classes.input}
 						ref={categoryRef}
 						onChange={isFreeCheck}>
 						<option value="placeholder" disabled>
@@ -100,6 +102,7 @@ const MarketPlacePostProduct = (props) => {
 					{!isFree && <label htmlFor="price">Price:</label>}
 					{!isFree && (
 						<input
+							className={classes.input}
 							type="number"
 							step=".01"
 							name="price"
@@ -111,15 +114,15 @@ const MarketPlacePostProduct = (props) => {
 					<label htmlFor="detail">Details: </label>
 					<textarea
 						id="message"
-						className="message"
+						className={classes.detail}
 						placeholder="Your Message"
 						name="detail"
-						cols="20"
+						cols="100"
 						rows="6"
+
 						ref={detailRef}
 						required></textarea>
 					<br />
-					<DarkButton className={classes.button}>Post Product</DarkButton>
 
 					<input
 						type="file"
@@ -149,6 +152,8 @@ const MarketPlacePostProduct = (props) => {
 							Files do not append. Upload all at once.
 						</p>
 					)}
+
+					<DarkButton className={classes.button}>Post Product</DarkButton>
 
 					<output id="result" />
 				</form>

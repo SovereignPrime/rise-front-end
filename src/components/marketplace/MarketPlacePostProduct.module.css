@@ -10,16 +10,30 @@
 
 .modal {
     position: absolute;
-    top: 30vh;
+    top: 15vh;
     left: 10%;
     padding-top: 1%;
     padding-bottom: 1%;
-    width: 80%;
+    width: 100%;
     z-index: 100;
     overflow: hidden;
     background: #fff;
 
 
+}
+
+.input {
+    width: 95%;
+    height: 40px;
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+.detail {
+    width: 95%;
+    height: 100%;
+    text-align: left;
+    margin-bottom: 10px;
 }
 
 .button {
@@ -33,7 +47,7 @@
     font-weight: 400;
 
 
-    margin: 0;
+    margin-top: 20px;
     position: relative;
     top: 70%;
     -ms-transform: translateY(-50%);
