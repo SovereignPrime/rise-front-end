@@ -9,6 +9,7 @@ import {
 } from "../../store/features/marketItem/marketItemSlice";
 import "./Card.css";
 import "bootstrap/dist/css/bootstrap.css";
+import {LightButton} from "../Buttons";
 import {
 	Card,
 	CardBody,
@@ -114,7 +115,7 @@ const CardObject = (props) => {
 															</Col>
 															<Col>
 																<Link key={item.Id} to={`detail/${item.Id}`}>
-																	<Button size="sm">Detail</Button>
+																	<LightButton size="sm">Detail</LightButton>
 																</Link>
 															</Col>
 														</Row>

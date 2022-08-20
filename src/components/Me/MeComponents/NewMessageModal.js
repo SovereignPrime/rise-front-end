@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useDropzone } from "react-dropzone";
+import { LightButton } from "../../Buttons";
 var myMessage = [];
 
 const NewMessageModal = (props) => {
@@ -77,7 +78,7 @@ const NewMessageModal = (props) => {
             <video width="320" height="240" controls>
               <source src={file[0].preview} type={file[0].type} />
             </video>
-            <button
+            <LightButton
               onClick={(e) => {
                 const start = uploadedFiles.indexOf(file);
                 const deleteCount = 1;
@@ -91,7 +92,7 @@ const NewMessageModal = (props) => {
               }}
             >
               Remove Video
-            </button>
+            </LightButton>
           </div>
         </div>
       );
@@ -207,7 +208,7 @@ const NewMessageModal = (props) => {
           <br />
           {images}
 
-          <button>Send Message</button>
+          <LightButton>Send Message</LightButton>
         </form>
       </div>
     </div>

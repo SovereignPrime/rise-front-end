@@ -1,6 +1,7 @@
 import React from "react";
 import classes from "./CheckSellerInfo.module.css";
 import "bootstrap/dist/css/bootstrap.css";
+import { DarkButton } from '../Buttons';
 import {
 	Card,
 	CardBody,
@@ -65,8 +66,8 @@ const CheckSellerInfo = (props) => {
 					width="14%"></img>
 				{/* {props.checkSellerName} */}
 				<div className={classes.buttonGroup}>
-					<Button>Follow</Button> <Button>View Profile</Button>{" "}
-					<Button>Report</Button>
+					<DarkButton>Follow</DarkButton> <DarkButton>View Profile</DarkButton>{" "}
+					<DarkButton>Report</DarkButton>
 				</div>
 				<div className="border-top"></div>
 				<div className={classes.sellerTitle}>About</div>

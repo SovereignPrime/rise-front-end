@@ -11,6 +11,7 @@ import React, { useState } from "react";
 import DropdownMessage from "../DropdownMenus/DropdownMessage";
 import DropdownCategory from "../DropdownMenus/DropdownCategory";
 import PaymentModal from "../Modals/PaymentModal";
+import { DarkButton } from "../Buttons";
 import {
 	Button,
 	Modal,
@@ -83,7 +84,6 @@ const Home = () => {
 	};
 
 	const handleChange = (e) => {
-		setRadioEl(e.target.value);
 		console.log(radioEL);
 		console.log(searchEl);
 	};
@@ -113,7 +113,8 @@ const Home = () => {
 					placeholder="Say something..."
 					className="searchInput"
 					style={{ width: "70%" }}
-					onChange={(e) => setSearchEl(e.target.value)}></Input>
+					onChange={(e) => setSearchEl(e.target.value)}>
+				</Input>
 				<Button
 					className="btn-search"
 					color="transparent"
@@ -130,9 +131,8 @@ const Home = () => {
 						type="radio"
 						id="notification"
 						onClick={(e) => setRadioEl("notification")}
-						onChange={handleChange}
 					/>{" "}
-					<Label check>Notification </Label>
+					<Label check>Notification</Label>
 				</FormGroup>
 				<FormGroup className="radioEl">
 					<Input
@@ -140,7 +140,6 @@ const Home = () => {
 						type="radio"
 						id="verification"
 						onClick={(e) => setRadioEl("verification")}
-						onChange={handleChange}
 					/>{" "}
 					<Label check>Valification</Label>
 				</FormGroup>
@@ -149,8 +148,7 @@ const Home = () => {
 						name="radioEl"
 						type="radio"
 						id="marketPlace"
-						onClick={(e) => setRadioEl("marketPlae")}
-						onChange={handleChange}
+						onClick={(e) => setRadioEl("Marketplace")}
 					/>{" "}
 					<Label check>Marketplace</Label>
 				</FormGroup>
@@ -306,9 +304,9 @@ const Home = () => {
 				<ModalFooter>
 					<DropdownMessage />
 
-					<Button className="bg-dark" onClick={toggle1}>
+					<DarkButton onClick={toggle1}>
 						Send
-					</Button>
+					</DarkButton>
 				</ModalFooter>
 			</Modal>
 			<Modal isOpen={modal2} toggle={toggle2}>
@@ -337,9 +335,9 @@ const Home = () => {
 				<ModalFooter>
 					<DropdownMessage />
 
-					<Button className="bg-dark" onClick={toggle1}>
+					<DarkButton onClick={toggle1}>
 						Send
-					</Button>
+					</DarkButton>
 				</ModalFooter>
 			</Modal>
 			<Modal isOpen={modal3} toggle={toggle3}>
@@ -372,9 +370,9 @@ const Home = () => {
 				<ModalFooter>
 					<DropdownMessage />
 
-					<Button className="bg-dark" onClick={toggle1}>
+					<DarkButton onClick={toggle1}>
 						Send
-					</Button>
+					</DarkButton>
 				</ModalFooter>
 			</Modal>
 			<div className="marketItem mt-4">

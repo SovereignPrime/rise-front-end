@@ -9,6 +9,7 @@ import {
   Button,
 } from "reactstrap";
 import NewMessageModal from "./NewMessageModal";
+import { LightButton } from "../../Buttons";
 
 class Message extends Component {
   constructor(props) {
@@ -33,9 +34,9 @@ class Message extends Component {
             Each message costs 0.01 Nirvana{" "}
           </CardText>
         </div>
-        <Button onClick={() => this.setState({ showNewMessage: true })}>
+        <LightButton onClick={() => this.setState({ showNewMessage: true })}>
           New Message
-        </Button>
+        </LightButton>
         {this.state.showNewMessage && <NewMessageModal />}
       </Card>
     );

@@ -1,5 +1,10 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import {
+	incrementGood,
+	incrementBad
+} from "../../store/features/marketItem/marketItemSlice";
 import {
 	Button,
 	Row,
@@ -87,7 +92,7 @@ const ProductDetails = () => {
 
 	// State for Animation
 	const [animating, setAnimating] = useState(false);
-
+	const data = useSelector((state) => state.marketItem.marketItems);
 	const para = useParams();
 	const navigate = useNavigate();
 	console.log(para.Id);
@@ -97,6 +102,13 @@ const ProductDetails = () => {
 			return item.Id == para.Id;
 		});
 	};
+	const dispatch = useDispatch();
+	function handleGood(id) {
+		dispatch(incrementGood({ Id: id }));
+	}
+	function handleBad(id) {
+		dispatch(incrementBad({ Id: id }));
+	}
 
 	const finaldata = good(data);
 
@@ -193,20 +205,30 @@ const ProductDetails = () => {
 											className="product-detail-thumb"
 											icon={faThumbsUp}
 											size="1x"
+											onClick={() => handleGood(item.Id)}
 										/>
 									</Col>
 									<Col md={1}>
-										<div className="thumb-count">{item.Good}</div>
+										<div
+											className="thumb-count"
+											onClick={() => handleGood(item.Id)}>
+											{item.Good}
+										</div>
 									</Col>
 									<Col md={1}>
 										<FontAwesomeIcon
 											className="product-detail-thumb"
 											icon={faThumbsDown}
+											onClick={() => handleBad(item.Id)}
 											size="1x"
 										/>
 									</Col>
 									<Col md={1}>
-										<div className="thumb-count">{item.Bad}</div>
+										<div
+											className="thumb-count"
+											onClick={() => handleBad(item.Id)}>
+											{item.Bad}
+										</div>
 									</Col>
 								</Row>
 							</div>

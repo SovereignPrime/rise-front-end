@@ -47,7 +47,7 @@ const CancelledTransactions = () => {
 						<tr>
 							<img
 								src="https://cdn.iconscout.com/icon/free/png-256/close-1912235-1617704.png"
-								className="transferIcon"
+								className="transactionIcon"
 							/>{" "}
 							Olumide Oykale - 7:30pm <td>$10.00: Request</td>
 						</tr>
@@ -55,7 +55,7 @@ const CancelledTransactions = () => {
 						<tr>
 							<img
 								src="https://cdn.iconscout.com/icon/free/png-256/close-1912235-1617704.png"
-								className="transferIcon"
+								className="transactionIcon"
 							/>{" "}
 							Jody Cromle - 8:30pm <td>$100.00: Payment</td>
 						</tr>
@@ -63,7 +63,7 @@ const CancelledTransactions = () => {
 						<tr>
 							<img
 								src="https://cdn.iconscout.com/icon/free/png-256/close-1912235-1617704.png"
-								className="transferIcon"
+								className="transactionIcon"
 							/>{" "}
 							Olumide Oykale - 9:00pm <td>$10.00: Request</td>
 						</tr>
@@ -71,7 +71,7 @@ const CancelledTransactions = () => {
 						<tr>
 							<img
 								src="https://cdn.iconscout.com/icon/free/png-256/close-1912235-1617704.png"
-								className="transferIcon"
+								className="transactionIcon"
 							/>{" "}
 							Jody Cromle - 10:30pm <td>$100.00: Payment</td>
 						</tr>
