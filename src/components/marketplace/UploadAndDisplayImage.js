@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import { DarkButton } from "../Buttons";
 
 const UploadAndDisplayImage = (props) => {
   const [selectedImage, setSelectedImage] = useState(null);
 
   return (
     <div>
-      <h1>Upload and Display Image usign React Hook's</h1>
+      <h1>Upload and Display Image using React Hook's</h1>
       {selectedImage && (
         <div>
           <img
@@ -14,7 +15,7 @@ const UploadAndDisplayImage = (props) => {
             src={URL.createObjectURL(selectedImage)}
           />
           <br />
-          <button onClick={() => setSelectedImage(null)}>Remove</button>
+          <DarkButton onClick={() => setSelectedImage(null)}>Remove</DarkButton>
         </div>
       )}
       <br />

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
 import { Button, Modal, ModalHeader, ModalFooter, ModalBody } from "reactstrap";
+import { PaymentButton } from "../../Buttons";
 import person2 from "../../../styles/assets/person2.jpg";
 //import nirvana  from "../../../styles/assets/nirvana.png";
 
@@ -46,7 +47,7 @@ const MakePayment = () => {
           </div>
         </form>
         <div className="makePaymentButton">
-          <Button onClick={toggle}>Make Payment</Button>
+          <PaymentButton onClick={toggle}>Make Payment</PaymentButton>
           <Modal
             isOpen={makePaymentModal}
             toggle={toggle}
@@ -83,8 +84,8 @@ const MakePayment = () => {
               </table>
             </ModalBody>
             <ModalFooter style={{ borderTop: "none" }}>
-              <Button>YES, MAKE PAYMENT</Button>
-              <Button onClick={toggle}>NO, GO BACK TO MAKE SCREEN</Button>
+              <PaymentButton>YES, MAKE PAYMENT</PaymentButton>
+              <PaymentButton onClick={toggle}>NO, GO BACK TO MAKE SCREEN</PaymentButton>
             </ModalFooter>
 
           </Modal>

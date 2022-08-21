@@ -1,121 +1,138 @@
 import "bootstrap/dist/css/bootstrap.css";
-import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Button } from "reactstrap";
-import { Card, CardBody } from "reactstrap";
-import { CardImg } from "reactstrap";
-import { CardImgOverlay } from "reactstrap";
-import { CardTitle } from "reactstrap";
-import { CardText } from "reactstrap";
-import nirvana from "../../styles/assets/nirvana.png";
+import React, { useEffect } from "react";
+import { useState } from "react";
 import { faThumbsUp, faThumbsDown } from "@fortawesome/free-solid-svg-icons";
-import person1 from "../../styles/assets/person1.jpg";
-import person2 from "../../styles/assets/person2.jpg";
-import person3 from "../../styles/assets/person3.jpg";
-import person4 from "../../styles/assets/person4.jpg";
-import bread from "../../styles/assets/bread.jpg";
-import steak from "../../styles/assets/steak.jpg";
-import milk from "../../styles/assets/milk.jpg";
-import tea from "../../styles/assets/tea.jpg";
+import { useSelector, useDispatch } from "react-redux";
+import {
+	incrementGood,
+	incrementBad
+} from "../../store/features/marketItem/marketItemSlice";
+import "./Card.css";
+import "bootstrap/dist/css/bootstrap.css";
+import {LightButton} from "../Buttons";
+import {
+	Card,
+	CardBody,
+	CardText,
+	CardImg,
+	CardTitle,
+	Row,
+	Col,
+	Button
+} from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Routes, Route, Link } from "react-router-dom";
+import CheckSellerInfo from "../marketplace/CheckSellerInfo";
+import ProductDetails from "../marketplace/ProductDetails";
+import { variance } from "d3";
 
-const data = [
-	{
-		userName: "user 1",
-		userImg: person1,
-		itemName: "Bread",
-		nirvana: "100",
-		explanation: "sweet bread",
-		itemImg: bread,
-		thumbUp: 10,
-		thumbDown: 1
-	},
-	{
-		userName: "user 2",
-		userImg: person2,
-		itemName: "Steak",
-		nirvana: "1100",
-		explanation: "Delicious Steak",
-		itemImg: steak,
-		thumbUp: 10,
-		thumbDown: 0
-	},
-	{
-		userName: "user 3",
-		userImg: person3,
-		itemName: "Tea",
-		nirvana: "10",
-		explanation: "Good for thirsty",
-		itemImg: tea,
-		thumbUp: 3,
-		thumbDown: 1
-	},
-	{
-		userName: "user 4",
-		userImg: person4,
-		itemName: "milk",
-		nirvana: "12",
-		explanation: "Good for thirsty too",
-		itemImg: milk,
-		thumbUp: 4,
-		thumbDown: 1
-	},
-	{
-		userName: "user 1",
-		userImg: person1,
-		itemName: "milk2",
-		nirvana: "10",
-		explanation: "Good for thirsty too",
-		itemImg: milk,
-		thumbUp: 2,
-		thumbDown: 2
+const CardObject = (props) => {
+	const data = props.param;
+
+	const dispatch = useDispatch();
+	function handleGood(id) {
+		//console.log(event);
+		dispatch(incrementGood({ Id: id }));
 	}
-];
+	function handleBad(id) {
+		//console.log(event);
+		dispatch(incrementBad({ Id: id }));
+	}
 
-const CardObject = () => {
+	const [checkSellerInfo, setCheckSellerInfo] = useState(false);
+	const [sellerName, setSellerName] = useState("");
+	const [sellerPic, setSellerPic] = useState("");
+
+	const closeCheckSellerHandler = () => {
+		setCheckSellerInfo(false);
+	};
+
 	return (
-		<div className="cardOb" style={{ marginLeft: "20px" }}>
-			{data.map((item) => (
-				<Card
-					inverse
-					style={{ width: "300px", margin: "10px" }}
-					key={item.userName}>
-					<CardImg
-						alt="Card image cap"
-						src={item.itemImg}
-						width="20%"
-						height="360px"
-					/>
-					<CardImgOverlay>
-						<div className="overlay">
-							<CardTitle tag="h6">
-								<img
-									src={item.userImg}
-									width="50px"
-									height="50px"
-									alt=""
-									style={{
-										borderRadius: "50%",
-										objectFit: "cover"
-									}}></img>{" "}
-								{item.userName}
-								<FontAwesomeIcon className="iconN" icon={faThumbsUp} />
-								<span>{item.thumbUp}</span>
-								<FontAwesomeIcon className="iconN" icon={faThumbsDown} />
-								<span>{item.thumbDown}</span>
-							</CardTitle>
-							<CardText>{item.itemName}</CardText>
-							<CardText tag="h6">
-								<img src={nirvana} alt="" width="50px" height="50px" />
-								{item.nirvana}
-								<Button outline className="bg-white text-black ">
-									Detail
-								</Button>
-							</CardText>
+		<div>
+			<Routes>
+				<Route
+					path="/"
+					element={
+						<div className="containter">
+							<div className="row">
+								{checkSellerInfo && (
+									<CheckSellerInfo
+										closeCheckSellerHandler={closeCheckSellerHandler}
+										checkSellerName={sellerName}
+										checkSellerPic={sellerPic}
+									/>
+								)}
+								{data?.map((item) => (
+									<div key={item.Id} className="col-lg-4 col-md-6 col-sm-12">
+										<Card key={item.Id}>
+											<CardImg
+												className="cardimg"
+												alt="Card image cap"
+												src={item.prodPic}
+												width="30%"
+												height={250}
+												top
+											/>
+											<CardBody>
+												<CardText>
+													<div className="market-person">
+														<img src={item.perPic} width="20%"></img>
+														{/* <small className="text-muted">&nbsp; {item.perName}</small> */}
+														<small
+															className="text-muted"
+															onClick={() => {
+																setCheckSellerInfo(true);
+																setSellerName(item.perName);
+																setSellerPic(item.perPic);
+															}}>
+															&nbsp; {item.perName}
+														</small>
+
+														<FontAwesomeIcon
+															className="iconN"
+															icon={faThumbsUp}
+															onClick={() => handleGood(item.Id)}
+															size="1x"
+															transform="down-9 right-7"
+														/>
+														<span>{item.Good}</span>
+														<FontAwesomeIcon
+															className="iconN"
+															icon={faThumbsDown}
+															onClick={() => handleBad(item.Id)}
+															size="1x"
+															transform="down-10 right-7"
+														/>
+														<span>{item.Bad}</span>
+													</div>
+													<div className="market-product-name">
+														{item.prodName}
+													</div>
+													<div>
+														<Row md="2">
+															<Col className="market-product-price">
+																${item.Price}
+															</Col>
+															<Col>
+																<Link key={item.Id} to={`detail/${item.Id}`}>
+																	<LightButton size="sm">Detail</LightButton>
+																</Link>
+															</Col>
+														</Row>
+													</div>
+												</CardText>
+											</CardBody>
+										</Card>
+									</div>
+								))}
+							</div>
 						</div>
-					</CardImgOverlay>
-				</Card>
-			))}
+					}
+				/>
+				<Route path="detail/:Id" element={<ProductDetails />} />
+			</Routes>
 		</div>
 	);
 };
+
 export default CardObject;
