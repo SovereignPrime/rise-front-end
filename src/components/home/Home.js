@@ -11,6 +11,7 @@ import React, { useState } from "react";
 import DropdownMessage from "../DropdownMenus/DropdownMessage";
 import DropdownCategory from "../DropdownMenus/DropdownCategory";
 import PaymentModal from "../Modals/PaymentModal";
+
 import { DarkButton } from "../Buttons";
 import {
 	Button,
@@ -113,8 +114,7 @@ const Home = () => {
 					placeholder="Say something..."
 					className="searchInput"
 					style={{ width: "70%" }}
-					onChange={(e) => setSearchEl(e.target.value)}>
-				</Input>
+					onChange={(e) => setSearchEl(e.target.value)}></Input>
 				<Button
 					className="btn-search"
 					color="transparent"
@@ -304,9 +304,7 @@ const Home = () => {
 				<ModalFooter>
 					<DropdownMessage />
 
-					<DarkButton onClick={toggle1}>
-						Send
-					</DarkButton>
+					<DarkButton onClick={toggle1}>Send</DarkButton>
 				</ModalFooter>
 			</Modal>
 			<Modal isOpen={modal2} toggle={toggle2}>
@@ -335,9 +333,7 @@ const Home = () => {
 				<ModalFooter>
 					<DropdownMessage />
 
-					<DarkButton onClick={toggle1}>
-						Send
-					</DarkButton>
+					<DarkButton onClick={toggle1}>Send</DarkButton>
 				</ModalFooter>
 			</Modal>
 			<Modal isOpen={modal3} toggle={toggle3}>
@@ -370,9 +366,7 @@ const Home = () => {
 				<ModalFooter>
 					<DropdownMessage />
 
-					<DarkButton onClick={toggle1}>
-						Send
-					</DarkButton>
+					<DarkButton onClick={toggle1}>Send</DarkButton>
 				</ModalFooter>
 			</Modal>
 			<div className="marketItem mt-4">

@@ -6,7 +6,7 @@ import person2 from "../../styles/assets/person2.jpg";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Input, Form } from "reactstrap";
-
+import "./Matching.css";
 const Matched = () => {
 	const [counter, setCounter] = React.useState(3600);
 	const navigate = useNavigate();
