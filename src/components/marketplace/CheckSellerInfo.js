@@ -63,7 +63,7 @@ const CheckSellerInfo = (props) => {
 				<img
 					className={classes.seller}
 					src={props.checkSellerPic}
-					width="14%"></img>
+				></img>
 				{/* {props.checkSellerName} */}
 				<div className={classes.buttonGroup}>
 					<DarkButton>Follow</DarkButton> <DarkButton>View Profile</DarkButton>{" "}

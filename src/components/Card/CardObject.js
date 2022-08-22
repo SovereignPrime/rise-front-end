@@ -81,7 +81,7 @@ const CardObject = (props) => {
                       <CardBody>
                         <CardText>
                           <div className="market-person">
-                            <img src={item.perPic} width="20%"></img>
+                            <img className="market-person-photo" src={item.perPic} width="20%"></img>
                             {/* <small className="text-muted">&nbsp; {item.perName}</small> */}
                             <small
                               className="text-muted"

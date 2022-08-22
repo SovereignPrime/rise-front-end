@@ -10,16 +10,36 @@
 
 .modal {
     position: absolute;
-    top: 30vh;
+    top: 5vh;
     left: 10%;
     padding-top: 1%;
     padding-bottom: 1%;
-    width: 80%;
+    width: 100%;
     z-index: 100;
     overflow: hidden;
     background: #fff;
 
 
+}
+
+.label {
+    margin-left: 20px;
+}
+
+.input {
+    width: 95%;
+    height: 40px;
+    text-align: left;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+
+.detail {
+    width: 95%;
+    height: 100%;
+    text-align: left;
+    margin-bottom: 10px;
+    margin-left: 20px;
 }
 
 .button {
@@ -32,8 +52,8 @@
     line-height: 24px;
     font-weight: 400;
 
-
-    margin: 0;
+    margin-left: 20px;
+    margin-top: 20px;
     position: relative;
     top: 70%;
     -ms-transform: translateY(-50%);

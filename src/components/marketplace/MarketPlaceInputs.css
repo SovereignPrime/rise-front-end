@@ -148,10 +148,16 @@
 
 .photo {
     position: absolute;
-    left: 40%;
+    left: 24%;
     top: 50%;
-    transform: translate(-50%, -50%);
+    width: 200px;
+    transform: translate(-40%, -50%);
     text-align: center;
+}
+
+.detail-img {
+    width: 600px;
+    height: auto;
 }
 
 .product-detail-container {
