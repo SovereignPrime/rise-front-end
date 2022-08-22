@@ -3,7 +3,6 @@ import CardObject from "../Card/CardObject";
 import { useNavigate } from "react-router-dom";
 import nirvana from "../../styles/assets/nirvana.png";
 import { useState } from "react";
-import { LightButton } from "../Buttons";
 import { useSelector, useDispatch } from "react-redux";
 
 import {
@@ -35,45 +34,45 @@ import MarketPlacePostProduct from "./MarketPlacePostProduct";
 import CheckSellerInfo from "./CheckSellerInfo";
 
 // const data = [
-// 	{
-// 		Id: 1,
-// 		perName: "Eric Smith",
-// 		perPic: img1,
-// 		prodName: "Apple Watch",
-// 		Category: "electronics",
-// 		Price: 450,
-// 		Detail: "this is a apple watch",
-// 		prodPic: prod1,
-// 		Good: 14,
-// 		Bad: 2,
-// 		Date: "2022-05-25"
-// 	},
-// 	{
-// 		Id: 2,
-// 		perName: "Eric Smith",
-// 		perPic: img1,
-// 		prodName: "MINI cooper",
-// 		Category: "vehicles",
-// 		Price: 1000,
-// 		Detail: "this is a car",
-// 		prodPic: prod2,
-// 		Good: 14,
-// 		Bad: 2,
-// 		Date: "2022-05-22"
-// 	},
-// 	{
-// 		Id: 3,
-// 		perName: "Eric Smith",
-// 		perPic: img1,
-// 		prodName: "PS5",
-// 		Category: "entertainment",
-// 		Price: 200,
-// 		Detail: "this is a PS station",
-// 		prodPic: prod3,
-// 		Good: 14,
-// 		Bad: 2,
-// 		Date: "2021-05-27"
-// 	}
+//  {
+//      Id: 1,
+//      perName: "Eric Smith",
+//      perPic: img1,
+//      prodName: "Apple Watch",
+//      Category: "electronics",
+//      Price: 450,
+//      Detail: "this is a apple watch",
+//      prodPic: prod1,
+//      Good: 14,
+//      Bad: 2,
+//      Date: "2022-05-25"
+//  },
+//  {
+//      Id: 2,
+//      perName: "Eric Smith",
+//      perPic: img1,
+//      prodName: "MINI cooper",
+//      Category: "vehicles",
+//      Price: 1000,
+//      Detail: "this is a car",
+//      prodPic: prod2,
+//      Good: 14,
+//      Bad: 2,
+//      Date: "2022-05-22"
+//  },
+//  {
+//      Id: 3,
+//      perName: "Eric Smith",
+//      perPic: img1,
+//      prodName: "PS5",
+//      Category: "entertainment",
+//      Price: 200,
+//      Detail: "this is a PS station",
+//      prodPic: prod3,
+//      Good: 14,
+//      Bad: 2,
+//      Date: "2021-05-27"
+//  }
 // ];
 
 const MarketPlaceInputs = () => {
@@ -84,8 +83,10 @@ const MarketPlaceInputs = () => {
   const [sellerPic, setSellerPic] = useState("");
 
   const addProductHandler = (newItem) => {
+    newItem.id++;
     data.push(newItem);
     setPostProduct(false);
+    console.log(data);
   };
 
   const closeAddProduct = () => {
@@ -159,7 +160,7 @@ const MarketPlaceInputs = () => {
                   />
                 </div>
 
-                <LightButton
+                <button
                   className="add-deal-button"
                   onClick={() => {
                     setPostProduct(true);
@@ -169,10 +170,10 @@ const MarketPlaceInputs = () => {
                     className="plus-icon"
                     icon={faPlus}
                     size="1x"
-                    transform="left-5"
+                    transform="left-15"
                   />
                   Add Your Deal
-                </LightButton>
+                </button>
 
                 <div className="border-top"></div>
                 <div className="filter-sort-title"> Filter </div>

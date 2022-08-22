@@ -1,5 +1,10 @@
 import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  incrementGood,
+  incrementBad,
+} from "../../store/features/marketItem/marketItemSlice";
 import {
   Button,
   Row,
@@ -31,78 +36,81 @@ import prod1 from "../../styles/assets/appwatch.jpg";
 import prod2 from "../../styles/assets/minicooper.jpeg";
 import prod3 from "../../styles/assets/ps5.jpeg";
 
-//Not needed since MarketPlaceInputs.js passes data
+const data = [
+  {
+    Id: 1,
+    perName: "Eric Smith",
+    perPic: img1,
+    prodName: "Apple Watch",
+    Category: "electronics",
+    Price: 450,
+    Detail:
+      "This is a brand new apple Watch. I used it onece, but then found I do not  need it. I is in very good condition",
+    prodPic: [
+      {
+        src: prod1,
+      },
+      {
+        src: prod2,
+      },
+    ],
+    Good: 14,
+    Bad: 2,
+    Date: "2022-05-25",
+  },
+  {
+    Id: 2,
+    perName: "Eric Smith",
+    perPic: img1,
+    prodName: "MINI cooper",
+    Category: "vehicles",
+    Price: 1000,
+    Detail: "this is a car",
+    prodPic: prod2,
+    Good: 14,
+    Bad: 2,
+    Date: "2022-05-22",
+  },
+  {
+    Id: 3,
+    perName: "Eric Smith",
+    perPic: img1,
+    prodName: "PS5",
+    Category: "entertainment",
+    Price: 200,
+    Detail: "this is a PS station",
+    prodPic: prod3,
+    Good: 14,
+    Bad: 2,
+    Date: "2021-05-27",
+  },
+];
 
-// const data = [
-//   {
-//     Id: 1,
-//     perName: "Eric Smith",
-//     perPic: img1,
-//     prodName: "Apple Watch",
-//     Category: "electronics",
-//     Price: 450,
-//     Detail:
-//       "This is a brand new apple Watch. I used it once, but then found I do not  need it. It is in very good condition",
-//     prodPic: [
-//       {
-//         src: prod1,
-//       },
-//       {
-//         src: prod2,
-//       },
-//       {
-//         src: prod3,
-//       },
-//     ],
-//     Good: 14,
-//     Bad: 2,
-//     Date: "2022-05-25",
-//   },
-//   {
-//     Id: 2,
-//     perName: "Eric Smith",
-//     perPic: img1,
-//     prodName: "MINI cooper",
-//     Category: "vehicles",
-//     Price: 1000,
-//     Detail: "this is a car",
-//     prodPic: prod2,
-//     Good: 14,
-//     Bad: 2,
-//     Date: "2022-05-22",
-//   },
-//   {
-//     Id: 3,
-//     perName: "Eric Smith",
-//     perPic: img1,
-//     prodName: "PS5",
-//     Category: "entertainment",
-//     Price: 200,
-//     Detail: "this is a PS station",
-//     prodPic: prod3,
-//     Good: 14,
-//     Bad: 2,
-//     Date: "2021-05-27",
-//   },
-// ];
-
-const ProductDetails = (props) => {
-  //const data = props.data;
-
-  console.log(props.data);
-
+const ProductDetails = () => {
   // State for Active index
   const [activeIndex, setActiveIndex] = useState(0);
 
   // State for Animation
   const [animating, setAnimating] = useState(false);
-
+  const data = useSelector((state) => state.marketItem.marketItems);
+  const para = useParams();
   const navigate = useNavigate();
+  console.log(para.Id);
 
-  const { Id } = useParams();
-  console.log(Id);
+  const good = (data) => {
+    return data.filter((item) => {
+      return item.Id == para.Id;
+    });
+  };
+  const dispatch = useDispatch();
+  function handleGood(id) {
+    dispatch(incrementGood({ Id: id }));
+  }
+  function handleBad(id) {
+    dispatch(incrementBad({ Id: id }));
+  }
 
-  const finaldata = [props.data.find((item) => item.Id == Id)];
+  const finaldata = good(data);
 
   // Sample items for Carousel
   // const items = [
@@ -113,22 +121,10 @@ const ProductDetails = (props) => {
   // ];
 
   //check if it is not an array, change it to array first.
-  console.log(finaldata);
-  var tempArray = [];
-  if (!Array.isArray(finaldata[0].prodPic)) {
-    tempArray = [{ src: finaldata[0].prodPic }];
-  } else {
-    for (let i in finaldata[0].prodPic) {
-      tempArray.push({ src: finaldata[0].prodPic[i] });
-    }
-  }
-
-  const items = tempArray;
-  //   const items =
-  //     Array.isArray(finaldata[0].prodPic) === false
-  //       ? [{ src: finaldata[0].prodPic }]
-  //       : finaldata[0].prodPic;
-  //   // : each prodPic element needs to have a src: ... thing
+  const items =
+    Array.isArray(finaldata[0].prodPic) === false
+      ? [{ src: finaldata[0].prodPic }]
+      : finaldata[0].prodPic;
 
   // Items array length
   const itemLength = items.length - 1;
@@ -148,8 +144,6 @@ const ProductDetails = (props) => {
   };
 
   //have to use map
-  console.log(finaldata, "kehaha");
-  console.log(items, "zehaha");
   const carouselItemData = items.map((item) => {
     return (
       <CarouselItem
@@ -213,20 +207,32 @@ const ProductDetails = (props) => {
                       className="product-detail-thumb"
                       icon={faThumbsUp}
                       size="1x"
+                      onClick={() => handleGood(item.Id)}
                     />
                   </Col>
                   <Col md={1}>
-                    <div className="thumb-count">{item.Good}</div>
+                    <div
+                      className="thumb-count"
+                      onClick={() => handleGood(item.Id)}
+                    >
+                      {item.Good}
+                    </div>
                   </Col>
                   <Col md={1}>
                     <FontAwesomeIcon
                       className="product-detail-thumb"
                       icon={faThumbsDown}
+                      onClick={() => handleBad(item.Id)}
                       size="1x"
                     />
                   </Col>
                   <Col md={1}>
-                    <div className="thumb-count">{item.Bad}</div>
+                    <div
+                      className="thumb-count"
+                      onClick={() => handleBad(item.Id)}
+                    >
+                      {item.Bad}
+                    </div>
                   </Col>
                 </Row>
               </div>
@@ -246,8 +252,6 @@ const ProductDetails = (props) => {
                 previous={previousButton}
                 next={nextButton}
                 activeIndex={activeIndex}
-                slide={false}
-                //fade={true}
               >
                 <CarouselIndicators
                   items={items}

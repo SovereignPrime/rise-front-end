@@ -11,6 +11,7 @@ import React, { useState } from "react";
 import DropdownMessage from "../DropdownMenus/DropdownMessage";
 import DropdownCategory from "../DropdownMenus/DropdownCategory";
 import PaymentModal from "../Modals/PaymentModal";
+
 import { DarkButton } from "../Buttons";
 import {
 	Button,
@@ -84,7 +85,6 @@ const Home = () => {
 	};
 
 	const handleChange = (e) => {
-		setRadioEl(e.target.value);
 		console.log(radioEL);
 		console.log(searchEl);
 	};
@@ -131,9 +131,8 @@ const Home = () => {
 						type="radio"
 						id="notification"
 						onClick={(e) => setRadioEl("notification")}
-						onChange={handleChange}
 					/>{" "}
-					<Label check>Notification </Label>
+					<Label check>Notification</Label>
 				</FormGroup>
 				<FormGroup className="radioEl">
 					<Input
@@ -141,17 +140,15 @@ const Home = () => {
 						type="radio"
 						id="verification"
 						onClick={(e) => setRadioEl("verification")}
-						onChange={handleChange}
 					/>{" "}
-					<Label check>Valification</Label>
+					<Label check>Verification</Label>
 				</FormGroup>
 				<FormGroup className="radioEl">
 					<Input
 						name="radioEl"
 						type="radio"
 						id="marketPlace"
-						onClick={(e) => setRadioEl("marketPlae")}
-						onChange={handleChange}
+						onClick={(e) => setRadioEl("Marketplace")}
 					/>{" "}
 					<Label check>Marketplace</Label>
 				</FormGroup>
@@ -307,9 +304,7 @@ const Home = () => {
 				<ModalFooter>
 					<DropdownMessage />
 
-					<DarkButton onClick={toggle1}>
-						Send
-					</DarkButton>
+					<DarkButton onClick={toggle1}>Send</DarkButton>
 				</ModalFooter>
 			</Modal>
 			<Modal isOpen={modal2} toggle={toggle2}>
@@ -338,9 +333,7 @@ const Home = () => {
 				<ModalFooter>
 					<DropdownMessage />
 
-					<DarkButton onClick={toggle1}>
-						Send
-					</DarkButton>
+					<DarkButton onClick={toggle1}>Send</DarkButton>
 				</ModalFooter>
 			</Modal>
 			<Modal isOpen={modal3} toggle={toggle3}>
@@ -373,9 +366,7 @@ const Home = () => {
 				<ModalFooter>
 					<DropdownMessage />
 
-					<DarkButton onClick={toggle1}>
-						Send
-					</DarkButton>
+					<DarkButton onClick={toggle1}>Send</DarkButton>
 				</ModalFooter>
 			</Modal>
 			<div className="marketItem mt-4">
