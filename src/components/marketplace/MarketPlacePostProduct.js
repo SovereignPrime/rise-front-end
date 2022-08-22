@@ -66,7 +66,7 @@ const MarketPlacePostProduct = (props) => {
 					id="register-form"
 					className="formMaster"
 					onSubmit={(event) => handleSubmit(event)}>
-					<label htmlFor="product name">Product Name: </label>
+					<label htmlFor="product name" className={classes.label}>Product Name: </label>
 					<input
 						type="text"
 						name="productName"
@@ -76,7 +76,7 @@ const MarketPlacePostProduct = (props) => {
 						required
 					/>
 
-					<label>Category:</label>
+					<label className={classes.label}>Category:</label>
 					<select
 						// className="dropDown"
 						name="category"
@@ -99,7 +99,7 @@ const MarketPlacePostProduct = (props) => {
 						<option value="Others">Others</option>
 					</select>
 
-					{!isFree && <label htmlFor="price">Price:</label>}
+					{!isFree && <label htmlFor="price" className={classes.label}>Price:</label>}
 					{!isFree && (
 						<input
 							className={classes.input}
@@ -111,7 +111,7 @@ const MarketPlacePostProduct = (props) => {
 						/>
 					)}
 
-					<label htmlFor="detail">Details: </label>
+					<label htmlFor="detail" className={classes.label}>Details: </label>
 					<textarea
 						id="message"
 						className={classes.detail}
@@ -125,6 +125,7 @@ const MarketPlacePostProduct = (props) => {
 					<br />
 
 					<input
+						className={classes.label}
 						type="file"
 						multiple="multiple"
 						accept="image/jpeg, image/png, image/jpg"
