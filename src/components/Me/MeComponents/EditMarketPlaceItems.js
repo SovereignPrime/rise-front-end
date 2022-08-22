@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
+import { isStringLiteral } from "typescript";
 
 const EditMarketPlaceItems = (props) => {
-  console.log(props.item);
-
+  console.log(props.item.files, "at top check this out please");
   const [thumbnail, setThumbnail] = useState(null);
   const [isFree, setIsFree] = useState(false);
   const [fileUploadInfo, setFileUploadInfo] = useState(false);
@@ -23,6 +23,7 @@ const EditMarketPlaceItems = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
 
+    console.log("submitted check this out please");
     const newProductName = prodNameRef.current.value;
     var price;
     if (!isFree) {
@@ -48,8 +49,6 @@ const EditMarketPlaceItems = (props) => {
       productId: props.item.productId,
     };
 
-    //console.log(newItem);
-
     //do the props.function before resetting refValues
     props.editItem(props.item.productId, newItem);
 
@@ -57,41 +56,53 @@ const EditMarketPlaceItems = (props) => {
     categoryRef.current.value = props.item.category;
     detailRef.current.value = "";
     priceRef.current.value = null;
+    props.handleModalToggle();
   };
 
-  console.log(props.item.category);
-
-  const hideFunction = (e) => {
-    console.log(e.target, "here is hide");
-    e.target.style.display = "none";
+  const reRenderFunction = () => {
+    // e.target.style.display = "none";
+    setToRender({});
   };
 
-  let tempFiles = props.item.files;
   //just holds a copy of props.item.files that we can edit
 
   const [itemFiles, setItemFiles] = useState(props.item.files);
 
+  //if(props.item.files !==)
+
+  useEffect(() => {
+    console.log(props.item.files, "check this out please");
+
+    setItemFiles(props.item.files);
+  }, [props.item]);
+  //checks if props.item has changed. This runs on every render lawl
+  //this should run ON EVERY RENDER, so a user's progress is not saved. Simply pass in a previousLookedAtPost parameter and if it is not homePage, then just call this again
+
   const [filesToShow, setFilesToShow] = useState();
+
+  const [toRender, setToRender] = useState({});
 
   useEffect(() => {
     console.log("RAN");
+    let tempFiles = itemFiles;
 
     setFilesToShow(
-      props.item.files.map((file) => {
+      itemFiles.map((file) => {
         return (
           <img
-            style={{ width: "200px" }}
-            src={file}
+            style={{ width: "200px", height: "500px" }}
+            src={typeof file === "string" ? file : URL.createObjectURL(file)}
             //src should assume file is an object
             onClick={(e) => {
               const start = tempFiles.indexOf(file);
               const deleteCount = 1;
               tempFiles.splice(start, deleteCount);
-              console.log(tempFiles, "LOOK HERE");
+
               //edits the copy
-              setItemFiles(tempFiles);
+              setItemFiles(tempFiles); //we want this useEffect to run again once onClick occurs
+
               //sets the edited copy to local version we will set as
-              hideFunction(e);
+              reRenderFunction();
 
               //hides it from view
               //could also just call another render of this file to get the same effect
@@ -102,7 +113,7 @@ const EditMarketPlaceItems = (props) => {
         );
       })
     );
-  }, [props.item, itemFiles]);
+  }, [itemFiles, toRender, setItemFiles]);
 
   return (
     <div>
@@ -183,13 +194,17 @@ const EditMarketPlaceItems = (props) => {
             //setFileUploadInfo(false);
           }}
           onChange={(event) => {
-            console.log(event.target.files[0], "new change here");
             if (itemFiles.length + event.target.files.length > 5) {
               alert("You can only have 5 files!");
             } else {
-              setItemFiles((prevFiles) => {
-                return [...prevFiles, event.target.files[0]];
-              });
+              console.log(event.target.files, "zororor");
+
+              for (let i in [...Array(event.target.files.length).keys()]) {
+                console.log(event.target.files[i], "wororor");
+                setItemFiles((prevFiles) => {
+                  return [...prevFiles, event.target.files[i]]; //When I do this, and click remove on one of them, it removes all uploaded files plus item [-1]. This is because we index off of tempFiles
+                });
+              }
             }
           }}
         />
