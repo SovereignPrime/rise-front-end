@@ -141,7 +141,7 @@ const Home = () => {
 						id="verification"
 						onClick={(e) => setRadioEl("verification")}
 					/>{" "}
-					<Label check>Valification</Label>
+					<Label check>Verification</Label>
 				</FormGroup>
 				<FormGroup className="radioEl">
 					<Input

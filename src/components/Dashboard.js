@@ -2,6 +2,8 @@ import { Link, Routes, Route, Outlet, useParams } from "react-router-dom";
 import MarketPlaceInputs from "./marketplace/MarketPlaceInputs";
 import Nirvana from "./wallet/Nirvana";
 import Home from "./home/Home";
+import SearchResults from "./SearchResults/SearchResults";
+
 import Matching from "./Matching/Matching";
 import Matched from "./Matching/Matched";
 import nirvana from "../styles/assets/nirvana.png";
@@ -78,6 +80,17 @@ const Dashboard = () => {
 							<div>
 								<h1>Home</h1>
 								<Home />
+							</div>
+						}
+					/>
+
+					<Route
+						path="SearchResults/*"
+						exact
+						element={
+							<div>
+								<h1>Search Results</h1>
+								<SearchResults />
 							</div>
 						}
 					/>
