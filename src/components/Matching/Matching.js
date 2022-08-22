@@ -8,6 +8,7 @@ import person4 from "../../styles/assets/person4.jpg";
 import person5 from "../../styles/assets/person5.jpg";
 import person6 from "../../styles/assets/person6.jpg";
 import person7 from "../../styles/assets/person7.jpg";
+import "./Matching.css";
 
 const Matching = () => {
 	const navigate = useNavigate();
