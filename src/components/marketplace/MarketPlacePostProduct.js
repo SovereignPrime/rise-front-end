@@ -67,19 +67,21 @@ const MarketPlacePostProduct = (props) => {
 					className="formMaster"
 					onSubmit={(event) => handleSubmit(event)}
 				>
-					<label htmlFor="product name">Product Name: </label>
+					<label htmlFor="product name" className={classes.label}>Product Name: </label>
 					<input
 						type="text"
 						name="productName"
+						className={classes.input}
 						ref={prodNameRef}
 						//onBlur={entryBoxValidator}
 						required
 					/>
 
-					<label>Category:</label>
+					<label className={classes.label}>Category:</label>
 					<select
-						className="dropDown"
+
 						name="category"
+						className={classes.input}
 						ref={categoryRef}
 						onChange={isFreeCheck}
 					>
@@ -98,15 +100,16 @@ const MarketPlacePostProduct = (props) => {
 						<option value="Garden & Outdoors">Garden & Outdoors</option>
 						<option value="Others">Others</option>
 					</select>
-					<p>
+					{/* <p>
 						{" "}
 						Note from dev: The CSS is bad for this modal, so you may not be able
 						to see the upload files button without a large screen
-					</p>
+					</p> */}
 
-					{!isFree && <label htmlFor="price">Price:</label>}
+					{!isFree && <label htmlFor="price" className={classes.label}>Price:</label>}
 					{!isFree && (
 						<input
+							className={classes.input}
 							type="number"
 							step=".01"
 							name="price"
@@ -115,10 +118,10 @@ const MarketPlacePostProduct = (props) => {
 						/>
 					)}
 
-					<label htmlFor="detail">Details: </label>
+					<label htmlFor="detail" className={classes.label}>Details: </label>
 					<textarea
+						className={classes.detail}
 						id="message"
-						className="message"
 						placeholder="Your Message"
 						name="detail"
 						cols="20"
@@ -127,9 +130,10 @@ const MarketPlacePostProduct = (props) => {
 						required
 					></textarea>
 					<br />
-					<DarkButton className={classes.button}>Post Product</DarkButton>
+
 
 					<input
+						className={classes.label}
 						type="file"
 						multiple="multiple"
 						accept="image/jpeg, image/png, image/jpg"
@@ -158,6 +162,7 @@ const MarketPlacePostProduct = (props) => {
 						</p>
 					)}
 
+					<DarkButton className={classes.button}>Post Product</DarkButton>
 					<output id="result" />
 				</form>
 			</div>

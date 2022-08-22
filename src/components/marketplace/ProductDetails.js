@@ -2,10 +2,6 @@ import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
-	incrementGood,
-	incrementBad,
-} from "../../store/features/marketItem/marketItemSlice";
-import {
 	Button,
 	Row,
 	Col,
@@ -39,6 +35,7 @@ import img1 from "../../styles/assets/img/jessie.png";
 import prod1 from "../../styles/assets/appwatch.jpg";
 import prod2 from "../../styles/assets/minicooper.jpeg";
 import prod3 from "../../styles/assets/ps5.jpeg";
+import { map } from "d3";
 
 const data = [
 	{
@@ -124,11 +121,18 @@ const ProductDetails = () => {
 	//     }
 	// ];
 
+	function toObject(arr) {
+		var rv = [];
+		for (var i = 0; i < arr.length; ++i)
+			rv[i] = { src: arr[i] };
+		return rv;
+	}
+
 	//check if it is not an array, change it to array first.
 	const items =
 		Array.isArray(finaldata[0].prodPic) === false
 			? [{ src: finaldata[0].prodPic }]
-			: finaldata[0].prodPic;
+			: toObject(finaldata[0].prodPic)
 
 	// Items array length
 	const itemLength = items.length - 1;
@@ -169,7 +173,7 @@ const ProductDetails = () => {
 						/>
 					</div>
 					<div className="photo">
-						<img src={item.src} width="135%" />
+						<img className="detail-img" src={item.src} />
 					</div>
 				</div>
 			</CarouselItem>
