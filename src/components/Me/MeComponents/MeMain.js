@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import EditProfile from "./EditProfile";
 import EditMarketPlaceItems from "./EditMarketPlaceItems";
 
@@ -6,6 +6,7 @@ import { LightButton } from "../../Buttons";
 
 const MeMain = () => {
   //user data should be a user's personal information and the user's marketplace posts
+  const [itemSearch, setItemSearch] = useState("");
   const [DUMMY_USER_DATA, setDUMMY_USER_DATA] = useState({
     firstName: "Jane",
     lastName: "Doe",
@@ -51,8 +52,9 @@ const MeMain = () => {
   const [itemToEdit, setItemToEdit] = useState(); //should be the object itself, not an index or equivalent pointer
 
   const editItem = (id, obj) => {
-    console.log(obj);
+    console.log("item has been edited, check this out please");
     let tempData = DUMMY_USER_DATA;
+
     for (let i in DUMMY_USER_DATA.marketPlacePosts) {
       if (tempData.marketPlacePosts[i].productId == id) {
         tempData.marketPlacePosts[i] = obj;
@@ -65,33 +67,40 @@ const MeMain = () => {
     //id should be used to locate objectToChange in array, and then replace that objectToChange with obj
   };
 
-  const marketPlacePostsDisplay = DUMMY_USER_DATA.marketPlacePosts.map(
-    (post) => (
-      <div key={post.productId}>
-        <p style={{ float: "left" }}>{post.productName}</p>
-        <img
-          src={post.thumbnail}
-          style={{ width: "20%", float: "left" }}
-          onClick={() => {
-            setItemToEdit(
-              DUMMY_USER_DATA.marketPlacePosts
-                .filter((item) => {
-                  return item.productId === post.productId;
-                })
-                .pop()
-              //without .pop() it returns [{...}]
-            );
+  var marketPlacePostsDisplay = DUMMY_USER_DATA.marketPlacePosts.map((post) => {
+    if (post.productName.toUpperCase().includes(itemSearch.toUpperCase())) {
+      return (
+        <div key={post.productId}>
+          <p style={{ float: "left" }}>{post.productName}</p>
+          <img
+            src={post.thumbnail}
+            style={{ width: "20%", float: "left" }}
+            onClick={() => {
+              setItemToEdit(
+                DUMMY_USER_DATA.marketPlacePosts
+                  .filter((item) => {
+                    return item.productId === post.productId;
+                  })
+                  .pop()
+                //without .pop() it returns [{...}]
+              );
 
-            //setShowEditItem(!showEditItem); //should only toggle if it is the same product, and should just setItemToEdit new object if it's a different product
-            setShowEditItem(true);
-          }}
-        />
-        {/*
+              //setShowEditItem(!showEditItem); //should only toggle if it is the same product, and should just setItemToEdit new object if it's a different product
+              setShowEditItem(true);
+            }}
+          />
+          {/*
         Each image should onClick lead to their page or to a page to edit it on
         */}
-      </div>
-    )
-  );
+        </div>
+      );
+    }
+  });
+
+  marketPlacePostsDisplay = marketPlacePostsDisplay.filter(function (item) {
+    return item !== undefined;
+  });
+
   const [showEditProfile, setShowEditProfile] = useState(false);
   const [showEditItem, setShowEditItem] = useState(false);
 
@@ -100,10 +109,12 @@ const MeMain = () => {
     //call this in EditProfile without parameters to close modal
   };
 
+  const handleItemModalToggle = () => {
+    setShowEditItem(!showEditItem);
+    //call this in EditProfile without parameters to close modal
+  };
+
   const editProfile = (newAddress, newOccupation, newBio, newSelfie) => {
-    console.log(newAddress);
-    console.log(newOccupation);
-    console.log(newBio);
     var tempProfile = DUMMY_USER_DATA;
     tempProfile.address = newAddress;
     tempProfile.occupation = newOccupation;
@@ -132,8 +143,20 @@ const MeMain = () => {
       </span>
 
       <h4>Your Market Place Items</h4>
-      {marketPlacePostsDisplay}
-      <LightButton>Manage Market Place Items</LightButton>
+      <label>Search</label>
+      <input
+        onChange={(e) => {
+          setItemSearch(e.target.value);
+        }}
+      />
+
+      {marketPlacePostsDisplay.length > 0 ? (
+        marketPlacePostsDisplay
+      ) : (
+        <p>No Items Found</p>
+      )}
+
+      <LightButton>Click an item to edit it</LightButton>
       {/* not yet implemented */}
       {showEditProfile && (
         <EditProfile
@@ -145,7 +168,11 @@ const MeMain = () => {
         />
       )}
       {showEditItem && (
-        <EditMarketPlaceItems item={itemToEdit} editItem={editItem} />
+        <EditMarketPlaceItems
+          item={itemToEdit}
+          editItem={editItem}
+          handleModalToggle={handleItemModalToggle}
+        />
       )}
     </div>
   );
