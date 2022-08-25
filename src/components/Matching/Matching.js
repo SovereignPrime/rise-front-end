@@ -22,7 +22,6 @@ const Matching = () => {
 	return (
 		<div className="matchingWrapper">
 			<div className="head">
-				<h1>Start to Connect </h1>
 				<hr className="solid" style={{ width: "800px" }}></hr>
 			</div>
 			<h1 className="matchingWord">
