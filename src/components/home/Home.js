@@ -1,5 +1,4 @@
-import { Link, Routes, Route, useEffect } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSliders, faPlus } from "@fortawesome/free-solid-svg-icons";
 import "bootstrap/dist/css/bootstrap.css";
@@ -66,6 +65,11 @@ const data = [
 const Home = () => {
 	let searchedArray = [];
 	const data = useSelector((state) => state.marketItem.marketItems);
+	const dataForUser = useSelector((state) => state.user.users);
+	const dataForUserAction = useSelector(
+		(state) => state.userAction.userActions
+	);
+	console.log(dataForUserAction);
 	const [action, setAction] = useState("");
 	const [filterBtnClicked, setFilterBtnClicked] = useState(false);
 	const [plusBtnClicked, setPlusBtnClicked] = useState(false);
@@ -268,7 +272,7 @@ const Home = () => {
 							</tbody>
 						</Table>
 					</div>
-					<div className="col-lg p-2 box">
+					<div className="col-lg p-2 box overflow-scroll">
 						<h3 style={{ textAlign: "left", marginTop: "5px" }}>
 							Verification
 						</h3>
@@ -280,7 +284,13 @@ const Home = () => {
 											<span className="dot"></span>2 Verification left
 										</Link>
 										<p></p>
-										<p>Brooke request the authentication </p>
+										{dataForUserAction?.map((actionType) => (
+											<div key={actionType.Id} className="">
+												<p className="col">
+													{actionType.perName} requests you verification
+												</p>
+											</div>
+										))}
 									</td>
 								</tr>
 							</tbody>

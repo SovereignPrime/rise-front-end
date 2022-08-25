@@ -5,7 +5,8 @@ import personMe from "../../styles/assets/personMe.jpg";
 import person2 from "../../styles/assets/person2.jpg";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { Input, Form } from "reactstrap";
+import MessageList from "../contact/MessageList/MessageList";
+
 import "./Matching.css";
 const Matched = () => {
 	const [counter, setCounter] = React.useState(3600);
@@ -20,13 +21,12 @@ const Matched = () => {
 	useEffect(() => {
 		setTimeout(() => {
 			navigate("../Home");
-		}, 3600000);
-	}, []);
+		}, 600000);
+	}, [counter]);
 
 	return (
 		<div className="matchedContainer">
-			<div className="leftWrapper">
-				<h1>Start to Connect</h1>
+			<div className="leftWrapper col-8">
 				<div className="head">
 					<hr className="solid" style={{ width: "700px" }}></hr>
 					<p className="text-secondary" style={{ textAlign: "right" }}>
@@ -59,11 +59,8 @@ const Matched = () => {
 				</div>
 			</div>
 
-			<div className="rightWrapper">
-				<h1>Message</h1>
-				<Form>
-					<Input id="exampleText" name="text" type="textarea" />
-				</Form>
+			<div className="rightWrapper col-4 over-scrol">
+				<MessageList />
 			</div>
 		</div>
 	);

@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import img1 from "../../../styles/assets/img/jessie.png";
 
-const usersSlice = createSlice({
-	name: "users",
+const userSlice = createSlice({
+	name: "user",
 	initialState: {
 		users: [
 			{
@@ -17,11 +17,29 @@ const usersSlice = createSlice({
 				perPic: img1,
 				Intro: "I like everything about vehicle"
 			},
+			{
+				Id: 3,
+				perName: "Sam2 Smith",
+				perPic: img1,
+				Intro: "I like everything about vehicle"
+			},
+			{
+				Id: 4,
+				perName: "Sam3 Smith",
+				perPic: img1,
+				Intro: "I like everything about vehicle"
+			},
+			{
+				Id: 5,
+				perName: "Sam4 Smith",
+				perPic: img1,
+				Intro: "I like everything about vehicle"
+			}
 		]
 	},
 	reducers: {}
 });
 
-export const { } = usersSlice.actions;
+export const {} = userSlice.actions;
 
-export default usersSlice;
+export default userSlice;

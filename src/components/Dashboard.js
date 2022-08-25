@@ -77,8 +77,7 @@ const Dashboard = () => {
 						path="Home/*"
 						exact
 						element={
-							<div>
-								<h1>Home</h1>
+							<div className="mt-4">
 								<Home />
 							</div>
 						}
