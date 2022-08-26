@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import { Card, Row, Col } from "reactstrap";
 import { Tooltip, BarChart, XAxis, YAxis, Legend, CartesianGrid, Bar } from "recharts";
+import PieChart from "../../PieChart/PieChart";
 
 function VerificationStatus() {
     const data = [
@@ -19,7 +20,9 @@ function VerificationStatus() {
                 <Col className="col-12 border text-start">Authitic User</Col>
             </Row>
             <Row className="row-4 py-3">
-                <Col className="col-7 border me-5">2</Col>
+                <Col className="col-7 border me-5">
+                    <PieChart />
+                </Col>
                 <Col className="col-4">
                     <Row className="border mb-3">
                         <p style={{margin: 0, fontSize: 45, fontWeight: "bold"}}>23</p>
@@ -60,3 +63,6 @@ function VerificationStatus() {
 }
 
 export default VerificationStatus;
+
+
+
