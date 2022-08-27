@@ -10,7 +10,7 @@ import CancelledTransactions from "../marketplace/nirvanaPages/CancelledTransact
 import NirvanaNotifications from "../marketplace/nirvanaPages/NirvanaNotifications";
 import FulfilledPayments from "../marketplace/nirvanaPages/FulfilledPayments";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCreditCard } from "@fortawesome/free-solid-svg-icons";
+import { faAngleDown, faCreditCard } from "@fortawesome/free-solid-svg-icons";
 
 // Nirvana/Payment Pages will live here.
 
@@ -27,7 +27,7 @@ const Nirvana = () => {
           </div>
           <ul>
             <div className="collapsible">
-              <Collapsible trigger="Payments">
+              <Collapsible trigger="Payments &or;">
                   <li>
                     {" "}
                     <Link to="RequestPayment">
@@ -44,7 +44,7 @@ const Nirvana = () => {
                   </li>
               </Collapsible>
 
-              <Collapsible trigger="Transaction" caret>
+              <Collapsible trigger="Transaction &or;">
                 <li>
                   {" "}
                   <Link to="CompletedTransactions">Completed Transactions</Link>
