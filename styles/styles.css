@@ -685,24 +685,6 @@ ul li ul {
 	background-color: #f1f1f1;
 }
 
-.makePaymentButton {
-	background-color: #17202a;
-	color: #ffffff;
-	margin: 20px;
-	border: none;
-	padding: 1em 2em;
-	text-transform: uppercase;
-}
-
-.reqPaymentButton {
-	background-color: #17202a;
-	color: #ffffff;
-	margin: 20px;
-	border: none;
-	padding: 1em 2em;
-	text-transform: uppercase;
-}
-
 .mainBox {
 	display: -webkit-box;
 	display: -ms-flexbox;

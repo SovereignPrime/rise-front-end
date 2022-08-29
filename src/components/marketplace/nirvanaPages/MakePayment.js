@@ -46,7 +46,7 @@ const MakePayment = () => {
             <input type="text" name="Note" required />
           </div>
         </form>
-        <div className="makePaymentButton">
+        <div>
           <PaymentButton onClick={toggle}>Make Payment</PaymentButton>
           <Modal
             isOpen={makePaymentModal}
