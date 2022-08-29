@@ -648,6 +648,8 @@ ul li ul {
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;
+	padding-left: 1rem;
+	margin: 0px;
 	list-style: none;
 	-webkit-box-orient: vertical;
 	-webkit-box-direction: normal;
@@ -663,7 +665,6 @@ ul li ul {
 	background-color: #ffffff;
 	color: #17202a;
 	cursor: pointer;
-	padding: 18px;
 	width: 100%;
 	border: none;
 	text-align: left;
@@ -683,24 +684,6 @@ ul li ul {
 	display: none;
 	overflow: hidden;
 	background-color: #f1f1f1;
-}
-
-.makePaymentButton {
-	background-color: #17202a;
-	color: #ffffff;
-	margin: 20px;
-	border: none;
-	padding: 1em 2em;
-	text-transform: uppercase;
-}
-
-.reqPaymentButton {
-	background-color: #17202a;
-	color: #ffffff;
-	margin: 20px;
-	border: none;
-	padding: 1em 2em;
-	text-transform: uppercase;
 }
 
 .mainBox {

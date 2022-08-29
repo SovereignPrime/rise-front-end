@@ -56,7 +56,7 @@ const RequestPayment = () => {
             <input type="text" name="Note" defaultValue="Enter Note" required />
           </div>
         </form>
-        <div className="reqPaymentButton">
+        <div>
           <PaymentButton onClick={toggle}>Request Payment</PaymentButton>
           <Modal
             isOpen={reqPaymentModal}

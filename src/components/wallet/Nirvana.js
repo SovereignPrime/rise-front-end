@@ -1,7 +1,7 @@
 import React from "react";
 import Collapsible from "react-collapsible";
 import { Link, Routes, Route, Outlet, useParams } from "react-router-dom";
-import { Col } from "reactstrap";
+import { Col, DropdownItem } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 import MakePayment from "../marketplace/nirvanaPages/MakePayment";
 import RequestPayment from "../marketplace/nirvanaPages/RequestPayment";
@@ -28,21 +28,22 @@ const Nirvana = () => {
           <ul>
             <div className="collapsible">
               <Collapsible trigger="Payments &or;">
-                  <li>
-                    {" "}
-                    <Link to="RequestPayment">
-                      <FontAwesomeIcon className="icon" icon={faCreditCard} />
-                      Request a Payment
-                    </Link>
-                  </li>
-                  <li>
-                    {" "}
-                    <Link to="MakePayment">
-                      <FontAwesomeIcon className="icon" icon={faCreditCard} />
-                      Make a Payment
-                    </Link>
-                  </li>
+                <li>
+                  {" "}
+                  <Link to="RequestPayment">
+                    <FontAwesomeIcon className="icon" icon={faCreditCard} />
+                    Request a Payment
+                  </Link>
+                </li>
+                <li>
+                  {" "}
+                  <Link to="MakePayment">
+                    <FontAwesomeIcon className="icon" icon={faCreditCard} />
+                    Make a Payment
+                  </Link>
+                </li>
               </Collapsible>
+              <DropdownItem divider />
 
               <Collapsible trigger="Transaction &or;">
                 <li>
@@ -54,9 +55,11 @@ const Nirvana = () => {
                   <Link to="CancelledTransactions">Cancelled Transactions</Link>
                 </li>
               </Collapsible>
+              <DropdownItem divider />
               <li>
                 <Link to="NirvanaNotifications">Notification</Link>
               </li>
+              <DropdownItem divider />
               {/* As per Figma, no submenu options for Fullfilled Payments */}
               <li>
                 <Link to="FulfilledPayments">Fulfilled Payments</Link>
