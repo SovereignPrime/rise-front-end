@@ -53,7 +53,15 @@ const SearchResults = () => {
         <div className="container">
             {results.map((result, i) => {
                 return (
-                    <p>{result.prodName}</p>
+                    <div className="result">
+                        <div className="profile">
+                            <img src={result.perPic} alt="profile" width="50px"/>
+                            <p>{result.perName}</p>
+                        </div>
+                        <p className="info">{result.prodName}</p>
+                        <p className="info">${result.Price}</p>
+                        {/* <button text="Details" width="30px"/> */}
+                    </div>
                 )
             })}
         </div>
