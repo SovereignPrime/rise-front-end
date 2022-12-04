@@ -62,7 +62,8 @@ const data = [
 	}
 ];
 
-const Home = () => {
+const Home = (props) => {
+	// properties: searchTerm, setSearchTerm
 	let searchedArray = [];
 	const data = useSelector((state) => state.marketItem.marketItems);
 	const dataForUser = useSelector((state) => state.user.users);
@@ -94,6 +95,7 @@ const Home = () => {
 		
 		// Take the user to the search results page
 		if (searchEl !== "" && radioEL !== "") {
+			props.setSearchTerm(searchEl);
 			window.open("#/Dashboard/SearchResults/", "_self");
 		}
 		else {

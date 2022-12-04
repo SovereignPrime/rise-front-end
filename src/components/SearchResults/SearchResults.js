@@ -47,10 +47,12 @@ let results = [
         Date: "2021-05-27",
     },
 ];
-const SearchResults = () => {
+const SearchResults = (props) => {
+    // properties: searchTerm, setSearchTerm
 
     return (
         <div className="container">
+            <h1>Search Results for: {props.searchTerm}</h1>
             {results.map((result, i) => {
                 return (
                     <div className="result">

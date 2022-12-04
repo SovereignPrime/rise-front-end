@@ -1,4 +1,5 @@
 import { Link, Routes, Route, Outlet, useParams } from "react-router-dom";
+import React from "react";
 import MarketPlaceInputs from "./marketplace/MarketPlaceInputs";
 import Nirvana from "./wallet/Nirvana";
 import Home from "./home/Home";
@@ -21,6 +22,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const Dashboard = () => {
+	// Search bar terms
+	const [searchTerm, setSearchTerm] = React.useState("")
+
 	return (
 		<Row className="dashboard container-xl px-0 mx-0">
 			<Col className="col-2 border-end px-0">
@@ -78,7 +82,7 @@ const Dashboard = () => {
 						exact
 						element={
 							<div className="mt-4">
-								<Home />
+								<Home searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 							</div>
 						}
 					/>
@@ -87,10 +91,7 @@ const Dashboard = () => {
 						path="SearchResults/*"
 						exact
 						element={
-							<div>
-								<h1>Search Results</h1>
-								<SearchResults />
-							</div>
+							<SearchResults searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 						}
 					/>
 
