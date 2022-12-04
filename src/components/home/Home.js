@@ -89,8 +89,18 @@ const Home = () => {
 	};
 
 	const handleChange = (e) => {
-		console.log(radioEL);
-		console.log(searchEl);
+		console.log("Radio selection: " + radioEL);
+		console.log("Searched: " + searchEl);
+		
+		// Take the user to the search results page
+		if (searchEl !== "" && radioEL !== "") {
+			window.open("#/Dashboard/SearchResults/", "_self");
+		}
+		else {
+			alert("Please select a category and enter a search term");
+		}
+		// TODO: Send the searchEl to the search results page
+
 	};
 
 	// Modal1 open state
