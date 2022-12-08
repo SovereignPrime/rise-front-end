@@ -187,6 +187,7 @@ const Home = (props) => {
 							placeholder="Enter here to Search..."
 							className="searchInput"
 							style={{ width: "70%" }}
+							value={searchEl}
 							onChange={(e) => setSearchEl(e.target.value)}>
 						</Input>
 						<Button
@@ -199,9 +200,12 @@ const Home = (props) => {
 					</div>
 					<div className="dropdown">
 						{results.filter(item => {
-							return searchEl && item.prodName.toLocaleLowerCase().startsWith(searchEl.toLowerCase());
+							const searchElLower = searchEl.toLowerCase();
+							const prodNameLower = item.prodName.toLowerCase()
+
+							return searchEl && prodNameLower.startsWith(searchElLower) && searchElLower != prodNameLower;
 						}).map((item) => {
-							return <div className="dropdown-row">{item.prodName}</div>
+							return <div className="dropdown-row" onClick={() => setSearchEl(item.prodName)}>{item.prodName}</div>
 						})}
 					</div>
 				</div>
