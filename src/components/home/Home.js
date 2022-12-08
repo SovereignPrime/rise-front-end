@@ -29,6 +29,10 @@ import person4 from "../../styles/assets/person4.jpg";
 import MarketPlace from "../Me/MeComponents/marketPlace";
 import Message from "../Me/MeComponents/message";
 
+import img1 from "../../styles/assets/img/jessie.png";
+import prod1 from "../../styles/assets/appwatch.jpg";
+import prod2 from "../../styles/assets/minicooper.jpeg";
+import prod3 from "../../styles/assets/ps5.jpeg";
 const data = [
 	{
 		userName: "user 1",
@@ -60,6 +64,48 @@ const data = [
 		typeOfaction: "MarketPlace",
 		timeOfAction: "17h"
 	}
+];
+
+let results = [
+    {
+        Id: 1,
+        perName: "Eric Smith",
+        perPic: img1,
+        prodName: "Apple Watch",
+        Category: "electronics",
+        Price: 450,
+        Detail: "this is a apple watch",
+        prodPic: prod1,
+        Good: 14,
+        Bad: 2,
+        Date: "2022-05-25",
+    },
+    {
+        Id: 2,
+        perName: "Eric Smith",
+        perPic: img1,
+        prodName: "MINI cooper",
+        Category: "vehicles",
+        Price: 1000,
+        Detail: "this is a car",
+        prodPic: prod2,
+        Good: 14,
+        Bad: 2,
+        Date: "2022-05-22",
+    },
+    {
+        Id: 3,
+        perName: "Eric Smith",
+        perPic: img1,
+        prodName: "PS5",
+        Category: "entertainment",
+        Price: 200,
+        Detail: "this is a PS station",
+        prodPic: prod3,
+        Good: 14,
+        Bad: 2,
+        Date: "2021-05-27",
+    },
 ];
 
 const Home = (props) => {
@@ -101,8 +147,6 @@ const Home = (props) => {
 		else {
 			alert("Please select a category and enter a search term");
 		}
-		// TODO: Send the searchEl to the search results page
-
 	};
 
 	// Modal1 open state
@@ -125,22 +169,45 @@ const Home = (props) => {
 
 	return (
 		<div style={{ marginLeft: " 2%" }}>
-			<div style={{ display: "flex" }}>
-				<Input
-					placeholder="Say something..."
-					className="searchInput"
-					style={{ width: "70%" }}
-					onChange={(e) => setSearchEl(e.target.value)}></Input>
-				<Button
-					className="btn-search"
-					color="transparent"
-					style={{ borderRadius: "10%" }}
-					onClick={handleChange}>
-					<FontAwesomeIcon icon={faMagnifyingGlass} />
-				</Button>
+			<div>
+				{/* <div className="search-container">
+						<div className="search-inner">
+							<input type="text" value={value} onChange={onChange} />
+							<button onClick={() => onSearch(value)}>Search</button>
+						</div>
+					<div className="dropdown">
+					{results.map((item) => {
+						return <div className="dropdown-row">{item.prodName}</div>
+					})}
+					</div>
+				</div> */}
+				<div className="search-container">
+					<div className="search-inner">
+						<Input
+							placeholder="Enter here to Search..."
+							className="searchInput"
+							style={{ width: "70%" }}
+							onChange={(e) => setSearchEl(e.target.value)}>
+						</Input>
+						<Button
+							className="btn-search"
+							color="transparent"
+							style={{ borderRadius: "10%" }}
+							onClick={handleChange}>
+							<FontAwesomeIcon icon={faMagnifyingGlass} />
+						</Button>
+					</div>
+					<div className="dropdown">
+						{results.filter(item => {
+							return searchEl && item.prodName.toLocaleLowerCase().startsWith(searchEl.toLowerCase());
+						}).map((item) => {
+							return <div className="dropdown-row">{item.prodName}</div>
+						})}
+					</div>
+				</div>
 			</div>
 
-			<div style={{ display: "flex" }} className="radios">
+			<div style={{ display: "flex", marginTop: "1rem" }} className="radios">
 				<FormGroup className="radioEl">
 					<Input
 						name="radioEl"
