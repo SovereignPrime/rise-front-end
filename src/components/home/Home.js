@@ -169,45 +169,32 @@ const Home = (props) => {
 
 	return (
 		<div style={{ marginLeft: " 2%" }}>
-			<div>
-				{/* <div className="search-container">
-						<div className="search-inner">
-							<input type="text" value={value} onChange={onChange} />
-							<button onClick={() => onSearch(value)}>Search</button>
-						</div>
-					<div className="dropdown">
-					{results.map((item) => {
-						return <div className="dropdown-row">{item.prodName}</div>
-					})}
-					</div>
-				</div> */}
-				<div className="search-container">
-					<div className="search-inner">
-						<Input
-							placeholder="Enter here to Search..."
-							className="searchInput"
-							style={{ width: "70%" }}
-							value={searchEl}
-							onChange={(e) => setSearchEl(e.target.value)}>
-						</Input>
-						<Button
-							className="btn-search"
-							color="transparent"
-							style={{ borderRadius: "10%" }}
-							onClick={handleChange}>
-							<FontAwesomeIcon icon={faMagnifyingGlass} />
-						</Button>
-					</div>
-					<div className="dropdown">
-						{results.filter(item => {
-							const searchElLower = searchEl.toLowerCase();
-							const prodNameLower = item.prodName.toLowerCase()
+			<div className="search-container">
+				<div className="search-inner">
+					<Input
+						placeholder="Enter here to Search..."
+						className="search-input"
+						value={searchEl}
+						onChange={(e) => setSearchEl(e.target.value)}>
+					</Input>
+					<Button
+						className="btn-search"
+						color="transparent"
+						onClick={handleChange}>
+						<FontAwesomeIcon icon={faMagnifyingGlass} />
+					</Button>
+				</div>
+				<div className="dropdown">
+					{results.filter(item => {
+						const searchElLower = searchEl.toLowerCase();
+						const prodNameLower = item.prodName.toLowerCase()
 
-							return searchEl && prodNameLower.startsWith(searchElLower) && searchElLower != prodNameLower;
-						}).map((item) => {
-							return <div className="dropdown-row" onClick={() => setSearchEl(item.prodName)}>{item.prodName}</div>
-						})}
-					</div>
+						return searchEl && prodNameLower.startsWith(searchElLower) && searchElLower !== prodNameLower;
+					})
+					.slice(0, 10)
+					.map((item) => {
+						return <div className="dropdown-row" onClick={() => setSearchEl(item.prodName)}>{item.prodName}</div>
+					})}
 				</div>
 			</div>
 
