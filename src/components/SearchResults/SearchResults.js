@@ -30,19 +30,29 @@ const SearchResults = (props) => {
     return (
         <div className="container">
             <h1>Search Results for: {props.searchTerm}</h1>
-            {props.shoppingItes.filter(item => {
+            {props.shoppingItems.filter(item => {
                 {/* For each word of the item */}
-                const words = item.prodName.toLowerCase().split(' ');
+                const itemName = item.prodName.toLowerCase();
+                const searchTerm = props.searchTerm.toLowerCase();
+                const words = itemName.split(' ');
                 let matches1Word = false;
 
+                {/* If the search term approximates the entire word */}
+                matches1Word = levenshteinDistance(itemName, searchTerm) <= 3;
+                console.log(itemName, searchTerm);
+                console.log(matches1Word);
+
                 {/* If the search term approximately matches any word of the current item, return true */}
-                words.forEach((word, i) => {
-                    console.log("Word: " + word, "i: " + i);
-                    const distance = levenshteinDistance(word, props.searchTerm);
-                    if (distance <= 3) {
-                        matches1Word = true;
-                    }
-                })
+                if (!matches1Word){
+                    words.forEach((word, i) => {
+                        console.log("Word: " + word, "i: " + i);
+                        const distance = levenshteinDistance(word, searchTerm);
+                        if (distance <= 3) {
+                            matches1Word = true;
+                        }
+                    })
+                }
+
                 return matches1Word
             })
             .map((result, i) => {

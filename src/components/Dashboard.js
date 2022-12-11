@@ -29,9 +29,7 @@ import {
 const Dashboard = () => {
 	// Search bar terms
 	const [searchTerm, setSearchTerm] = useState("")
-	const [shoppingItems, setShoppingItems] = useState("")
-
-	setShoppingItems([
+	const [shoppingItems, setShoppingItems] = useState([
 		{
 			Id: 1,
 			perName: "Eric Smith",
@@ -84,7 +82,7 @@ const Dashboard = () => {
 			Bad: 2,
 			Date: "2021-05-27",
 		}
-	]);
+	])
 
 	return (
 		<Row className="dashboard container-xl px-0 mx-0">
@@ -143,8 +141,7 @@ const Dashboard = () => {
 						exact
 						element={
 							<div className="mt-4">
-								<Home searchTerm={searchTerm} setSearchTerm={setSearchTerm}
-								shoppingItems={shoppingItems} setShoppingItems={setShoppingItems} />
+								<Home searchTerm={searchTerm} setSearchTerm={setSearchTerm} shoppingItems={shoppingItems}/>
 							</div>
 						}
 					/>
@@ -153,8 +150,7 @@ const Dashboard = () => {
 						path="SearchResults/*"
 						exact
 						element={
-							<SearchResults searchTerm={searchTerm} setSearchTerm={setSearchTerm}
-							shoppingItems={shoppingItems} setShoppingItems={setShoppingItems} />
+							<SearchResults searchTerm={searchTerm} setSearchTerm={setSearchTerm} shoppingItems={shoppingItems}/>
 						}
 					/>
 
