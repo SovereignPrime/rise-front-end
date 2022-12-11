@@ -159,6 +159,7 @@ const Home = (props) => {
 						type="radio"
 						id="notification"
 						onClick={(e) => setRadioEl("notification")}
+						value
 					/>{" "}
 					<Label check>Notification</Label>
 				</FormGroup>
@@ -177,6 +178,7 @@ const Home = (props) => {
 						type="radio"
 						id="marketPlace"
 						onClick={(e) => setRadioEl("Marketplace")}
+						defaultChecked
 					/>{" "}
 					<Label check>Marketplace</Label>
 				</FormGroup>
