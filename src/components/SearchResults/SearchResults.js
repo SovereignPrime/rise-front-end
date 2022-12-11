@@ -1,54 +1,6 @@
 import React from 'react';
 import "./searchResults.scss";
 
-import img1 from "../../styles/assets/img/jessie.png";
-import prod1 from "../../styles/assets/appwatch.jpg";
-import prod2 from "../../styles/assets/minicooper.jpeg";
-import prod3 from "../../styles/assets/ps5.jpeg";
-import { isConstructorDeclaration } from 'typescript';
-
-let results = [
-    {
-        Id: 1,
-        perName: "Eric Smith",
-        perPic: img1,
-        prodName: "Apple Watch",
-        Category: "electronics",
-        Price: 450,
-        Detail: "this is a apple watch",
-        prodPic: prod1,
-        Good: 14,
-        Bad: 2,
-        Date: "2022-05-25",
-    },
-    {
-        Id: 2,
-        perName: "Eric Smith",
-        perPic: img1,
-        prodName: "MINI cooper",
-        Category: "vehicles",
-        Price: 1000,
-        Detail: "this is a car",
-        prodPic: prod2,
-        Good: 14,
-        Bad: 2,
-        Date: "2022-05-22",
-    },
-    {
-        Id: 3,
-        perName: "Eric Smith",
-        perPic: img1,
-        prodName: "PS5",
-        Category: "entertainment",
-        Price: 200,
-        Detail: "this is a PS station",
-        prodPic: prod3,
-        Good: 14,
-        Bad: 2,
-        Date: "2021-05-27",
-    },
-];
-
 // Search algorithm approximation for misspellings
 const levenshteinDistance = (str1 = '', str2 = '') => {
     const track = Array(str2.length + 1).fill(null).map(() =>
@@ -73,15 +25,25 @@ const levenshteinDistance = (str1 = '', str2 = '') => {
   };
 
 const SearchResults = (props) => {
-    // properties: searchTerm, setSearchTerm
+    // properties: searchTerm, shoppingItems
 
     return (
         <div className="container">
             <h1>Search Results for: {props.searchTerm}</h1>
-            {results.filter(item => {
-                const distance = levenshteinDistance(item.prodName.toLowerCase(), props.searchTerm);
-                console.log("Distance: " + distance);
-                return distance <= 3;
+            {props.shoppingItes.filter(item => {
+                {/* For each word of the item */}
+                const words = item.prodName.toLowerCase().split(' ');
+                let matches1Word = false;
+
+                {/* If the search term approximately matches any word of the current item, return true */}
+                words.forEach((word, i) => {
+                    console.log("Word: " + word, "i: " + i);
+                    const distance = levenshteinDistance(word, props.searchTerm);
+                    if (distance <= 3) {
+                        matches1Word = true;
+                    }
+                })
+                return matches1Word
             })
             .map((result, i) => {
                 return (

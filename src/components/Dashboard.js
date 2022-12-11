@@ -1,5 +1,5 @@
 import { Link, Routes, Route, Outlet, useParams } from "react-router-dom";
-import React from "react";
+import React, { useState } from "react";
 import MarketPlaceInputs from "./marketplace/MarketPlaceInputs";
 import Nirvana from "./wallet/Nirvana";
 import Home from "./home/Home";
@@ -12,6 +12,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Contact from "./contact/Contact";
 import Me from "./Me/Me.js";
 
+import img1 from "../styles/assets/img/jessie.png";
+import prod1 from "../styles/assets/appwatch.jpg";
+import prod2 from "../styles/assets/minicooper.jpeg";
+import prod3 from "../styles/assets/ps5.jpeg";
+
 import { Container, Row, Col } from "reactstrap";
 import {
 	faHouse,
@@ -23,7 +28,63 @@ import {
 
 const Dashboard = () => {
 	// Search bar terms
-	const [searchTerm, setSearchTerm] = React.useState("")
+	const [searchTerm, setSearchTerm] = useState("")
+	const [shoppingItems, setShoppingItems] = useState("")
+
+	setShoppingItems([
+		{
+			Id: 1,
+			perName: "Eric Smith",
+			perPic: null,
+			prodName: "Apple Watch",
+			Category: "electronics",
+			Price: 450,
+			Detail: "this is a apple watch",
+			prodPic: prod1,
+			Good: 14,
+			Bad: 2,
+			Date: "2022-05-25",
+		},
+		{
+			Id: 2,
+			perName: "Eric Smith",
+			perPic: null,
+			prodName: "MINI cooper",
+			Category: "vehicles",
+			Price: 1000,
+			Detail: "this is a car",
+			prodPic: prod2,
+			Good: 14,
+			Bad: 2,
+			Date: "2022-05-22",
+		},
+		{
+			Id: 3,
+			perName: "Eric Smith",
+			perPic: img1,
+			prodName: "PS5",
+			Category: "entertainment",
+			Price: 200,
+			Detail: "this is a PS station",
+			prodPic: prod3,
+			Good: 14,
+			Bad: 2,
+			Date: "2021-05-27",
+		},
+		{
+			Id: 4,
+			perName: "Eric Smith",
+			perPic: img1,
+			prodName: "Samsung Galaxy Note 10+",
+			Category: "Technology",
+			Price: 200,
+			Detail: "this is a PS station",
+			prodPic: prod3,
+			Good: 14,
+			Bad: 2,
+			Date: "2021-05-27",
+		}
+	]);
 
 	return (
 		<Row className="dashboard container-xl px-0 mx-0">
@@ -82,7 +143,8 @@ const Dashboard = () => {
 						exact
 						element={
 							<div className="mt-4">
-								<Home searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+								<Home searchTerm={searchTerm} setSearchTerm={setSearchTerm}
+								shoppingItems={shoppingItems} setShoppingItems={setShoppingItems} />
 							</div>
 						}
 					/>
@@ -91,7 +153,8 @@ const Dashboard = () => {
 						path="SearchResults/*"
 						exact
 						element={
-							<SearchResults searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+							<SearchResults searchTerm={searchTerm} setSearchTerm={setSearchTerm}
+							shoppingItems={shoppingItems} setShoppingItems={setShoppingItems} />
 						}
 					/>
 
