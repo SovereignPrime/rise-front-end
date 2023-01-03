@@ -28,61 +28,7 @@ import {
 
 const Dashboard = () => {
 	// Search bar terms
-	const [searchTerm, setSearchTerm] = useState("")
-	const [shoppingItems, setShoppingItems] = useState([
-		{
-			Id: 1,
-			perName: "Eric Smith",
-			perPic: null,
-			prodName: "Apple Watch",
-			Category: "electronics",
-			Price: 450,
-			Detail: "this is a apple watch",
-			prodPic: prod1,
-			Good: 14,
-			Bad: 2,
-			Date: "2022-05-25",
-		},
-		{
-			Id: 2,
-			perName: "Eric Smith",
-			perPic: null,
-			prodName: "MINI cooper",
-			Category: "vehicles",
-			Price: 1000,
-			Detail: "this is a car",
-			prodPic: prod2,
-			Good: 14,
-			Bad: 2,
-			Date: "2022-05-22",
-		},
-		{
-			Id: 3,
-			perName: "Eric Smith",
-			perPic: img1,
-			prodName: "PS5",
-			Category: "entertainment",
-			Price: 200,
-			Detail: "this is a PS station",
-			prodPic: prod3,
-			Good: 14,
-			Bad: 2,
-			Date: "2021-05-27",
-		},
-		{
-			Id: 4,
-			perName: "Eric Smith",
-			perPic: img1,
-			prodName: "Samsung Galaxy Note 10+",
-			Category: "Technology",
-			Price: 200,
-			Detail: "this is a PS station",
-			prodPic: prod3,
-			Good: 14,
-			Bad: 2,
-			Date: "2021-05-27",
-		}
-	])
+	const [searchTerm, setSearchTerm] = useState("");
 
 	return (
 		<Row className="dashboard container-xl px-0 mx-0">
@@ -141,7 +87,7 @@ const Dashboard = () => {
 						exact
 						element={
 							<div className="mt-4">
-								<Home searchTerm={searchTerm} setSearchTerm={setSearchTerm} shoppingItems={shoppingItems}/>
+								<Home searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
 							</div>
 						}
 					/>
@@ -150,7 +96,7 @@ const Dashboard = () => {
 						path="SearchResults/*"
 						exact
 						element={
-							<SearchResults searchTerm={searchTerm} setSearchTerm={setSearchTerm} shoppingItems={shoppingItems}/>
+							<SearchResults searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
 						}
 					/>
 

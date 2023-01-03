@@ -63,7 +63,7 @@ const data = [
 ];
 
 const Home = (props) => {
-	// properties: searchTerm, shoppingItems
+	// properties: searchTerm
 	let searchedArray = [];
 	const data = useSelector((state) => state.marketItem.marketItems);
 	const dataForUser = useSelector((state) => state.user.users);
@@ -139,7 +139,8 @@ const Home = (props) => {
 					</Button>
 				</div>
 				<div className="dropdown">
-					{props.shoppingItems.filter(item => {
+					{	
+						data.filter(item => {
 						const searchElLower = searchEl.toLowerCase();
 						const prodNameLower = item.prodName.toLowerCase()
 

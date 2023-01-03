@@ -1,5 +1,7 @@
 import React from 'react';
+import CardObject from '../Card/CardObject';
 import "./searchResults.scss";
+import { useSelector } from 'react-redux';
 
 // Search algorithm approximation for misspellings
 const levenshteinDistance = (str1 = '', str2 = '') => {
@@ -26,48 +28,41 @@ const levenshteinDistance = (str1 = '', str2 = '') => {
 
 const SearchResults = (props) => {
     // properties: searchTerm, shoppingItems
+	const shoppingItems = useSelector((state) => state.marketItem.marketItems);
+
+    // Filter search
+    const filteredShoppingItems = shoppingItems.filter(item => {
+        /* For each word of the item */
+        const itemName = item.prodName.toLowerCase();
+        const searchTerm = props.searchTerm.toLowerCase();
+        const words = itemName.split(' ');
+        let matches1Word = false;
+
+        /* If the search term approximates the entire word */
+        matches1Word = levenshteinDistance(itemName, searchTerm) <= 3;
+        console.log(itemName, searchTerm);
+        console.log(matches1Word);
+
+        /* If the search term approximately matches any word of the current item, return true */
+        if (!matches1Word){
+            words.forEach((word, i) => {
+                console.log("Word: " + word, "i: " + i);
+                const distance = levenshteinDistance(word, searchTerm);
+                if (distance <= 3) {
+                    matches1Word = true;
+                }
+            })
+        }
+
+        return matches1Word
+    })
 
     return (
         <div className="container">
             <h1>Search Results for: {props.searchTerm}</h1>
-            {props.shoppingItems.filter(item => {
-                {/* For each word of the item */}
-                const itemName = item.prodName.toLowerCase();
-                const searchTerm = props.searchTerm.toLowerCase();
-                const words = itemName.split(' ');
-                let matches1Word = false;
 
-                {/* If the search term approximates the entire word */}
-                matches1Word = levenshteinDistance(itemName, searchTerm) <= 3;
-                console.log(itemName, searchTerm);
-                console.log(matches1Word);
-
-                {/* If the search term approximately matches any word of the current item, return true */}
-                if (!matches1Word){
-                    words.forEach((word, i) => {
-                        console.log("Word: " + word, "i: " + i);
-                        const distance = levenshteinDistance(word, searchTerm);
-                        if (distance <= 3) {
-                            matches1Word = true;
-                        }
-                    })
-                }
-
-                return matches1Word
-            })
-            .map((result, i) => {
-                return (
-                    <div className="result">
-                        <div className="profile">
-                            <img src={result.perPic} alt="profile" width="50px"/>
-                            <p>{result.perName}</p>
-                        </div>
-                        <p className="info">{result.prodName}</p>
-                        <p className="info">${result.Price}</p>
-                        {/* <button text="Details" width="30px"/> */}
-                    </div>
-                )
-            })}
+            {/* Display Results */}
+            <CardObject param={filteredShoppingItems}></CardObject>
         </div>
     )
 }
