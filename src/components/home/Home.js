@@ -134,7 +134,9 @@ const Home = (props) => {
 						onChange={(e) => setSearchEl(e.target.value)}>
 					</Input>
 					{/* Sort by */}
-					
+					<div>
+						Hello
+					</div>
 					{/* Container for price range */}
 					<Button
 						className="btn-search"

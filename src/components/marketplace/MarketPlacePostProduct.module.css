@@ -1,0 +1,69 @@
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.75);
+}
+
+.modal {
+    position: absolute;
+    top: 5vh;
+    left: 10%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    width: 100%;
+    z-index: 100;
+    overflow: hidden;
+    background: #fff;
+
+
+}
+
+.label {
+    margin-left: 20px;
+}
+
+.input {
+    width: 95%;
+    height: 40px;
+    text-align: left;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+
+.detail {
+    width: 95%;
+    height: 100%;
+    text-align: left;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+
+.button {
+
+    background: rgb(23, 32, 42);
+    color: rgb(255, 255, 255);
+    border-color: rgb(255, 255, 255);
+    font-size: 20px;
+
+    line-height: 24px;
+    font-weight: 400;
+
+    margin-left: 20px;
+    margin-top: 20px;
+    position: relative;
+    top: 70%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+
+}
+
+@media (min-width: 768px) {
+    .modal {
+        left: calc(50% - 20rem);
+        width: 40rem;
+    }
+}

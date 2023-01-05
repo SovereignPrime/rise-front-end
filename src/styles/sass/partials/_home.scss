@@ -1,0 +1,92 @@
+.mainBox {
+	display: flex;
+	flex-direction: row;
+}
+
+.notification {
+	max-width: 60%;
+}
+
+.verification {
+	max-width: 40%;
+}
+
+.topBar {
+	display: flex;
+	flex-direction: row;
+	position: relative;
+}
+
+.iconN {
+	font-size: 30px;
+	padding: 10px;
+}
+
+.icons {
+	display: flex;
+	flex-direction: row;
+	position: absolute;
+	left: 300px;
+}
+
+.search-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	.search-inner {
+		display: flex;
+		width: 70%;
+		
+		* {
+			border: 1px solid #ced4da;
+			border-radius: 0.25rem;
+		}
+	}
+	.dropdown {
+		width: 70%;
+		border: 1px solid #ced4da;
+		border-radius: 3px;
+		cursor: pointer;
+	}
+}
+.dropdown:empty {
+	border: none;
+}
+
+.box {
+	margin: 3%;
+	border: 1px solid LightGrey;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	height: 400px;
+	width: 400px;
+}
+
+.menuContainer {
+	list-style-type: none;
+	border: 1px solid LightGrey;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.textareaModal {
+	height: 300px;
+}
+
+.dropdownMenuCategory {
+	margin-left: 205%;
+}
+
+.radios {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 40%;
+}
+
+.radioEl {
+	margin-left: 10px;
+}
