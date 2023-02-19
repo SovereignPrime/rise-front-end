@@ -3,8 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSliders, faPlus } from "@fortawesome/free-solid-svg-icons";
 import "bootstrap/dist/css/bootstrap.css";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import { Table } from "reactstrap";
-import { Input } from "reactstrap";
 import { useSelector, useDispatch } from "react-redux";
 import React, { useState } from "react";
 import DropdownMessage from "../DropdownMenus/DropdownMessage";
@@ -19,7 +17,9 @@ import {
 	ModalHeader,
 	ModalBody,
 	FormGroup,
-	Label
+	Input,
+	Label,
+	Table
 } from "reactstrap";
 import CardObject from "../Card/CardObject";
 import person1 from "../../styles/assets/person1.jpg";
@@ -162,7 +162,7 @@ const Home = (props) => {
 						onClick={(e) => setRadioEl("notification")}
 						value
 					/>{" "}
-					<Label check>Notification</Label>
+					<Label check for="notification">Notification</Label>
 				</FormGroup>
 				<FormGroup className="radioEl">
 					<Input
@@ -171,7 +171,7 @@ const Home = (props) => {
 						id="verification"
 						onClick={(e) => setRadioEl("verification")}
 					/>{" "}
-					<Label check>Verification</Label>
+					<Label check for="verification">Verification</Label>
 				</FormGroup>
 				<FormGroup className="radioEl">
 					<Input
@@ -181,7 +181,7 @@ const Home = (props) => {
 						onClick={(e) => setRadioEl("Marketplace")}
 						defaultChecked
 					/>{" "}
-					<Label check>Marketplace</Label>
+					<Label check for="marketPlace">Marketplace</Label>
 				</FormGroup>
 			</div>
 			<div className="container d-flex mt-4">
